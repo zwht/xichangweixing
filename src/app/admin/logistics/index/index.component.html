@@ -1,0 +1,109 @@
+<div class="data">
+  <div class="quality_block">
+      <div class="quality_title">
+          <div class="quality_titleRed">
+              后勤管理
+          </div>
+          <div class="crumbs">
+              <span>后勤管理</span>>
+              <span>客房预订</span>
+          </div>
+      </div>
+      <div class="dataTitle">
+          客房预订
+      </div>
+      <div class="dataData">
+        <div nz-row>
+          <div nz-col nzSpan="8" class="emmm">房客姓名:</div>
+          <div nz-col nzSpan="12" class="ennn">
+            <input nz-input placeholder="请输入姓名" [(ngModel)]="value">
+          </div>
+          <div nz-col nzSpan="8" class="emmm">身份证号:</div>
+          <div nz-col nzSpan="12" class="ennn">
+            <input nz-input placeholder="请输入身份证号" [(ngModel)]="value">
+          </div>
+          <div nz-col nzSpan="8" class="emmm">联系电话:</div>
+          <div nz-col nzSpan="12" class="ennn">
+            <input nz-input placeholder="请输入联系电话" [(ngModel)]="value">
+          </div>
+          <div nz-col nzSpan="8" class="emmm">工作单位:</div>
+          <div nz-col nzSpan="12" class="ennn">
+            <input nz-input placeholder="请输入工作单位" [(ngModel)]="value">
+          </div>
+          <div nz-col nzSpan="8" class="emmm">入住人数:</div>
+          <div nz-col nzSpan="4" class="ennn">
+            <input nz-input placeholder="请输入入住人数" [(ngModel)]="value">
+          </div>
+          <div nz-col nzSpan="4" class="emmm">预定房间数:</div>
+          <div nz-col nzSpan="4" class="ennn">
+            <input nz-input placeholder="请输入预定房间数" [(ngModel)]="value">
+          </div>
+          <div nz-col nzSpan="8" class="emmm">入住时间:</div>
+          <div nz-col nzSpan="12" class="ennn">
+            <nz-date-picker [(ngModel)]="date" (ngModelChange)="onChange($event)"></nz-date-picker>
+            <nz-time-picker [(ngModel)]="time" nzFormat="HH:mm"></nz-time-picker>
+          </div>
+          <div nz-col nzSpan="8" class="emmm">退房时间:</div>
+          <div nz-col nzSpan="12" class="ennn">
+            <nz-date-picker [(ngModel)]="date" (ngModelChange)="onChange($event)"></nz-date-picker>
+            <nz-time-picker [(ngModel)]="time" nzFormat="HH:mm"></nz-time-picker>
+          </div>
+          <div nz-col nzSpan="8" class="emmm">备注:</div>
+          <div nz-col nzSpan="12" class="ennn">
+              <textarea class="publishText publishText-1" placeholder="请输入备注"></textarea>
+          </div>
+        </div>
+      </div>
+  </div>
+</div>
+
+
+<div class="other">
+  <div class="other_data">
+      <div class="friendLink">
+          <span style="color: #CF2323;float: left;margin-right: 60px;">友情连接</span>
+          <div style="float: left;width: 80%;">
+              <div class="friendLinkBox">西昌卫星发射中心官方网站</div>
+              <div class="friendLinkBox">中国探月工程设计研究院</div>
+              <div class="friendLinkBox">中华人民共和国工业和信息化部</div>
+              <div class="friendLinkBox">中国探月工程设计研究院</div>
+          </div>
+          <span style="float: right;">更多 ></span>
+      </div>
+      <div class="friendLink">
+          <span style="color: #CF2323;float: left;margin-right: 90px;">关于</span>
+          <div style="float: left;width: 80%;">
+              <div class="friendLinkBox">联系我们</div>
+              <div class="friendLinkBox">网址导航</div>
+              <div class="friendLinkBox">网址导航</div>
+          </div>
+      </div>
+      <div class="friendLink">
+          <span style="color: #CF2323;float: left;margin-right: 90px;">商务</span>
+          <div style="float: left;width: 80%;">
+              <div class="friendLinkBox" style="font-weight: 600">服务热线：0834-82738879</div>
+              <div class="friendLinkBox" style="font-weight: 600">商务合作：0834-23976688</div>
+              <div class="friendLinkBox" style="font-weight: 600">官方邮件地址：xcwsfszx@163.com</div>
+          </div>
+      </div>
+      <div class="heng"></div>
+      <div class="logo">
+          <img src="../../../../assets/images/logo.png">
+          <span style="font-size:20px;margin: 0 5px;">西昌卫星发射中心</span>
+          <span style="font-size:16px;margin: 0 5px;">物资供应查询平台</span>
+          <div class="small-font">XICHANG SATELLITE LAUNCH CENTER MATERIAL SUPPLY INQUIRY PLATFORM</div>
+      </div>
+
+      <div class="you">
+          <div>
+              Copyright©2018版权所有 中国西昌卫星发射中心 备案序号:川ICP备 10029358号 公网安备1104010029358号
+          </div>
+          <div>
+              网站运维：四川成都清数科技有限公司 访问统计：
+          </div>
+          <div>
+              地址：凉山彝族自治州冕宁县泽远乡封家湾　邮编：735400
+          </div>
+      </div>
+  </div>
+</div>

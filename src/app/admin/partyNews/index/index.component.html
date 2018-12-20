@@ -1,0 +1,73 @@
+<div class="data">
+  <div class="quality_block">
+    <div class="quality_title">
+      <div class="quality_titleRed">
+        党建要闻
+      </div>
+    </div>
+    <div class="lastContent">
+      <div class="line" *ngFor="let item of data1">
+        <div class="circular"></div>
+        <div class="lineData">
+          {{item}}
+        </div>
+        <div class="date">
+          [2018-11-11]
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="other">
+  <div style="width: 100%;text-align: center;background-color: white;padding-bottom: 40px;">
+    <nz-pagination [nzPageIndex]="3" [nzTotal]="500" nzShowSizeChanger [nzPageSize]="10"></nz-pagination>
+  </div>
+  <div class="other_data">
+    <div class="friendLink">
+      <span style="color: #CF2323;float: left;margin-right: 60px;">友情连接</span>
+      <div style="float: left;width: 80%;">
+        <div class="friendLinkBox">西昌卫星发射中心官方网站</div>
+        <div class="friendLinkBox">中国探月工程设计研究院</div>
+        <div class="friendLinkBox">中华人民共和国工业和信息化部</div>
+        <div class="friendLinkBox">中国探月工程设计研究院</div>
+      </div>
+      <span style="float: right;">更多 ></span>
+    </div>
+    <div class="friendLink">
+      <span style="color: #CF2323;float: left;margin-right: 90px;">关于</span>
+      <div style="float: left;width: 80%;">
+        <div class="friendLinkBox">联系我们</div>
+        <div class="friendLinkBox">网址导航</div>
+        <div class="friendLinkBox">网址导航</div>
+      </div>
+    </div>
+    <div class="friendLink">
+      <span style="color: #CF2323;float: left;margin-right: 90px;">商务</span>
+      <div style="float: left;width: 80%;">
+        <div class="friendLinkBox" style="font-weight: 600">服务热线：0834-82738879</div>
+        <div class="friendLinkBox" style="font-weight: 600">商务合作：0834-23976688</div>
+        <div class="friendLinkBox" style="font-weight: 600">官方邮件地址：xcwsfszx@163.com</div>
+      </div>
+    </div>
+    <div class="heng"></div>
+    <div class="logo">
+      <img src="../../../../assets/images/logo.png">
+      <span style="font-size:20px;margin: 0 5px;">西昌卫星发射中心</span>
+      <span style="font-size:16px;margin: 0 5px;">物资供应查询平台</span>
+      <div class="small-font">XICHANG SATELLITE LAUNCH CENTER MATERIAL SUPPLY INQUIRY PLATFORM</div>
+    </div>
+
+    <div class="you">
+      <div>
+        Copyright©2018版权所有 中国西昌卫星发射中心 备案序号:川ICP备 10029358号 公网安备1104010029358号
+      </div>
+      <div>
+        网站运维：四川成都清数科技有限公司 访问统计：
+      </div>
+      <div>
+        地址：凉山彝族自治州冕宁县泽远乡封家湾　邮编：735400
+      </div>
+    </div>
+  </div>
+</div>

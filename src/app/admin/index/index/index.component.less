@@ -1,0 +1,407 @@
+.data{
+    width: 70%;
+    margin: 40px auto 0 auto;
+    padding-bottom: 40px;
+    overflow: auto;
+    .left{
+        width: 68%;
+        float: left;
+        .block{
+            width: 100%;
+            overflow: hidden;
+            margin-bottom: 40px;
+            .title{
+                width: 100%;
+                height: 45px;
+                .titleRed{
+                    position: relative;
+                    width: 100px;
+                    height: 40px;
+                    background-color: #CF2323;
+                    color: white;
+                    text-align: center;
+                    line-height: 40px;
+                    font-size: 18px;
+                    font-weight:400;
+                    z-index:10;
+                }
+                .more{
+                    float: right;
+                    width: 100%;
+                    height: 30px;
+                    border-top: 1px solid rgba(202,202,202,1);
+                    position: relative;
+                    bottom:30px;
+                    z-index:9;
+                    .keyword{
+                        float: left;
+                        margin-left: 130px;
+                        margin-top: 5px;
+                    }
+                    .moreWord{
+                        cursor: pointer;
+                        float: right;
+                        font-size:12px;
+                        line-height:30px;
+                        color:#808080;
+                    }
+                }
+            }
+            .quality_title{
+                width: 100%;
+                height: 40px;
+                background-color: #F8F8F8;
+                .quality_titleRed{
+                    float: left;
+                    position: relative;
+                    width: 100px;
+                    height: 40px;
+                    background-color: #CF2323;
+                    color: white;
+                    text-align: center;
+                    line-height: 40px;
+                    font-size: 18px;
+                    font-weight:400;
+                    z-index:10;
+                }
+                .quality_titleOption{
+                    margin:3px 0;
+                    float: left;
+                    position: relative;
+                    width: 100px;
+                    height: 40px;
+                    text-align: center;
+                    line-height: 40px;
+                    font-size: 14px;
+                    font-weight:400;
+                    z-index:10;
+                }
+                .quality_more{
+                    float: right;
+                    width: 100%;
+                    height: 40px;
+                    position: relative;
+                    bottom:40px;
+                    z-index:9;
+                    .quality_keyword{
+                        float: left;
+                        margin-left: 130px;
+                        margin-top: 5px;
+                    }
+                    .quality_moreWord{
+                        cursor: pointer;
+                        float: right;
+                        font-size:12px;
+                        line-height:30px;
+                        color:rgba(128,128,128,1);
+                    }
+                }
+            }
+        }
+    }
+    .right{
+        width: 27%;
+        background-color:#F8F8F8;
+        float: right;
+        .login{
+            height: 400px;
+            background: url(../../../../assets/images/bg.png)no-repeat center center;
+            margin-bottom: 10px;
+            .loginLogo{
+                font-size:26px;
+                font-weight:bold;
+                line-height:21px;
+                color:rgba(86,86,86,1);
+                text-align: center;
+                margin-top: 40px;
+            }
+            .loginUser{
+                width:80%;
+                margin: 50px auto 0 auto;
+                border-bottom: 2px solid rgba(233,233,240,1);
+                text-align: center;
+                .user{
+                    margin-bottom: 5px;
+                    width: 90%;
+                    border:none;
+                    background: none;
+                    font-size:16px;
+                    font-weight:400;
+                    color:rgba(77,79,92,1);
+                }
+            }
+            .loginBut{
+                width: 80%;
+                margin: 60px auto 0 auto;
+                background-color:#CF2323;
+                height:50px;
+                text-align: center;
+                color:rgba(255,255,255,1);
+                line-height:50px;
+                font-size:18px;
+                font-weight:400;
+            }
+        }
+    }
+}
+.window{
+    height: 300px;
+    width: 50%;
+    background-color: red;
+    float: left;
+}
+.content{
+    height: 300px;
+    width: 48%;
+    float: right;
+    border-bottom: 1px solid rgba(241,241,243,1);
+    .contentData{
+        height: 60px;
+        line-height: 60px;
+        border-top: 1px solid rgba(241,241,243,1);
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+}
+.query{
+    height: 250px;
+    width: 35%;
+    float: left;
+    .queryButton{
+        width: 90%;
+        height: 30px;
+        background-color: #CF2323;
+        color: white;
+        font-size:18px;
+        line-height: 30px;
+        text-align: center;
+        margin: 10px 0;
+    }
+}
+.contentTable{
+    // height: 300px;
+    width: 63%;
+    float: right;
+}
+.marketQuota{
+    height: 250px;
+    width: 50%;
+    float: left;
+    .marketTable{
+        width:120px;
+        height:27px;
+        font-size:20px;
+        font-weight:600;
+        line-height:27px;
+        color:rgba(48,48,48,1);
+    }
+    .marketData{
+        width: 25%;
+        background-color:rgba(238,238,238,1);
+        height:32px;
+        float: left;
+        margin: 10px;
+        text-align: center;
+        line-height: 32px;
+    }
+}
+.marketContent{
+    height: 200px;
+    width: 48%;
+    float: right;
+    border-bottom: 1px solid rgba(241,241,243,1);
+    .marketContentData{
+        height: 40px;
+        line-height: 40px;
+        border-top: 1px solid rgba(241,241,243,1);
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+}
+.quality_block{
+    width: 100%;
+    overflow: hidden;
+    margin-bottom: 40px;
+    .quality_title{
+        width: 100%;
+        height: 40px;
+        background-color: #F8F8F8;
+        .quality_titleRed{
+            float: left;
+            position: relative;
+            width: 100px;
+            height: 40px;
+            background-color: #CF2323;
+            color: white;
+            text-align: center;
+            line-height: 40px;
+            font-size: 18px;
+            font-weight:400;
+            z-index:10;
+        }
+        .quality_titleOption{
+            margin:3px 0;
+            float: left;
+            position: relative;
+            width: 100px;
+            height: 40px;
+            text-align: center;
+            line-height: 40px;
+            font-size: 14px;
+            font-weight:400;
+            z-index:10;
+        }
+        .quality_more{
+            float: right;
+            width: 100%;
+            height: 40px;
+            position: relative;
+            bottom:40px;
+            z-index:9;
+            .quality_keyword{
+                float: left;
+                margin-left: 130px;
+                margin-top: 5px;
+            }
+            .quality_moreWord{
+                cursor: pointer;
+                float: right;
+                font-size:12px;
+                line-height:30px;
+                color:rgba(128,128,128,1);
+            }
+        }
+    }
+}
+.box{
+    width: 100%;
+    overflow: hidden;
+    margin-bottom: 40px;
+    .boxTitle{
+        width: 100%;
+        height: 45px;
+        .boxRed{
+            border-top: 10px solid #CF2323;
+            position: relative;
+            width: 80px;
+            height: 30px;
+            color: #303030;
+            text-align: center;
+            line-height: 30px;
+            font-size: 15px;
+            font-weight:400;
+            z-index:10;
+            margin-left: 10px;
+        }
+        .more{
+            float: right;
+            width: 90%;
+            height: 30px;
+            border-top: 1px solid rgba(202,202,202,1);
+            position: relative;
+            bottom:25px;
+            margin-right: 10px;
+            z-index:9;
+            .keyword{
+                float: left;
+                margin-left: 130px;
+                margin-top: 5px;
+            }
+            .moreWord{
+                cursor: pointer;
+                float: right;
+                font-size:12px;
+                line-height:30px;
+                color:#808080;
+            }
+        }
+    }
+}
+.rightContent{
+    width: 90%;
+    margin: auto;
+    .rightContentData{
+        width: 90%;
+        height: 40px;
+        line-height: 40px;
+        border-bottom: 1px solid rgba(241,241,243,1);
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+}
+.lastContent{
+    width: 100%;
+    margin: auto;
+    .lastContentData{
+        width: 100%;
+        height: 40px;
+        line-height: 40px;
+        border-bottom: 1px solid rgba(241,241,243,1);
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+}
+.circular{
+    width:4px;
+    height:4px;
+    background:rgba(197,197,197,1);
+    border-radius:2px;
+    display: inline-block;
+    margin: 0 10px;
+}
+.date{
+    float: right;
+    font-size:13px;
+    line-height:40px;
+    color:rgba(202,202,202,1);
+    font-weight:400;
+    margin-right:20px;
+}
+.other{
+    width: 100%;
+    background-color: #F8F8F8;
+    .other_data{
+        width: 60%;
+        margin: 0 auto;
+        padding-bottom:30px ;
+        overflow:hidden;
+        .friendLink{
+            width: 100%;
+            margin: 40px 0;
+            overflow:hidden;
+            .friendLinkBox{
+                float: left;
+                margin: 0 20px;
+            }
+        }
+        .heng{
+            width: 100%;
+            border-top: 1px solid #CACACA;
+            margin-bottom: 30px;
+        }
+        .logo{
+            width: 450px;
+            height: 60px;
+            position: relative;
+            margin: 0px auto 10px auto;
+            .small-font{
+                width: 900px;
+                font-size: 12px;
+                transform:scale(0.65,0.65);
+                position: absolute;
+                bottom:12px;
+                left:-52px;
+            }
+        }
+        .you{
+            text-align: center;
+            div{
+                font-size: 12px;
+            }
+        }
+    }
+}

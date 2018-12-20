@@ -1,0 +1,95 @@
+<div class="markdown-add-cpt" #addBox>
+  <app-loading  *ngIf="loading"></app-loading>
+  <div *ngIf="!loading" class="form-box">
+    <nz-affix class="saveBtn" [nzTarget]="addBox">
+      <nz-switch [hidden]="id" (ngModelChange)="switchChange($event)" [(ngModel)]="isMarkdown" nzCheckedChildren="是"
+        nzUnCheckedChildren="否">
+      </nz-switch>
+      <button nz-button nzType="primary" (click)="submitForm()">保存</button>
+      <button *ngIf="state!=1105" nz-button nzType="default" (click)="submitForm(2)">保存并且发布</button>
+    </nz-affix>
+    <form nz-form [formGroup]="validateForm">
+      <div nz-row class="nzRow">
+        <div nz-col>
+          <nz-form-item>
+            <nz-form-label nzFor="urlEn" nzRequired>url</nz-form-label>
+            <nz-form-control>
+              <input style="width:320px;" appTrim nz-input id="urlEn" formControlName="urlEn" placeholder="urlEn">
+              <nz-form-explain *ngIf="validateForm.get('urlEn').dirty && validateForm.get('urlEn').errors">
+                填写url
+              </nz-form-explain>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+        <div nz-col>
+          <nz-form-item>
+            <nz-form-label nzFor="typeId" nzRequired>类型</nz-form-label>
+            <nz-form-control>
+              <nz-select style="width:100px;" id="typeId" formControlName="typeId" placeholder="typeId" nzAllowClear>
+                <nz-option *ngFor="let item of vpsList" [nzValue]="item.id" [nzLabel]="item.name"></nz-option>
+              </nz-select>
+              <nz-form-explain *ngIf="validateForm.get('typeId').dirty && validateForm.get('typeId').errors">
+                请选择新闻类型
+              </nz-form-explain>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+        <div nz-col>
+          <nz-form-item>
+            <nz-form-label nzFor="labels" nzRequired>标签</nz-form-label>
+            <nz-form-control>
+              <nz-select nzMode="tags" style="width: 200px;" nzPlaceHolder="标签" id="labels" formControlName="labels">
+                <nz-option *ngFor="let option of searchOptions" [nzLabel]="option.label" [nzValue]="option.value">
+                </nz-option>
+              </nz-select>
+              <nz-form-explain *ngIf="validateForm.get('labels').dirty && validateForm.get('labels').errors">填写分组</nz-form-explain>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+        <div nz-col>
+          <nz-form-item>
+            <nz-form-label nzFor="source" nzRequired>来源</nz-form-label>
+            <nz-form-control>
+              <nz-select style="width:100px;" id="source" formControlName="source" nzAllowClear>
+                <nz-option *ngFor="let item of sourceList" [nzValue]="item.name" [nzLabel]="item.name"></nz-option>
+              </nz-select>
+              <nz-form-explain *ngIf="validateForm.get('source').dirty && validateForm.get('source').errors">
+                请选择来源
+              </nz-form-explain>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+        <div nz-col class="zyy">
+          <nz-form-item>
+            <nz-form-label nzFor="abstract" nzRequired>摘要</nz-form-label>
+            <nz-form-control>
+              <!-- <input nzType="textarea" style="width:1100px;" appTrim nz-input id="abstract" formControlName="abstract"
+                placeholder="abstract"> -->
+              <textarea nz-input placeholder="摘要" style="width:500px;" appTrim id="abstract" formControlName="abstract"
+                [nzAutosize]="{ minRows: 2, maxRows: 6 }"></textarea>
+              <nz-form-explain *ngIf="validateForm.get('abstract').dirty && validateForm.get('abstract').errors">
+                填写摘要
+              </nz-form-explain>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+      </div>
+    </form>
+    <div class="artEditBox" nz-row>
+      <div *ngIf='isMarkdown' nz-col class="markDownBOx">
+        <textarea nz-input (blur)=markdownBlur($event) (focus)=markdownFocus($event) #box1 (ngModelChange)=contentMarkdownChange($event)
+          [(ngModel)]="contentMarkdown" placeholder="MarkDown 文章主体内容"></textarea>
+      </div>
+      <div *ngIf='!isMarkdown' nz-col class="editBOx" #box2>
+        <app-ueditor (ngModelChange)=contentChange($event) style="width: 100%; display: block;" [(ngModel)]="content"></app-ueditor>
+      </div>
+      <div nz-col class="showHtml" #box3>
+        <h1 class="h1">
+          <input nz-input [(ngModel)]="actTitle" placeholder="请输入标题！" type="text"/>
+        </h1>
+        <div [innerHtml]='artInnerHtml' #article class="art">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

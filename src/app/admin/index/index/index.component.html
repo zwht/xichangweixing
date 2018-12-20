@@ -1,0 +1,238 @@
+<div class="data">
+  <div class="left">
+    <div class="block">
+      <div class="title">
+        <div class="titleRed">工作动态</div>
+        <div class="more">
+          <div class="moreWord" (click)="jump('work','')">更多 ></div>
+        </div>
+      </div>
+      <div class="window">
+
+      </div>
+      <ul class="content">
+        <li *ngFor="let i of data1" class="contentData">
+          <div class="circular"></div>
+          {{i}}
+        </li>
+      </ul>
+    </div>
+    <div class="block">
+      <div class="quality_title">
+        <div class="quality_titleRed">信息查询</div>
+        <div class="quality_titleOption" [ngStyle]="titOption[0]" (click)="titOptionOK(0)">设备资产</div>
+        <div class="quality_titleOption" [ngStyle]="titOption[1]" (click)="titOptionOK(1)">供应商</div>
+        <div class="quality_titleOption" [ngStyle]="titOption[2]" (click)="titOptionOK(2)">招投标机构</div>
+        <div class="quality_more">
+          <div class="quality_moreWord"> 更多 ></div>
+        </div>
+      </div>
+      <div class="query">
+        <input nz-input placeholder="招投标机构名称" [(ngModel)]="value" style="width: 90%;margin: 10px 0;">
+        <nz-select style="width: 90%; margin: 10px 0;" [(ngModel)]="level" nzAllowClear nzPlaceHolder="级别">
+          <nz-option nzValue="可达鸭" nzLabel="可达鸭"></nz-option>
+        </nz-select>
+        <div nz-row>
+          <div nz-col nzSpan="12">
+            <nz-select style="width: 80%; margin: 10px 0;" [(ngModel)]="level" nzAllowClear nzPlaceHolder="选择省">
+              <nz-option nzValue="可达鸭" nzLabel="可达鸭"></nz-option>
+            </nz-select>
+          </div>
+          <div nz-col nzSpan="12">
+            <nz-select style="width: 80%; margin: 10px 0;" [(ngModel)]="level" nzAllowClear nzPlaceHolder="选择市">
+              <nz-option nzValue="可达鸭" nzLabel="可达鸭"></nz-option>
+            </nz-select>
+          </div>
+        </div>
+        <div class="queryButton">查询</div>
+      </div>
+      <div class="contentTable">
+        <nz-table #basicTable [nzData]="dataSet" [nzShowPagination]='false'>
+          <thead>
+            <tr>
+              <th>招投标机构</th>
+              <th>级别</th>
+              <th>所在地区</th>
+              <th>联系人</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let data of basicTable.data">
+              <td>{{data.name}}</td>
+              <td>{{data.age}}</td>
+              <td>{{data.address}}</td>
+              <td>{{data.name}}</td>
+            </tr>
+          </tbody>
+        </nz-table>
+      </div>
+    </div>
+    <div class="block">
+      <div class="title">
+        <div class="titleRed">市场信息</div>
+        <div class="more">
+          <div class="moreWord" (click)="jump('market','')">更多 ></div>
+        </div>
+      </div>
+      <div class="marketQuota">
+        <div class="marketTable">全部市场行业</div>
+        <div class="marketData">金属</div>
+        <div class="marketData">金属</div>
+        <div class="marketData">金属</div>
+        <div class="marketData">金属</div>
+        <div class="marketData">金属</div>
+        <div class="marketData">金属</div>
+        <div class="marketData">金属</div>
+      </div>
+      <ul class="marketContent">
+        <li *ngFor="let i of data1" class="marketContentData">
+          <div class="circular"></div>
+          {{i}}
+        </li>
+      </ul>
+    </div>
+    <div class="quality_block">
+      <div class="quality_title">
+        <div class="quality_titleRed">质量专栏</div>
+        <div class="quality_titleOption">质量公告</div>
+        <div class="quality_titleOption">质量事件</div>
+        <div class="quality_titleOption">质量处理</div>
+        <div class="quality_more">
+          <div class="quality_moreWord" (click)="jump('quality','')">更多 ></div>
+        </div>
+      </div>
+      <ul class="lastContent">
+        <li *ngFor="let i of data1" class="lastContentData">
+          <div class="circular" style="margin:20px 10px"></div>
+          <div style="width: 75%;display: inline-block;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;">
+            {{i}}
+          </div>
+          <div class="date">[2018-11-05]</div>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="right">
+    <div class="login">
+      <div class="loginLogo">物 资 供 应 系 统</div>
+      <div class="loginUser">
+        <input class="user" type="text" placeholder="请输入用户名" />
+      </div>
+      <div class="loginUser">
+        <input class="user" type="password" placeholder="请输入密码" />
+      </div>
+      <div style="width: 80%;margin: 40px auto 0 auto;">
+        <label nz-checkbox [(ngModel)]="checked">记住密码</label>
+        <a style="float: right;">忘记密码</a>
+      </div>
+      <div class="loginBut">登录</div>
+    </div>
+    <div class="box">
+      <div class="boxTitle">
+        <div class="boxRed">党建要闻</div>
+        <div class="more">
+          <div class="moreWord" (click)="jump('partyNews','')">更多 ></div>
+        </div>
+      </div>
+      <ul class="rightContent">
+        <li *ngFor="let i of data1" class="rightContentData">
+          <div class="circular"></div>
+          {{i}}
+        </li>
+      </ul>
+    </div>
+    <div class="box">
+      <div class="boxTitle">
+        <div class="boxRed">通知公告</div>
+        <div class="more">
+          <div class="moreWord" (click)="jump('notice','')">更多 ></div>
+        </div>
+      </div>
+      <ul class="rightContent">
+        <li *ngFor="let i of data1" class="rightContentData">
+          <div class="circular"></div>
+          {{i}}
+        </li>
+      </ul>
+    </div>
+    <div class="box">
+      <div class="boxTitle">
+        <div class="boxRed">管理规定</div>
+        <div class="more">
+          <div class="moreWord" (click)="jump('adminRegula','')">更多 ></div>
+        </div>
+      </div>
+      <ul class="rightContent">
+        <li *ngFor="let i of data1" class="rightContentData">
+          <div class="circular"></div>
+          {{i}}
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="quality_block">
+    <div class="quality_title">
+      <div class="quality_titleRed">资料下载</div>
+      <div class="quality_more">
+        <div class="quality_moreWord" style="line-height: 40px" (click)="jump('download','')">更多 ></div>
+      </div>
+    </div>
+    <ul class="lastContent" style="margin-top:35px;">
+      <li *ngFor="let i of data1" class="lastContentData">
+        <div class="circular"></div>
+        {{i}}
+        <div class="date">[2018-11-05]</div>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class="other">
+  <div class="other_data">
+    <div class="friendLink">
+      <span style="color: #CF2323;float: left;margin-right: 60px;">友情连接</span>
+      <div style="float: left;width: 80%;">
+        <div class="friendLinkBox">西昌卫星发射中心官方网站</div>
+        <div class="friendLinkBox">中国探月工程设计研究院</div>
+        <div class="friendLinkBox">中华人民共和国工业和信息化部</div>
+        <div class="friendLinkBox">中国探月工程设计研究院</div>
+      </div>
+      <span style="float: right;">更多 ></span>
+    </div>
+    <div class="friendLink">
+      <span style="color: #CF2323;float: left;margin-right: 90px;">关于</span>
+      <div style="float: left;width: 80%;">
+        <div class="friendLinkBox">联系我们</div>
+        <div class="friendLinkBox">网址导航</div>
+        <div class="friendLinkBox">网址导航</div>
+      </div>
+    </div>
+    <div class="friendLink">
+      <span style="color: #CF2323;float: left;margin-right: 90px;">商务</span>
+      <div style="float: left;width: 80%;">
+        <div class="friendLinkBox" style="font-weight: 600">服务热线：0834-82738879</div>
+        <div class="friendLinkBox" style="font-weight: 600">商务合作：0834-23976688</div>
+        <div class="friendLinkBox" style="font-weight: 600">官方邮件地址：xcwsfszx@163.com</div>
+      </div>
+    </div>
+    <div class="heng"></div>
+    <div class="logo">
+      <img src="../../../../assets/images/logo.png">
+      <span style="font-size:20px;margin: 0 5px;">西昌卫星发射中心</span>
+      <span style="font-size:16px;margin: 0 5px;">物资供应查询平台</span>
+      <div class="small-font">XICHANG SATELLITE LAUNCH CENTER MATERIAL SUPPLY INQUIRY PLATFORM</div>
+    </div>
+
+    <div class="you">
+      <div>
+        Copyright©2018版权所有 中国西昌卫星发射中心 备案序号:川ICP备 10029358号 公网安备1104010029358号
+      </div>
+      <div>
+        网站运维：四川成都清数科技有限公司 访问统计：
+      </div>
+      <div>
+        地址：凉山彝族自治州冕宁县泽远乡封家湾　邮编：735400
+      </div>
+    </div>
+  </div>
+</div>
