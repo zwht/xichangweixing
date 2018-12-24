@@ -12,7 +12,7 @@ export class UserService {
   constructor(
     private httpClient: HttpClient
   ) { }
-  private url = '/v1/user/:params1/:params2/:params3/:params4/:params5';
+  private url = '/v1/auth/:params1/:params2/:params3/:params4/:params5';
 
   // add
   @HttpConfig({

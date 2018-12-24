@@ -78,14 +78,14 @@ export class LoginComponent implements OnInit {
         if (this.validateForm.valid) {
             this.loading = true;
             this.userService['login']({
-                data: {
-                    password: this.panduan1 ? btoa(encodeURIComponent(this.validateForm.value.password)) : this.validateForm.value.password,
-                    loginName: this.validateForm.value.userName
+                params: {
+                    userName: this.validateForm.value.userName,
+                    password: this.validateForm.value.password,
                 }
             })
                 .subscribe(response => {
                     this.loading = false;
-                    if (response.code === 200) {
+                    if (response.errorCode === 0) {
                         this.panduan2();
                         this.sessionService.setItem('userName', response.data.name, '2h');
                         this.sessionService.setItem('token', response.data.token, '2h');
