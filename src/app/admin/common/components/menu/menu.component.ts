@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import * as logistics from '../../../logistics/logistics.module';
-import { Router } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
 import { SessionService } from '../../../../share/services/session.service';
+import { RxjsMessageService } from 'src/app/share/services/rxjsMessage.service';
+import { debug } from 'util';
 
 @Component({
     selector: 'app-menu',
@@ -9,13 +11,14 @@ import { SessionService } from '../../../../share/services/session.service';
     styleUrls: ['./menu.component.less'],
     providers: []
 })
-export class MenuComponent implements OnInit {
+export class MenuComponent implements OnInit, OnDestroy {
     menuLocation = true;
     childrenShowKey = true;
     menu = [];
     collectKey = false;
     hardImg = '';
     userName = this.sessionService.getItem('userName');
+    subscription;
     // 有子菜单的需要引入
     routesMenu = [
         {
@@ -36,11 +39,12 @@ export class MenuComponent implements OnInit {
 
     constructor(
         private router: Router,
-        private sessionService: SessionService) {
+        private sessionService: SessionService,
+        private rxjsMessageService: RxjsMessageService) {
     }
 
     ngOnInit() {
-        let userType=[1001];
+        let userType = [1001];
         // 如果没有用户类型，说明没有登录，直接跳转登录页面
         if (!this.sessionService.getItem('roles')) {
             // this.router.navigate(['/']);
@@ -53,7 +57,7 @@ export class MenuComponent implements OnInit {
         }
         let adminList = {};
         this.router.config.forEach(item => {
-            if (item.path === 'admin') {
+            if (item.path === 'admin' || item.path == '') {
                 adminList = item['_loadedConfig'].routes[0];
             }
         });
@@ -104,29 +108,38 @@ export class MenuComponent implements OnInit {
             }
             return true;
         });
-        this.setActiveMenu(this.router.url, '/admin/');
+        this.setActiveMenu(this.router.url, '');
+
+        this.subscription = this.rxjsMessageService.getMessage()
+            .subscribe(message => {
+                this.userName = message.userInfoVO.userName;
+            });
+
+        this.router.events
+            .subscribe((event) => {
+                // example: NavigationStart, RoutesRecognized, NavigationEnd
+                if (event instanceof NavigationEnd) {
+                    this.setActiveMenu(event.url, '');
+                }
+            });
     }
-    goCollect() {
-        this.menu.forEach(item => {
-            item.active = false;
-        });
-        this.collectKey = true;
-        this.router.navigate(['/admin/collect/index']);
+    ngOnDestroy() {
+        this.subscription.unsubscribe();
     }
 
     downChange(data) {
         switch (data.value) {
             case 'my': {
-                this.router.navigate(['/admin/self']);
+                this.router.navigate(['/self']);
                 break;
             }
             case 'exit': {
+                this.userName = '';
                 this.sessionService.removeItem('token');
                 this.sessionService.removeItem('username');
-                this.sessionService.removeItem('remember');
-                this.sessionService.removeItem('password');
+                this.sessionService.removeItem('userInfoVo');
                 this.sessionService.removeItem('id');
-                this.sessionService.removeItem('roles');
+                this.sessionService.removeItem('password');
                 this.router.navigate(['/']);
                 break;
             }
@@ -143,7 +156,10 @@ export class MenuComponent implements OnInit {
                     subItem.active = false;
                 }
             });
-            if (url.indexOf(item.path) !== -1) {
+
+            if (url === '/' && item.path === '') {
+                item.active = true;
+            } else if (item.path !== '' && url.indexOf(item.path) !== -1) {
                 item.active = true;
                 if (this.menuLocation) {
                     item.show = true;
@@ -158,14 +174,11 @@ export class MenuComponent implements OnInit {
     }
 
     goMenu(item) {
-        this.setActiveMenu(item.path, '');
         this.router.navigateByUrl('/admin/' + item.path);
     }
 
-
     bigMenu(item) {
         if (!item.children.length) {
-            this.setActiveMenu(item.path, '');
             this.router.navigateByUrl('/admin/' + item.path + (item.data.hideChild ? '/index' : ''));
         }
         item.show = !item.show;
@@ -174,8 +187,7 @@ export class MenuComponent implements OnInit {
     bigMenuTop(item) {
         this.collectKey = false;
         if (!item.children.length) {
-            this.setActiveMenu(item.path, '');
-            this.router.navigateByUrl('/admin/' + item.path + (item.data.hideChild ? '/index' : ''));
+            this.router.navigateByUrl('/' + item.path + (item.data.hideChild ? '/index' : ''));
         }
     }
 
@@ -184,11 +196,10 @@ export class MenuComponent implements OnInit {
         this.menu.forEach((item1, i) => {
             item1.show = false;
         });
-        this.setActiveMenu(item.path, '');
         if (item.path.charAt(item.path.length - 1) === '/') {
             item.path = item.path.substr(0, item.path.length - 1);
         }
-        this.router.navigateByUrl('/admin/' + item.path);
+        this.router.navigateByUrl('/' + item.path);
         setTimeout(() => {
             this.childrenShowKey = true;
         }, 100);

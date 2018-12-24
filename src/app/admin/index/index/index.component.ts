@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-
+import { AutoSizeType } from 'ng-zorro-antd/input/nz-input.directive';
+import { AuthService } from 'src/app/share/restServices/auth.service';
+import { SessionService } from 'src/app/share/services/session.service';
+import { LoginSubject } from 'src/app/share/services/loginSubject.service';
+import { RxjsMessageService } from 'src/app/share/services/rxjsMessage.service';
 
 @Component({
     selector: 'app-index',
@@ -40,12 +44,50 @@ export class IndexComponent implements OnInit {
     ];
     value = '';
     level = null;
-    checked = true;
+    checked = false;
+    loginName;
+    password;
+    userInfoVo = '';
     constructor(
         private router: Router,
+        private authService: AuthService,
+        private session: SessionService,
+        private rxjsMessageService: RxjsMessageService
     ) { }
 
     ngOnInit() {
+        const userInfo = this.session.getItem('userInfoVo');
+        this.userInfoVo = userInfo ? JSON.parse(userInfo) : '';
+        if (this.session.getItem('checked')) {
+            this.loginName = this.session.getItem('userName');
+            this.password = this.session.getItem('password');
+            this.checked = true;
+        }
+    }
+    login() {
+        this.authService.login({
+            data: { userName: this.loginName, password: this.password }
+        }).subscribe(
+            data => {
+                if (data.errorCode === 0) {
+                    this.userInfoVo = data.data.userInfoVO;
+                    this.session.setItem('token', data.data.token);
+                    this.session.setItem('userName', data.data.userInfoVO.userName);
+                    this.session.setItem('userId', data.data.userInfoVO.id);
+                    this.session.setItem('userInfoVo', JSON.stringify(data.data.userInfoVO));
+                    if (this.checked) {
+                        this.session.setItem('checked', 1);
+                        this.session.setItem('password', this.password, '2h');
+                    } else {
+                        this.session.removeItem('checked');
+                        this.session.removeItem('password');
+                    }
+                    this.rxjsMessageService.sendMessage(data.data);
+                }
+            },
+            err => {
+            }
+        );
     }
     titOptionOK(i) {
         // 信息查询标题点击样式修改
@@ -60,7 +102,7 @@ export class IndexComponent implements OnInit {
     marketOptionOK(i) {
         // 市场信息样式点击样式修改
         this.marketOption = [{}, {}, {}, {}, {}, {}, {}, {}, {}];
-        this.marketOption[i] = {'font-weight': 600};
+        this.marketOption[i] = { 'font-weight': 600 };
 
     }
     jump(i, id) { // 跳转

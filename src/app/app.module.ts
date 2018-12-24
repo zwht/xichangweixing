@@ -33,7 +33,7 @@ registerLocaleData(zh);
                 }
             },
             {
-                path: 'admin',
+                path: '',
                 loadChildren: './admin/admin.module#AdminModule',
                 data: {
                     name: '',
@@ -43,7 +43,7 @@ registerLocaleData(zh);
                 }
             },
             {
-                path: '',
+                path: 'login',
                 loadChildren: './start/start.module#StartModule',
                 data: {
                     name: '',

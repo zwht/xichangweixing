@@ -23,7 +23,7 @@ export const routes: Routes = [
         canActivate: [PermissionGuardService]
       },
       {
-        path: 'index',
+        path: '',
         loadChildren: './index/index.module#IndexModule',
         data: {
           name: '首页',
