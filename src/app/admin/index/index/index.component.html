@@ -24,47 +24,122 @@
         <div class="quality_titleOption" [ngStyle]="titOption[1]" (click)="titOptionOK(1)">供应商</div>
         <div class="quality_titleOption" [ngStyle]="titOption[2]" (click)="titOptionOK(2)">招投标机构</div>
         <div class="quality_more">
-          <div class="quality_moreWord"> 更多 ></div>
+          <div class="quality_moreWord" (click)="jump('equipment','')"> 更多 ></div>
         </div>
       </div>
-      <div class="query">
-        <input nz-input placeholder="招投标机构名称" [(ngModel)]="value" style="width: 90%;margin: 10px 0;">
-        <nz-select style="width: 90%; margin: 10px 0;" [(ngModel)]="level" nzAllowClear nzPlaceHolder="级别">
-          <nz-option nzValue="可达鸭" nzLabel="可达鸭"></nz-option>
-        </nz-select>
-        <div nz-row>
-          <div nz-col nzSpan="12">
-            <nz-select style="width: 80%; margin: 10px 0;" [(ngModel)]="level" nzAllowClear nzPlaceHolder="选择省">
-              <nz-option nzValue="可达鸭" nzLabel="可达鸭"></nz-option>
-            </nz-select>
-          </div>
-          <div nz-col nzSpan="12">
-            <nz-select style="width: 80%; margin: 10px 0;" [(ngModel)]="level" nzAllowClear nzPlaceHolder="选择市">
-              <nz-option nzValue="可达鸭" nzLabel="可达鸭"></nz-option>
-            </nz-select>
-          </div>
+      <div *ngIf="titOption[3] == 0">
+        <div class="query">
+          <input nz-input placeholder="设备名称" [(ngModel)]="value" style="width: 90%;margin: 10px 0;">
+          <nz-select style="width: 90%; margin: 10px 0;" [(ngModel)]="level" nzAllowClear nzPlaceHolder="供应商">
+            <nz-option nzValue="可达鸭" nzLabel="可达鸭"></nz-option>
+          </nz-select>
+          <nz-select style="width:90%; margin:10px 0;" [(ngModel)]="level" nzAllowClear nzPlaceHolder="采购负责人">
+            <nz-option nzValue="可达鸭" nzLabel="可达鸭"></nz-option>
+          </nz-select>
+          <div class="queryButton">查询</div>
         </div>
-        <div class="queryButton">查询</div>
+        <div class="contentTable">
+          <nz-table #basicTable [nzData]="dataSet" [nzShowPagination]='false'>
+            <thead>
+              <tr>
+                <th>设备名称</th>
+                <th>设备型号</th>
+                <th>供应商</th>
+                <th>采购负责人</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let data of basicTable.data">
+                <td>{{data.name}}</td>
+                <td>{{data.age}}</td>
+                <td>{{data.address}}</td>
+                <td>{{data.name}}</td>
+              </tr>
+            </tbody>
+          </nz-table>
+        </div>
       </div>
-      <div class="contentTable">
-        <nz-table #basicTable [nzData]="dataSet" [nzShowPagination]='false'>
-          <thead>
-            <tr>
-              <th>招投标机构</th>
-              <th>级别</th>
-              <th>所在地区</th>
-              <th>联系人</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let data of basicTable.data">
-              <td>{{data.name}}</td>
-              <td>{{data.age}}</td>
-              <td>{{data.address}}</td>
-              <td>{{data.name}}</td>
-            </tr>
-          </tbody>
-        </nz-table>
+      <div *ngIf="titOption[3] == 1">
+        <div class="query">
+          <input nz-input placeholder="供应商名称" [(ngModel)]="value" style="width: 90%;margin: 10px 0;">
+          <nz-select style="width:90%; margin:10px 0;" [(ngModel)]="level" nzAllowClear nzPlaceHolder="供应商类型">
+            <nz-option nzValue="可达鸭" nzLabel="可达鸭"></nz-option>
+          </nz-select>
+          <div nz-row>
+            <div nz-col nzSpan="12">
+              <nz-select style="width:80%; margin:10px 0;" [(ngModel)]="level" nzAllowClear nzPlaceHolder="选择省">
+                <nz-option nzValue="可达鸭" nzLabel="可达鸭"></nz-option>
+              </nz-select>
+            </div>
+            <div nz-col nzSpan="12">
+              <nz-select style="width:80%; margin:10px 0;" [(ngModel)]="level" nzAllowClear nzPlaceHolder="选择市">
+                <nz-option nzValue="可达鸭" nzLabel="可达鸭"></nz-option>
+              </nz-select>
+            </div>
+          </div>
+          <div class="queryButton">查询</div>
+        </div>
+        <div class="contentTable">
+          <nz-table #basicTable [nzData]="dataSet" [nzShowPagination]='false'>
+            <thead>
+              <tr>
+                <th>供应商名称</th>
+                <th>类型</th>
+                <th>所在地区</th>
+                <th>联系人</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let data of basicTable.data">
+                <td>{{data.name}}</td>
+                <td>{{data.age}}</td>
+                <td>{{data.address}}</td>
+                <td>{{data.name}}</td>
+              </tr>
+            </tbody>
+          </nz-table>
+        </div>
+      </div>
+      <div *ngIf="titOption[3] == 2">
+        <div class="query">
+          <input nz-input placeholder="招投标机构名称" [(ngModel)]="value" style="width: 90%;margin: 10px 0;">
+          <nz-select style="width: 90%; margin: 10px 0;" [(ngModel)]="level" nzAllowClear nzPlaceHolder="级别">
+            <nz-option nzValue="可达鸭" nzLabel="可达鸭"></nz-option>
+          </nz-select>
+          <div nz-row>
+            <div nz-col nzSpan="12">
+              <nz-select style="width:80%; margin:10px 0;" [(ngModel)]="level" nzAllowClear nzPlaceHolder="选择省">
+                <nz-option nzValue="可达鸭" nzLabel="可达鸭"></nz-option>
+              </nz-select>
+            </div>
+            <div nz-col nzSpan="12">
+              <nz-select style="width:80%; margin:10px 0;" [(ngModel)]="level" nzAllowClear nzPlaceHolder="选择市">
+                <nz-option nzValue="可达鸭" nzLabel="可达鸭"></nz-option>
+              </nz-select>
+            </div>
+          </div>
+          <div class="queryButton">查询</div>
+        </div>
+        <div class="contentTable">
+          <nz-table #basicTable [nzData]="dataSet" [nzShowPagination]='false'>
+            <thead>
+              <tr>
+                <th>招投标机构</th>
+                <th>级别</th>
+                <th>所在地区</th>
+                <th>联系人</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let data of basicTable.data">
+                <td>{{data.name}}</td>
+                <td>{{data.age}}</td>
+                <td>{{data.address}}</td>
+                <td>{{data.name}}</td>
+              </tr>
+            </tbody>
+          </nz-table>
+        </div>
       </div>
     </div>
     <div class="block">
@@ -76,13 +151,15 @@
       </div>
       <div class="marketQuota">
         <div class="marketTable">全部市场行业</div>
-        <div class="marketData">金属</div>
-        <div class="marketData">金属</div>
-        <div class="marketData">金属</div>
-        <div class="marketData">金属</div>
-        <div class="marketData">金属</div>
-        <div class="marketData">金属</div>
-        <div class="marketData">金属</div>
+        <div class="marketData" [ngStyle]="marketOption[0]" (click)="marketOptionOK(0)">金属</div>
+        <div class="marketData" [ngStyle]="marketOption[1]" (click)="marketOptionOK(1)">生产耗材</div>
+        <div class="marketData" [ngStyle]="marketOption[2]" (click)="marketOptionOK(2)">轻工类</div>
+        <div class="marketData" [ngStyle]="marketOption[3]" (click)="marketOptionOK(3)">载具</div>
+        <div class="marketData" [ngStyle]="marketOption[4]" (click)="marketOptionOK(4)">化工</div>
+        <div class="marketData" [ngStyle]="marketOption[5]" (click)="marketOptionOK(5)">能源</div>
+        <div class="marketData" [ngStyle]="marketOption[6]" (click)="marketOptionOK(6)">农产品</div>
+        <div class="marketData" [ngStyle]="marketOption[7]" (click)="marketOptionOK(7)">医疗保障</div>
+        <div class="marketData" [ngStyle]="marketOption[8]" (click)="marketOptionOK(8)">危险品</div>
       </div>
       <ul class="marketContent">
         <li *ngFor="let i of data1" class="marketContentData">
@@ -94,9 +171,9 @@
     <div class="quality_block">
       <div class="quality_title">
         <div class="quality_titleRed">质量专栏</div>
-        <div class="quality_titleOption">质量公告</div>
-        <div class="quality_titleOption">质量事件</div>
-        <div class="quality_titleOption">质量处理</div>
+        <div class="quality_titleOption" [ngStyle]="titOption2[0]" (click)="titOption2OK(0)">质量公告</div>
+        <div class="quality_titleOption" [ngStyle]="titOption2[1]" (click)="titOption2OK(1)">质量事件</div>
+        <div class="quality_titleOption" [ngStyle]="titOption2[2]" (click)="titOption2OK(2)">质量处理</div>
         <div class="quality_more">
           <div class="quality_moreWord" (click)="jump('quality','')">更多 ></div>
         </div>

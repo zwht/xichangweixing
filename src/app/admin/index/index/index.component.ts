@@ -8,7 +8,9 @@ import { Router } from '@angular/router';
     styleUrls: ['../../common/style/list.less', './index.component.less']
 })
 export class IndexComponent implements OnInit {
-    titOption = [{ 'border-bottom': '2px solid #CF2323', 'margin': '0 3px' }, {}, {}]; // 信息查询标题样式
+    titOption = [{ 'border-bottom': '2px solid #CF2323', 'margin': '0 3px' }, {}, {}, 0]; // 信息查询标题样式
+    titOption2 = [{ 'border-bottom': '2px solid #CF2323', 'margin': '0 3px' }, {}, {}]; // 质量信息标题样式
+    marketOption = [{ 'font-weight': 600 }, {}, {}, {}, {}, {}, {}, {}, {}]; // 市场信息样式
     dataSet = [
         {
             key: '1',
@@ -47,8 +49,19 @@ export class IndexComponent implements OnInit {
     }
     titOptionOK(i) {
         // 信息查询标题点击样式修改
-        this.titOption = [{}, {}, {}];
-        this.titOption[i] = {'border-bottom': '2px solid #CF2323', 'margin': '0 3px'};
+        this.titOption = [{}, {}, {}, i];
+        this.titOption[i] = { 'border-bottom': '2px solid #CF2323', 'margin': '0 3px' };
+    }
+    titOption2OK(i) {
+        // 质量信息标题点击样式修改
+        this.titOption2 = [{}, {}, {}];
+        this.titOption2[i] = { 'border-bottom': '2px solid #CF2323', 'margin': '0 3px' };
+    }
+    marketOptionOK(i) {
+        // 市场信息样式点击样式修改
+        this.marketOption = [{}, {}, {}, {}, {}, {}, {}, {}, {}];
+        this.marketOption[i] = {'font-weight': 600};
+
     }
     jump(i, id) { // 跳转
         this.router.navigate(['/admin/' + i + '/' + id]);
