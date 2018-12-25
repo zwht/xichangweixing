@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PartyNewsService } from '../../../share/restServices/partyNews.service';
 
 @Component({
     selector: 'app-index',
@@ -6,6 +7,10 @@ import { Component, OnInit } from '@angular/core';
     styleUrls: ['./index.component.less']
 })
 export class IndexComponent implements OnInit {
+    pageIndex = 1; // 当前页数
+    total = 1; // 数据总数
+    pageSize = 10; // 每页条数
+
     data1 = [
         '我国成功发射两颗北斗三号全球组网卫星',
         '我国在西昌卫星发射中心15日成功发射两嘎嘎嘎嘎嘎嘎',
@@ -19,10 +24,34 @@ export class IndexComponent implements OnInit {
         '我国成功发射两颗北斗三号全球组网卫星',
     ];
     constructor(
-
+        private partyNewsService: PartyNewsService
     ) { }
 
     ngOnInit() {
+        this.getList();
+    }
+    gaga1(e) {
+        this.pageSize = e;
+        this.getList();
+    }
+    gaga2(e) {
+        this.pageIndex = e;
+        this.getList();
+    }
 
+    getList() {
+        this.partyNewsService.getAll({
+            params: {
+                pageNumber: this.pageIndex,
+                pageSize: this.pageSize,
+            },
+            data: {}
+        })
+            .subscribe(response => {
+                if (response.errorCode === 0) {
+                    this.total = response.data.totalCount;
+                    this.data1 = response.data.pageData;
+                }
+            });
     }
 }

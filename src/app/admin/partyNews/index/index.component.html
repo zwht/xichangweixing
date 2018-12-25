@@ -21,7 +21,7 @@
 
 <div class="other">
   <div style="width: 100%;text-align: center;background-color: white;padding-bottom: 40px;">
-    <nz-pagination [nzPageIndex]="3" [nzTotal]="500" nzShowSizeChanger [nzPageSize]="10"></nz-pagination>
+    <nz-pagination [nzPageIndex]="pageIndex" [nzTotal]="total" nzShowSizeChanger [nzPageSize]="pageSize" (nzPageSizeChange)="gaga1($event)" (nzPageIndexChange) = "gaga2($event)"></nz-pagination>
   </div>
   <div class="other_data">
     <div class="friendLink">
