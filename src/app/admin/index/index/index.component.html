@@ -205,8 +205,8 @@
         </div>
         <div class="loginBut" (click)="login()">登录</div>
       </div>
-      <div *ngIf="userInfoVo&&userInfoVo.userName">
-        <div clas="userInfo">你好：{{userInfoVo.userName}}</div>
+      <div class="userInfo" *ngIf="userInfoVo&&userInfoVo.userName">
+        <div>你好：{{userInfoVo.userName}}</div>
       </div>
     </div>
     <div class="box">

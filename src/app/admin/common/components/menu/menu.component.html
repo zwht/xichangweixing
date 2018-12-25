@@ -12,7 +12,7 @@
       </div>
     </div>
     <div class="right">
-      <nz-dropdown [nzPlacement]="'bottomRight'">
+      <nz-dropdown *ngIf="userName" [nzPlacement]="'bottomRight'">
         <a class="ant-dropdown-link" nz-dropdown>
           <span class="overflow" [title]='userName'>
             <img class="hardImg" [src]="'/v1/file/img/'+hardImg" alt="">

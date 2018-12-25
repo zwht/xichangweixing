@@ -112,7 +112,10 @@ export class MenuComponent implements OnInit, OnDestroy {
 
         this.subscription = this.rxjsMessageService.getMessage()
             .subscribe(message => {
-                this.userName = message.userInfoVO.userName;
+                if (message.type === 'login') {
+                    this.userName = message.data.userInfoVO.userName;
+                }
+
             });
 
         this.router.events
@@ -136,11 +139,15 @@ export class MenuComponent implements OnInit, OnDestroy {
             case 'exit': {
                 this.userName = '';
                 this.sessionService.removeItem('token');
-                this.sessionService.removeItem('username');
+                this.sessionService.removeItem('userName');
                 this.sessionService.removeItem('userInfoVo');
                 this.sessionService.removeItem('id');
                 this.sessionService.removeItem('password');
                 this.router.navigate(['/']);
+                this.rxjsMessageService.sendMessage({
+                    type: 'exit',
+                    data: data.data
+                });
                 break;
             }
         }
