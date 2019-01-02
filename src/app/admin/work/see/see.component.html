@@ -1,42 +1,24 @@
 <div class="data">
     <div class="quality_block">
         <div class="quality_title">
-            <div class="quality_titleRed">
-                党建要闻
-            </div>
+            <div class="quality_titleRed">党建要闻</div>
             <div class="crumbs">
-                <span>党建要闻</span>>
+                <span style="cursor: pointer;" (click)="jump('work','')">党建要闻</span>>
                 <span>党建要闻详情</span>
             </div>
         </div>
-        <div class="dataTitle">
-            在新时代党的真挚关怀下不断奋进
-        </div>
+        <div class="dataTitle">{{data.title}}</div>
         <div class="divid">
-            <div class="dividWord" style="float: left;">
-                西昌卫星发射中心行政管理部
-            </div>
-            <div class="dividWord" style="float: right;margin: 0 10px;">
-                点赞：539
-            </div>
-            <div class="dividWord" style="float: right;margin: 0 10px;">
-                评论：134
-            </div>
-            <div class="dividWord" style="float: right;margin: 0 10px;">
-                阅读量：2934
-            </div>
-            <div class="dividWord" style="float: right;margin: 0 10px;">
-                发布时间：2018-09-12 12:38
-            </div>
+            <div class="dividWord" style="float: left;">{{data.createUser}}</div>
+            <div class="dividWord" style="float: right;margin: 0 10px;">阅读量：{{readCount}}</div>
+            <div class="dividWord" style="float: right;margin: 0 10px;">发布时间：{{data.updateTime}}</div>
         </div>
-        <div>
-            内容~~~~~
-        </div>
-        <div class="praiseSrc">
+        <div [innerHTML]='content' class="content"></div>
+        <!-- <div class="praiseSrc">
             <img src="../../../../assets/images/praise.png" style="width: 30px;margin-top: 12px;">
-        </div>
+        </div> -->
         <div style="width: 100%;border-bottom: 1px solid #CACACA;"></div>
-        <div class="publish">
+        <!-- <div class="publish">
             <div class="publishWord">发表评论</div>
             <textarea class="publishText publishText-1" placeholder="请理性评论"></textarea>
             <div class="fabu">发布评论</div>
@@ -90,7 +72,7 @@
                     <i nz-icon type="down" theme="outline"></i>
                 </div>
             </div>
-        </div>
+        </div> -->
     </div>
 </div>
 

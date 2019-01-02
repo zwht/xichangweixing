@@ -153,8 +153,23 @@
 .window{
     height: 300px;
     width: 50%;
-    background-color: red;
     float: left;
+    position: relative;
+    .aaaa{
+        position: absolute;
+        font-size:24px;
+        color:rgba(255,255,255,1);
+        left: 20px;
+        bottom: 20px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        width: 80%;
+    }
+    .tupian{
+        height: 300px;
+        width: 100%;
+    }
 }
 .content{
     height: 300px;
@@ -168,6 +183,7 @@
         overflow: hidden;
         white-space: nowrap;
         text-overflow: ellipsis;
+        cursor: pointer;
     }
 }
 .query{

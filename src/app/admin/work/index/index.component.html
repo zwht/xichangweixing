@@ -6,10 +6,10 @@
       </div>
     </div>
     <div class="lastContent">
-      <div class="line" *ngFor="let item of data1">
+      <div class="line" *ngFor="let item of workDynamicsData">
         <div class="circular"></div>
-        <div class="lineData">
-          {{item}}
+        <div class="lineData" (click)="jump('work/see',item.id)">
+          {{item.title}}
         </div>
         <div class="date">
           [2018-11-11]
@@ -21,7 +21,7 @@
 
 <div class="other">
   <div style="width: 100%;text-align: center;background-color: white;padding-bottom: 40px;">
-    <nz-pagination [nzPageIndex]="3" [nzTotal]="500" nzShowSizeChanger [nzPageSize]="10"></nz-pagination>
+    <nz-pagination [(nzPageIndex)]="pageIndex" [(nzTotal)]="total" nzShowSizeChanger [(nzPageSize)]="pageSize" (nzPageIndexChange)="getWorkDynamicsList()" (nzPageSizeChange)="getWorkDynamicsList()"></nz-pagination>
   </div>
   <div class="other_data">
     <div class="friendLink">

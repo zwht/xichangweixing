@@ -8,33 +8,21 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class FileService {
+export class EquipmentService {
   constructor(
     private httpClient: HttpClient
   ) { }
-  private url = '/v1/file/:params1/:params2/:params3/:params4/:params5';
+  private url = '/v1/equipment/:params1/:params2/:params3/:params4/:params5';
 
-  // add
+  // getAllByQuery
   @HttpConfig({
-    method: 'post',
+    method: 'get',
     params: {
-      params1: 'upload'
-    },
-    roles: [1001]
-  })
-  add(data: HttpData): Observable<any> {
-    return data.observable;
-  }
-
-  // downloadHead
-  @HttpConfig({
-    method: 'post',
-    params: {
-      params1: 'downloadHead'
+      params1: 'getAllByQuery'
     },
     roles: []
   })
-  downloadHead(data: HttpData): Observable<any> {
+  getAllByQuery(data: HttpData): Observable<any> {
     return data.observable;
   }
 
