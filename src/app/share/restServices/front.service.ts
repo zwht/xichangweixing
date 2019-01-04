@@ -193,4 +193,17 @@ export class FrontService {
   getArmById(data: HttpData): Observable<any> {
     return data.observable;
   }
+
+  // 根据id查询设备详情
+  @HttpConfig({
+    method: 'get',
+    params: {
+      params1: 'getEquipmentById'
+    },
+    roles: []
+  })
+  getEquipmentById(data: HttpData): Observable<any> {
+    return data.observable;
+  }
+
 }

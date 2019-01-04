@@ -31,25 +31,25 @@
                 <div class="specificData">
                     <div nz-row>
                         <div nz-col nzSpan="4" class="ennnn">设备编号:</div>
-                        <div nz-col nzSpan="8" class="emmmm">xc03556</div>
+                        <div nz-col nzSpan="8" class="emmmm">{{data.code}}</div>
                         <div nz-col nzSpan="4" class="ennnn">计量单位:</div>
-                        <div nz-col nzSpan="8" class="emmmm">台</div>
+                        <div nz-col nzSpan="8" class="emmmm">{{data.measurement}}</div>
                         <div nz-col nzSpan="4" class="ennnn">型号:</div>
-                        <div nz-col nzSpan="8" class="emmmm">WLF495-800</div>
+                        <div nz-col nzSpan="8" class="emmmm">{{data.standard}}</div>
                         <div nz-col nzSpan="4" class="ennnn">标准或批号:</div>
-                        <div nz-col nzSpan="8" class="emmmm">JLWQ973L32J6LH6HK47</div>
+                        <div nz-col nzSpan="8" class="emmmm">{{data.standard}}</div>
                         <div nz-col nzSpan="4" class="ennnn">设备类型:</div>
-                        <div nz-col nzSpan="8" class="emmmm">通讯设备</div>
+                        <div nz-col nzSpan="8" class="emmmm">{{data.equipTypeName}}</div>
                         <div nz-col nzSpan="4" class="ennnn">生产日期:</div>
-                        <div nz-col nzSpan="8" class="emmmm">2018年6月28日  15:28:32</div>
+                        <div nz-col nzSpan="8" class="emmmm">{{data.manufactureDate}}</div>
                         <div nz-col nzSpan="4" class="ennnn">规格:</div>
-                        <div nz-col nzSpan="8" class="emmmm">无</div>
+                        <div nz-col nzSpan="8" class="emmmm">{{data.format}}</div>
                         <div nz-col nzSpan="4" class="ennnn">有效期:</div>
-                        <div nz-col nzSpan="8" class="emmmm">无</div>
+                        <div nz-col nzSpan="8" class="emmmm">{{data.validity}}</div>
                         <div nz-col nzSpan="4" class="ennnn">包装规格:</div>
-                        <div nz-col nzSpan="8" class="emmmm">xc03556</div>
+                        <div nz-col nzSpan="8" class="emmmm">{{data.packageFormat}}</div>
                         <div nz-col nzSpan="4" class="ennnn">供应商:</div>
-                        <div nz-col nzSpan="8" class="emmmm">成都昊城通讯器材贸易有限公司</div>
+                        <div nz-col nzSpan="8" class="emmmm">{{data.supplierName}}</div>
                     </div>
                 </div>
             </div>
@@ -57,12 +57,11 @@
         <div class="line"></div>
         <div class="remarks">
             <div class="zhuyao">
-                主要功能:
+                备注:
             </div>
-            <div class="jutizhuyao" *ngFor="let item of items;let i =index">
-                {{i}}.{{item.name}}
+            <div class="jutizhuyao">
                 <div class="jutidejuti">
-                    {{item.data}}
+                    {{data.remark}}
                 </div>
             </div>
         </div>

@@ -7,10 +7,10 @@
       <div class="quality_titleOptionOK">
         设备资产
       </div>
-      <div class="quality_titleOption" (click)="goto('equipment/supplier','')">
+      <div class="quality_titleOption" (click)="jump('equipment/supplier','')">
         供应商
       </div>
-      <div class="quality_titleOption" (click)="goto('equipment/bids','')">
+      <div class="quality_titleOption" (click)="jump('equipment/bids','')">
         招投标机构
       </div>
     </div>
@@ -27,19 +27,20 @@
     <div class="queryButton">下载</div>
     <div class="queryButton">查询</div>
   </div>
+
   <div class="equipmentData">
-    <div class="division">
-      <img src="../../../../assets/images/Koala.jpg" class="icon">
-      <div class="name">卫星无线跟踪系统移动交换机</div>
-      <div class="number">编号：xc03556</div>
-      <div class="company">成都昊城通讯器材贸易有限公司</div>
+    <div class="division" style="cursor: pointer;" *ngFor="let item of data; let i = index" (click)="jump('equipment/see',item.id)">
+      <img [src]="iiiiimg[i]" class="icon">
+      <div class="name">{{item.name}}</div>
+      <div class="number">{{item.code}}</div>
+      <div class="company">{{item.supplierName}}</div>
     </div>
   </div>
 </div>
 
 <div class="other">
   <div style="width: 100%;text-align: center;background-color: white;padding-bottom: 40px;">
-    <nz-pagination [nzPageIndex]="3" [nzTotal]="500" nzShowSizeChanger [nzPageSize]="10"></nz-pagination>
+    <nz-pagination nzShowSizeChanger [nzTotal]="total"  [(nzPageSize)]="pageSize" [(nzPageIndex)]="pageIndex"  (nzPageSizeChange)="getList()" (nzPageIndexChange) = "getList()"></nz-pagination>
   </div>
   <div class="other_data">
     <div class="friendLink">
