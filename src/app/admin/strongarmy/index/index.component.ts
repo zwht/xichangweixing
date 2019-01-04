@@ -9,7 +9,7 @@ import { FrontService } from '../../../share/restServices/front.service';
 })
 export class IndexComponent implements OnInit {
     pageIndex = 1; // 当前页数
-    total = 50; // 数据总数
+    total = 1; // 数据总数
     pageSize = 10; // 每页条数
 
     data1 = [];
@@ -24,7 +24,7 @@ export class IndexComponent implements OnInit {
     }
 
     getList() {
-        this.frontService.getAllPart({
+        this.frontService.getAllArm({
             params: {
                 params2: this.pageSize,
                 params3: this.pageIndex,
@@ -33,7 +33,7 @@ export class IndexComponent implements OnInit {
         })
             .subscribe(response => {
                 if (response.errorCode === 0) {
-                    // this.total = response.data.totalCount;
+                    this.total = response.data.totalCount;
                     this.data1 = response.data.pageData;
                 }
             });

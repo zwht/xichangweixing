@@ -2,41 +2,18 @@
   <div class="quality_block">
     <div class="quality_title">
       <div class="quality_titleRed">
-        信息查询
-      </div>
-      <div class="quality_titleOption" (click)="goto('equipment','')">
-        设备资产
-      </div>
-      <div class="quality_titleOptionOK">
-        供应商
-      </div>
-      <div class="quality_titleOption" (click)="goto('equipment/bids','')">
-        招投标机构
+        强军模块
       </div>
     </div>
-  </div>
-  <div style="margin-bottom: 10px;">
-    <nz-select style="width: 16%; margin: 20px 2% 20px 0;" [(ngModel)]="level" nzAllowClear nzPlaceHolder="级别">
-      <nz-option nzValue="可达鸭" nzLabel="可达鸭"></nz-option>
-    </nz-select>
-    <input nz-input placeholder="招投标机构名称" [(ngModel)]="value" style="width: 16%;margin: 20px 2%;">
-    <input nz-input placeholder="招投标机构名称" [(ngModel)]="value" style="width: 16%;margin: 20px 2%;">
-    <nz-select style="width: 16%; margin: 20px 2%;" [(ngModel)]="level" nzAllowClear nzPlaceHolder="级别">
-      <nz-option nzValue="可达鸭" nzLabel="可达鸭"></nz-option>
-    </nz-select>
-    <div class="queryButton">下载</div>
-    <div class="queryButton">查询</div>
-  </div>
-  <div class="equipmentData">
-    <div class="division">
-      <div class="setu">
-        <img src="../../../../assets/images/Koala.jpg" class="icon">
-      </div>
-      <div class="setext">
-        <div class="name">亚洲SYTKN科技有限公司</div>
-        <div class="number">一级供应商</div>
-        <div class="number">中国 广东 深圳</div>
-        <div class="number">王德刚 18219283764</div>
+    <div class="lastContent">
+      <div class="line" *ngFor="let item of data1" (click)="jump('strongarmy/see',item.id)">
+        <div class="circular"></div>
+        <div class="lineData">
+          {{item.title}}
+        </div>
+        <div class="date">
+          {{item.updateTime}}
+        </div>
       </div>
     </div>
   </div>
@@ -44,7 +21,7 @@
 
 <div class="other">
   <div style="width: 100%;text-align: center;background-color: white;padding-bottom: 40px;">
-    <nz-pagination [nzPageIndex]="3" [nzTotal]="500" nzShowSizeChanger [nzPageSize]="10"></nz-pagination>
+    <nz-pagination nzShowSizeChanger [nzTotal]="total"  [(nzPageSize)]="pageSize" [(nzPageIndex)]="pageIndex"  (nzPageSizeChange)="getList()" (nzPageIndexChange) = "getList()"></nz-pagination>
   </div>
   <div class="other_data">
     <div class="friendLink">

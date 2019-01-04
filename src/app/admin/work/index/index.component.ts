@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { WorkDynamicsService } from 'src/app/share/restServices/workDynamics.service';
 import { Router } from '@angular/router';
+import { FrontService } from '../../../share/restServices/front.service';
 
 @Component({
     selector: 'app-index',
@@ -13,7 +13,7 @@ export class IndexComponent implements OnInit {
     total = 0; // 总条数
     pageSize = 10; // 每页数目
     constructor(
-        private workDynamicsService: WorkDynamicsService,
+        private frontService: FrontService,
         private router: Router,
 
     ) { }
@@ -22,11 +22,10 @@ export class IndexComponent implements OnInit {
         this.getWorkDynamicsList();
     }
     getWorkDynamicsList() { // 工作动态
-        this.workDynamicsService.list({
+        this.frontService.getWorkDynamics({
             params: {
                 params2: this.pageSize,
                 params3: this.pageIndex,
-                // status: 1
             }
         }).subscribe(
             data => {

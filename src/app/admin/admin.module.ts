@@ -45,6 +45,17 @@ export const routes: Routes = [
         canActivate: [PermissionGuardService]
       },
       {
+        path: 'strongarmy',
+        loadChildren: './strongarmy/strongarmy.module#StrongarmyModule',
+        data: {
+          name: '强军模块',
+          // hideChild: true,
+          roles: [1001],
+          menu: true
+        },
+        canActivate: [PermissionGuardService]
+      },
+      {
         path: 'equipment',
         loadChildren: './equipment/equipment.module#EquipmentModule',
         data: {

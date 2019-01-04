@@ -8,11 +8,11 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class PartyNewsService {
+export class MarketService {
   constructor(
     private httpClient: HttpClient
   ) { }
-  private url = '/v1/party/:params1/:params2/:params3/:params4/:params5';
+  private url = '/v1/marketInformation/:params1/:params2/:params3/:params4/:params5';
 
   // getAll
   @HttpConfig({

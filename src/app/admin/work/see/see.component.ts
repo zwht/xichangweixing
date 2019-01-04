@@ -11,7 +11,7 @@ import { DomSanitizer } from '@angular/platform-browser';
   styleUrls: ['./see.component.less']
 })
 export class SeeComponent implements OnInit {
-  id: 0;
+  id = 0;
   data = {
     title: '暂无',
     createUser: '暂无',

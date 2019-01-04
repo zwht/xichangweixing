@@ -5,10 +5,8 @@ import { AuthService } from 'src/app/share/restServices/auth.service';
 import { SessionService } from 'src/app/share/services/session.service';
 import { LoginSubject } from 'src/app/share/services/loginSubject.service';
 import { RxjsMessageService } from 'src/app/share/services/rxjsMessage.service';
-import { WorkDynamicsService } from 'src/app/share/restServices/workDynamics.service';
-import { EquipmentService } from 'src/app/share/restServices/equipment.service';
 import { AdminDivisionService } from 'src/app/share/restServices/admin-division.service';
-import { SupplierService } from 'src/app/share/restServices/supplier.service';
+import { FrontService } from '../../../share/restServices/front.service';
 
 @Component({
   selector: 'app-index',
@@ -39,6 +37,16 @@ export class IndexComponent implements OnInit, OnDestroy {
   }; // 投标机构查询
   bidsData = []; // 投标机构数据
 
+  marketData = []; // 市场信息数据
+  industry = 1; // 市场信息行业
+
+  qualityData = []; // 质量专栏数据
+  DataDownloadData = []; // 资料下载数据
+
+  newsData = []; // 党建要闻
+  managementData = []; // 管理规定
+  noticeData = []; // 通知公告
+
   provinceNum: string;
   cityNum: string;
   province: Array<{ provinceCode: string, provinceName: string }> = [];
@@ -58,10 +66,9 @@ export class IndexComponent implements OnInit, OnDestroy {
     private authService: AuthService,
     private session: SessionService,
     private rxjsMessageService: RxjsMessageService,
-    private workDynamicsService: WorkDynamicsService,
-    private equipmentService: EquipmentService,
     private adminDivisionService: AdminDivisionService,
-    private supplierService: SupplierService,
+    private frontService: FrontService,
+
   ) { }
 
   ngOnInit() {
@@ -83,28 +90,76 @@ export class IndexComponent implements OnInit, OnDestroy {
     this.equipmentList();
     this.getAdminDivision(1, '');
     this.supplierList();
+    this.bidsList();
+    this.marketList();
+    this.qualityNoticeList();
+    this.newsList();
   }
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }
-  getWorkDynamicsList() { // 工作动态
-    this.workDynamicsService.list({
+
+  newsList() { // 党建要闻
+    this.frontService.getAllPart({
       params: {
         params2: 5,
         params3: 1,
-        // status: 1
+      }
+    }).subscribe(
+      data => {
+        this.newsData = data.data.pageData;
+      }, err => {
+      }
+    );
+  }
+
+  noticeList() { // 通知要闻
+    this.frontService.getAllNoticeByQuery({
+      params: {
+        params2: 5,
+        params3: 1,
+      }
+    }).subscribe(
+      data => {
+        this.newsData = data.data.pageData;
+      }, err => {
+      }
+    );
+  }
+
+  managementList() { // 管理规定
+    this.frontService.getAllManagement({
+      params: {
+        params2: 5,
+        params3: 1,
+      }
+    }).subscribe(
+      data => {
+        this.noticeData = data.data.pageData;
+      }, err => {
+      }
+    );
+  }
+
+  getWorkDynamicsList() { // 工作动态
+    this.frontService.getWorkDynamics({
+      params: {
+        params2: 5,
+        params3: 1,
       }
     }).subscribe(
       data => {
         this.workDynamicsData = data.data.pageData;
         this.workDynamicsTP();
       }, err => {
-
       }
     );
   }
 
   workDynamicsTP() { // 工作动态图片
+    if (this.workDynamicsData.length === 0) {
+      return;
+    }
     const that = this;
     const a = '/v1/file/downloadHead?fileUrl=';
     setInterval(function () {
@@ -122,8 +177,8 @@ export class IndexComponent implements OnInit, OnDestroy {
     }, 5000);
   }
 
-  supplierList() {
-    this.supplierService['getAllByQuery']({
+  supplierList() { // 供应商查询
+    this.frontService['getAllByQuery']({
       params: {
         pageNumber: 1,
         pageSize: 3,
@@ -139,7 +194,7 @@ export class IndexComponent implements OnInit, OnDestroy {
   }
 
   equipmentList() { // 设备资产查询
-    this.equipmentService.getAllByQuery({
+    this.frontService.getAllEquipemt({
       params: {
         pageNumber: 1,
         pageSize: 3,
@@ -151,12 +206,103 @@ export class IndexComponent implements OnInit, OnDestroy {
       data => {
         this.EquipData = data.data.pageData;
       }, err => {
-
       }
     );
   }
 
-  getAdminDivision(level, id) {
+  bidsList() { // 投标商查询
+    this.frontService.getOrgatioByQuery({
+      params: {
+        pageNumber: 1,
+        pageSize: 3,
+        name: this.bidsQuery.name,
+        grade: this.bidsQuery.grade,
+      }
+    }).subscribe(
+      data => {
+        this.bidsData = data.data.pageData;
+      }, err => {
+      }
+    );
+  }
+
+  marketList() { // 市场信息行业查询
+    this.frontService.getMarketInformation({
+      params: {
+        params2: 3,
+        params3: 1,
+        industry: this.industry
+      }
+    }).subscribe(
+      data => {
+        this.marketData = data.data.pageData;
+      }, err => {
+      }
+    );
+  }
+
+  qualityNoticeList() { // 质量公告
+    this.frontService.getQualityNotice({
+      params: {
+        pageNumber: 1,
+        pageSize: 5,
+      }
+    }).subscribe(
+      data => {
+        this.qualityData = data.data.pageData;
+      }, err => {
+      }
+    );
+  }
+
+  qualityEventList() { // 质量事件
+    this.frontService.getQualityEventByQuery({
+      params: {
+        pageNumber: 1,
+        pageSize: 5,
+      }
+    }).subscribe(
+      data => {
+        this.qualityData = data.data.pageData;
+        for (let index = 0; index < this.qualityData.length; index++) {
+          if (this.qualityData[index].name == null) {
+            this.qualityData[index].name = '暂无名字';
+          }
+        }
+      }, err => {
+      }
+    );
+  }
+
+  qualityDealList() { // 质量处理
+    this.frontService.getQualityDealByQuery({
+      params: {
+        pageNumber: 1,
+        pageSize: 5,
+      }
+    }).subscribe(
+      data => {
+        this.qualityData = data.data.pageData;
+      }, err => {
+      }
+    );
+  }
+
+  dataDownloadList() { // 资料下载
+    this.frontService.getDataDownloadAll({
+      params: {
+        params2: 5,
+        params3: 1,
+      }
+    }).subscribe(
+      data => {
+        this.DataDownloadData = data.data.pageData;
+      }, err => {
+      }
+    );
+  }
+
+  getAdminDivision(level, id) { // 位置信息查询
     if (id == null) {
       this.city = [];
       this.cityNum = null;
@@ -221,11 +367,22 @@ export class IndexComponent implements OnInit, OnDestroy {
     // 质量信息标题点击样式修改
     this.titOption2 = [{}, {}, {}];
     this.titOption2[i] = { 'border-bottom': '2px solid #CF2323', 'margin': '0 3px' };
+    if (i === 0) {
+      this.qualityNoticeList();
+    }
+    if (i === 1) {
+      this.qualityEventList();
+    }
+    if (i === 2) {
+      this.qualityDealList();
+    }
   }
   marketOptionOK(i) {
     // 市场信息样式点击样式修改
     this.marketOption = [{}, {}, {}, {}, {}, {}, {}, {}, {}];
     this.marketOption[i] = { 'font-weight': 600 };
+    this.industry = i + 1;
+    this.marketList();
   }
   jump(i, id) { // 跳转
     this.router.navigate(['/' + i + '/' + id]);

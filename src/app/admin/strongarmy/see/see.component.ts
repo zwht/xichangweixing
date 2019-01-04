@@ -29,7 +29,7 @@ export class SeeComponent implements OnInit {
   }
 
   getByID() {
-    this.frontService.getPartById({
+    this.frontService.getArmById({
       params: {
         params2: this.id,
       },

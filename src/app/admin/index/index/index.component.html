@@ -16,6 +16,10 @@
           <div class="circular"></div>
           {{i.title}}
         </li>
+        <li class="contentData" style="cursor: default;" *ngIf="workDynamicsData.length == 0">
+          <div class="circular"></div>
+          暂无数据
+        </li>
       </ul>
     </div>
     <div class="block">
@@ -52,7 +56,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let data of basicTable.data">
+              <tr *ngFor="let data of basicTable.data" (click)="jump('equipment/see/',data.id)">
                 <td>{{data.name}}</td>
                 <td>{{data.code}}</td>
                 <td>{{data.supplierName}}</td>
@@ -96,7 +100,7 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let data of basicTable.data">
+              <tr *ngFor="let data of basicTable.data" (click)="jump('equipment/supplier/see',data.id)">
                 <td>{{data.name}}</td>
                 <td>{{data.typeName}}</td>
                 <td>{{data.region.split(',')[1]}}</td>
@@ -108,8 +112,8 @@
       </div>
       <div *ngIf="titOption[3] == 2">
         <div class="query">
-          <input nz-input placeholder="招投标机构名称" [(ngModel)]="value" style="width: 90%;margin: 10px 0;">
-          <nz-select style="width: 90%; margin: 10px 0;" [(ngModel)]="level" nzAllowClear nzPlaceHolder="级别">
+          <input nz-input placeholder="招投标机构名称" [(ngModel)]="bidsQuery.name" style="width: 90%;margin: 10px 0;">
+          <nz-select style="width: 90%; margin: 10px 0;" [(ngModel)]="bidsQuery.grade" nzAllowClear nzPlaceHolder="级别">
             <nz-option nzValue="" nzLabel="全部"></nz-option>
             <nz-option nzValue="1" nzLabel="一级"></nz-option>
             <nz-option nzValue="2" nzLabel="二级"></nz-option>
@@ -118,22 +122,22 @@
             <nz-option nzValue="5" nzLabel="五级"></nz-option>
           </nz-select>
           <div nz-row>
-              <div nz-col nzSpan="12">
-                <nz-select style="width:80%; margin:10px 0;" [(ngModel)]="provinceNum" nzAllowClear nzPlaceHolder="选择省"
-                  (ngModelChange)="getAdminDivision(2,provinceNum)">
-                  <nz-option *ngFor="let item of province" [nzValue]="item.provinceCode" [nzLabel]="item.provinceName"></nz-option>
-                </nz-select>
-              </div>
-              <div nz-col nzSpan="12">
-                <nz-select style="width:80%; margin:10px 0;" [(ngModel)]="cityNum" nzAllowClear nzPlaceHolder="选择市">
-                  <nz-option *ngFor="let item of city" [nzValue]="item.cityCode" [nzLabel]="item.cityName"></nz-option>
-                </nz-select>
-              </div>
+            <div nz-col nzSpan="12">
+              <nz-select style="width:80%; margin:10px 0;" [(ngModel)]="provinceNum" nzAllowClear nzPlaceHolder="选择省"
+                (ngModelChange)="getAdminDivision(2,provinceNum)">
+                <nz-option *ngFor="let item of province" [nzValue]="item.provinceCode" [nzLabel]="item.provinceName"></nz-option>
+              </nz-select>
             </div>
-          <div class="queryButton">查询</div>
+            <div nz-col nzSpan="12">
+              <nz-select style="width:80%; margin:10px 0;" [(ngModel)]="cityNum" nzAllowClear nzPlaceHolder="选择市">
+                <nz-option *ngFor="let item of city" [nzValue]="item.cityCode" [nzLabel]="item.cityName"></nz-option>
+              </nz-select>
+            </div>
+          </div>
+          <div class="queryButton" (click)="bidsList()">查询</div>
         </div>
         <div class="contentTable">
-          <nz-table #basicTable [nzData]="dataSet" [nzShowPagination]='false'>
+          <nz-table #basicTable [nzData]="bidsData" [nzShowPagination]='false'>
             <thead>
               <tr>
                 <th>招投标机构</th>
@@ -143,11 +147,11 @@
               </tr>
             </thead>
             <tbody>
-              <tr *ngFor="let data of basicTable.data">
+              <tr *ngFor="let data of basicTable.data" (click)="jump('equipment/bids/see',data.id)">
                 <td>{{data.name}}</td>
-                <td>{{data.age}}</td>
-                <td>{{data.address}}</td>
-                <td>{{data.name}}</td>
+                <td>{{data.grade}}</td>
+                <td>{{data.region.split(',')[1]}}</td>
+                <td>{{data.contactsUserName}}</td>
               </tr>
             </tbody>
           </nz-table>
@@ -174,9 +178,13 @@
         <div class="marketData" [ngStyle]="marketOption[8]" (click)="marketOptionOK(8)">危险品</div>
       </div>
       <ul class="marketContent">
-        <li *ngFor="let i of data1" class="marketContentData">
+        <li *ngFor="let i of marketData" class="marketContentData" (click)="jump('market/see',i.id)">
           <div class="circular"></div>
-          {{i}}
+          {{i.title}}
+        </li>
+        <li class="marketContentData" *ngIf="marketData.length == 0">
+          <div class="circular"></div>
+          暂无数据
         </li>
       </ul>
     </div>
@@ -191,12 +199,15 @@
         </div>
       </div>
       <ul class="lastContent">
-        <li *ngFor="let i of data1" class="lastContentData">
+        <li *ngFor="let i of qualityData" class="lastContentData">
           <div class="circular" style="margin:20px 10px"></div>
           <div style="width: 75%;display: inline-block;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;">
-            {{i}}
+            {{i.name}}
           </div>
-          <div class="date">[2018-11-05]</div>
+          <div class="date">[{{i.createTime}}]</div>
+        </li>
+        <li class="lastContentData" *ngIf="qualityData == 0">
+          <div style="width: 75%;display: inline-block;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;">暂无数据</div>
         </li>
       </ul>
     </div>
@@ -229,10 +240,11 @@
         </div>
       </div>
       <ul class="rightContent">
-        <li *ngFor="let i of data1" class="rightContentData">
+        <li *ngFor="let i of newsData" class="rightContentData" (click)="jump('partyNews/see',i.id)">
           <div class="circular"></div>
-          {{i}}
+          {{i.title}}
         </li>
+        <li class="rightContentData" *ngIf="newsData.length == 0">暂无数据</li>
       </ul>
     </div>
     <div class="box">
@@ -243,10 +255,11 @@
         </div>
       </div>
       <ul class="rightContent">
-        <li *ngFor="let i of data1" class="rightContentData">
+        <li *ngFor="let i of noticeData" class="rightContentData">
           <div class="circular"></div>
-          {{i}}
+          {{i.title}}
         </li>
+        <li class="rightContentData" *ngIf="noticeData.length == 0">暂无数据</li>
       </ul>
     </div>
     <div class="box">
@@ -257,10 +270,11 @@
         </div>
       </div>
       <ul class="rightContent">
-        <li *ngFor="let i of data1" class="rightContentData">
+        <li *ngFor="let i of managementData" class="rightContentData">
           <div class="circular"></div>
-          {{i}}
+          {{i.title}}
         </li>
+        <li class="rightContentData" *ngIf="managementData.length == 0">暂无数据</li>
       </ul>
     </div>
   </div>
@@ -272,10 +286,13 @@
       </div>
     </div>
     <ul class="lastContent" style="margin-top:35px;">
-      <li *ngFor="let i of data1" class="lastContentData">
+      <li *ngFor="let i of DataDownloadData" class="lastContentData">
         <div class="circular"></div>
-        {{i}}
-        <div class="date">[2018-11-05]</div>
+        {{i.reportName}}
+        <div class="date">[{{i.createTime}}]</div>
+      </li>
+      <li class="lastContentData" *ngIf="DataDownloadData.length == 0">
+        暂无数据
       </li>
     </ul>
   </div>
