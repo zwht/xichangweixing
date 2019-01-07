@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./supplierSee.component.less']
 })
 export class SupplierSeeComponent implements OnInit {
-  id: 0;
+  id = 0;
   data = {
     name: '',
     typeName: '',

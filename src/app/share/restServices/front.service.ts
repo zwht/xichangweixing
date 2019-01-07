@@ -217,4 +217,16 @@ export class FrontService {
   getSupplierById(data: HttpData): Observable<any> {
     return data.observable;
   }
+
+  // 根据id查询投标机构
+  @HttpConfig({
+    method: 'get',
+    params: {
+      params1: 'getOrgationById'
+    },
+    roles: []
+  })
+  getOrgationById(data: HttpData): Observable<any> {
+    return data.observable;
+  }
 }

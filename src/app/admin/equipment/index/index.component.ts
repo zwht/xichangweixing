@@ -15,6 +15,10 @@ export class IndexComponent implements OnInit {
     data: Array<{ name: string; code: string; supplierName: string; images: string }> = [];
     iiiiimg = [];
 
+    name = '';
+    supplierName = '';
+    leadingPerson = '';
+
     constructor(
         private frontService: FrontService,
         private router: Router,
@@ -29,6 +33,9 @@ export class IndexComponent implements OnInit {
             params: {
                 pageSize: this.pageSize,
                 pageNumber: this.pageIndex,
+                name: this.name,
+                supplierName: this.supplierName,
+                leadingPerson: this.leadingPerson
             },
             data: {}
         })
