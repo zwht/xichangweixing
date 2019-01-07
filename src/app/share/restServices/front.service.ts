@@ -206,4 +206,15 @@ export class FrontService {
     return data.observable;
   }
 
+  // 根据id查询供应商
+  @HttpConfig({
+    method: 'get',
+    params: {
+      params1: 'getSupplierById'
+    },
+    roles: []
+  })
+  getSupplierById(data: HttpData): Observable<any> {
+    return data.observable;
+  }
 }

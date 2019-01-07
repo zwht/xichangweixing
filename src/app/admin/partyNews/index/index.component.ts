@@ -33,7 +33,7 @@ export class IndexComponent implements OnInit {
         })
             .subscribe(response => {
                 if (response.errorCode === 0) {
-                    // this.total = response.data.totalCount;
+                    this.total = response.data.totalCount;
                     this.data1 = response.data.pageData;
                 }
             });

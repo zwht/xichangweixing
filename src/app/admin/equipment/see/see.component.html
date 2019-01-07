@@ -5,27 +5,25 @@
                 设备详情
             </div>
             <div class="crumbs">
-                <span>信息查询</span>>
+                <span style="cursor: pointer;" (click)="jump('equipment','')">信息查询</span>>
                 <span>设备资产详情</span>
             </div>
         </div>
         <div class="up">
             <div class="lunbo">
                 <div style="text-align: center">
-                    <i nz-icon type="left" theme="outline"></i>
-                    <img src="../../../../assets/images/logo.png">
-                    <i nz-icon type="right" theme="outline"></i>
+                    <img [src]="iiiiimg" class="tupian">
                 </div>
             </div>
             <div class="xinxi">
                 <div class="name">
-                    卫星无线跟踪系统移动交换机
+                    {{data.name}}
                 </div>
                 <div class="otherData">
-                    编号：xc03556
+                    编号：{{data.code}}
                 </div>
                 <div class="otherData">
-                    成都昊城通讯器材贸易有限公司
+                    {{data.supplierName}}
                 </div>
                 <div class="line"></div>
                 <div class="specificData">
@@ -35,11 +33,11 @@
                         <div nz-col nzSpan="4" class="ennnn">计量单位:</div>
                         <div nz-col nzSpan="8" class="emmmm">{{data.measurement}}</div>
                         <div nz-col nzSpan="4" class="ennnn">型号:</div>
-                        <div nz-col nzSpan="8" class="emmmm">{{data.standard}}</div>
+                        <div nz-col nzSpan="8" class="emmmm">{{data.model}}</div>
                         <div nz-col nzSpan="4" class="ennnn">标准或批号:</div>
                         <div nz-col nzSpan="8" class="emmmm">{{data.standard}}</div>
-                        <div nz-col nzSpan="4" class="ennnn">设备类型:</div>
-                        <div nz-col nzSpan="8" class="emmmm">{{data.equipTypeName}}</div>
+                        <div nz-col nzSpan="4" class="ennnn">采购负责人:</div>
+                        <div nz-col nzSpan="8" class="emmmm">{{data.leadingPerson}}</div>
                         <div nz-col nzSpan="4" class="ennnn">生产日期:</div>
                         <div nz-col nzSpan="8" class="emmmm">{{data.manufactureDate}}</div>
                         <div nz-col nzSpan="4" class="ennnn">规格:</div>

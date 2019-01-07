@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-
+import { FrontService } from '../../../share/restServices/front.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-suppliersee',
@@ -9,15 +10,53 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class SupplierSeeComponent implements OnInit {
   id: 0;
-  jianjie = '华为技术有限公司是一家生产销售通信设备的民营通信科技公司，于1987年正式注册成立，总部位于中国深圳市龙岗区坂田华为基地。[1]  华为是全球领先';
+  data = {
+    name: '',
+    typeName: '',
+    region: '',
+    address: '',
+    socialCreditCode: '',
+    registDate: '',
+    legalPerson: '',
+    legalPersonName: '',
+    contactsUserName: '',
+    contactsUseIdnum: '',
+    phone: '',
+    remark: ''
+  };
+  iiiiimg = '';
 
   constructor(
     public route: ActivatedRoute,
+    private frontService: FrontService,
+    public router: Router,
   ) { }
 
   ngOnInit() {
     this.id = this.route.snapshot.params['id'];
+    this.getByID();
   }
 
+  getByID() {
+    this.frontService.getSupplierById({
+      params: {
+        params2: this.id
+      },
+    })
+      .subscribe(response => {
+        if (response.errorCode === 0) {
+          this.data = response.data;
+          const a = '/v1/file/downloadHead?fileUrl=';
+          if (response.data.logo === '') {
+            this.iiiiimg = '../../../../assets/images/moren.jpg';
+          } else {
+            this.iiiiimg = a + response.data.logo.replace(/\//, '%2f');
+          }
+        }
+      });
+  }
 
+  jump(i, id) { // 跳转
+    this.router.navigate(['/' + i + '/' + id]);
+  }
 }

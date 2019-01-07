@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FrontService } from '../../../share/restServices/front.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-see',
@@ -22,9 +23,11 @@ export class SeeComponent implements OnInit {
     validity: '',
     remark: '',
   };
+  iiiiimg = '';
 
   constructor(
     public route: ActivatedRoute,
+    public router: Router,
     private frontService: FrontService,
   ) { }
 
@@ -42,8 +45,17 @@ export class SeeComponent implements OnInit {
       .subscribe(response => {
         if (response.errorCode === 0) {
           this.data = response.data;
+          const a = '/v1/file/downloadHead?fileUrl=';
+          if (response.data.images === '') {
+            this.iiiiimg = '../../../../assets/images/moren.jpg';
+          } else {
+            this.iiiiimg = a + response.data.images.replace(/\//, '%2f');
+          }
         }
       });
   }
 
+  jump(i, id) { // 跳转
+    this.router.navigate(['/' + i + '/' + id]);
+  }
 }

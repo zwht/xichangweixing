@@ -36,13 +36,7 @@
         <div class="query">
           <input nz-input placeholder="设备名称" [(ngModel)]="EquipQuery.name" style="width: 90%;margin: 10px 0;">
           <input nz-input placeholder="供应商" [(ngModel)]="EquipQuery.supplierName" style="width: 90%;margin: 10px 0;">
-          <nz-select style="width:90%; margin:10px 0;" [(ngModel)]="EquipQuery.status" nzPlaceHolder="Choose">
-            <nz-option nzValue="" nzLabel="全部"></nz-option>
-            <nz-option nzValue="0" nzLabel="库存保管"></nz-option>
-            <nz-option nzValue="1" nzLabel="使用中"></nz-option>
-            <nz-option nzValue="2" nzLabel="已使用"></nz-option>
-            <nz-option nzValue="3" nzLabel="已废弃"></nz-option>
-          </nz-select>
+          <input nz-input placeholder="采购负责人" [(ngModel)]="EquipQuery.leadingPerson" style="width: 90%;margin: 10px 0;">
           <div class="queryButton" (click)="equipmentList()">查询</div>
         </div>
         <div class="contentTable">

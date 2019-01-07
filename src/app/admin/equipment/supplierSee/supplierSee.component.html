@@ -2,52 +2,52 @@
     <div class="quality_block">
         <div class="quality_title">
             <div class="quality_titleRed">
-                设备详情
+                供应商详情
             </div>
             <div class="crumbs">
-                <span>信息查询</span>>
-                <span>设备资产详情</span>
+                <span style="cursor: pointer;" (click)="jump('equipment/supplier','')">信息查询</span>>
+                <span>供应商详情</span>
             </div>
         </div>
         <div class="up">
             <div class="lunbo">
                 <div style="text-align: center">
-                    <img src="../../../../assets/images/logo.png">
+                    <img [src]="iiiiimg" style="width: 200px;height: 200px;">
                 </div>
             </div>
             <div class="xinxi">
                 <div class="name">
-                    华为技术有限公司
+                    {{data.name}}
                 </div>
                 <div class="otherData">
-                    类型：一级供应商
+                    类型：{{data.typeName}}
                 </div>
                 <div class="otherData">
-                    中国广东省深圳市龙岗区坂田街道华为基地
+                    中国{{data.region.split(",")[1]}}{{data.address}}
                 </div>
                 <div class="line"></div>
                 <div class="specificData">
                     <div nz-row>
                         <div nz-col nzSpan="6" class="ennnn">类型:</div>
-                        <div nz-col nzSpan="18" class="emmmm">一级供应商</div>
+                        <div nz-col nzSpan="18" class="emmmm">{{data.typeName}}</div>
                         <div nz-col nzSpan="6" class="ennnn">所在地区:</div>
-                        <div nz-col nzSpan="18" class="emmmm">广东·深圳</div>
+                        <div nz-col nzSpan="18" class="emmmm">{{data.region.split(",")[1]}}</div>
                         <div nz-col nzSpan="6" class="ennnn">详细地址:</div>
-                        <div nz-col nzSpan="18" class="emmmm">中国广东省深圳市龙岗区坂田街道华为基地</div>
+                        <div nz-col nzSpan="18" class="emmmm">{{data.address}}</div>
                         <div nz-col nzSpan="6" class="ennnn">统一社会信用代码:</div>
-                        <div nz-col nzSpan="18" class="emmmm">914403001922038216</div>
+                        <div nz-col nzSpan="18" class="emmmm">{{data.socialCreditCode}}</div>
                         <div nz-col nzSpan="6" class="ennnn">注册日期:</div>
-                        <div nz-col nzSpan="18" class="emmmm">1987-09-15</div>
+                        <div nz-col nzSpan="18" class="emmmm">{{data.registDate}}</div>
                         <div nz-col nzSpan="6" class="ennnn">法人姓名:</div>
-                        <div nz-col nzSpan="18" class="emmmm">赵明路</div>
+                        <div nz-col nzSpan="18" class="emmmm">{{data.legalPerson}}</div>
                         <div nz-col nzSpan="6" class="ennnn">法人身份证号:</div>
-                        <div nz-col nzSpan="18" class="emmmm">3201822196510022339</div>
+                        <div nz-col nzSpan="18" class="emmmm">{{data.legalPersonName}}</div>
                         <div nz-col nzSpan="6" class="ennnn">联系人姓名:</div>
-                        <div nz-col nzSpan="18" class="emmmm">张碧德</div>
+                        <div nz-col nzSpan="18" class="emmmm">{{data.contactsUserName}}</div>
                         <div nz-col nzSpan="6" class="ennnn">联系人身份证号:</div>
-                        <div nz-col nzSpan="18" class="emmmm">3201822196510022339</div>
+                        <div nz-col nzSpan="18" class="emmmm">{{data.contactsUseIdnum}}</div>
                         <div nz-col nzSpan="6" class="ennnn">联系人电话:</div>
-                        <div nz-col nzSpan="18" class="emmmm">18212933326</div>
+                        <div nz-col nzSpan="18" class="emmmm">{{data.phone}}</div>
                     </div>
                 </div>
             </div>
@@ -58,7 +58,7 @@
                 华为公司简介:
             </div>
             <div class="jutizhuyao">
-                {{jianjie}}
+                {{data.remark}}
             </div>
         </div>
         <div class="line"></div>

@@ -20,7 +20,7 @@ export class IndexComponent implements OnInit, OnDestroy {
 
   EquipQuery = { // 设备资产查询
     name: '', // 设备名称
-    status: '', // 状态
+    leadingPerson: '', // 状态
     supplierName: '', // 供应商
   };
   EquipData = []; // 设备资产数据
@@ -199,7 +199,7 @@ export class IndexComponent implements OnInit, OnDestroy {
         pageNumber: 1,
         pageSize: 3,
         name: this.EquipQuery.name,
-        status: this.EquipQuery.status,
+        leadingPerson: this.EquipQuery.leadingPerson,
         supplierName: this.EquipQuery.supplierName,
       }
     }).subscribe(
