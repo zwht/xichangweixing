@@ -4,10 +4,10 @@
       <div class="quality_titleRed">
         质量专栏
       </div>
-      <div class="quality_titleOptionOK">
+      <div class="quality_titleOption" (click)="jump('quality','')">
         通知公告
       </div>
-      <div class="quality_titleOption" (click)="jump('quality/event','')">
+      <div class="quality_titleOptionOK">
         事件列表
       </div>
       <div class="quality_titleOption" (click)="jump('quality/list','')">
@@ -15,14 +15,31 @@
       </div>
     </div>
   </div>
+  <div style="margin-bottom: 10px;">
+    <input nz-input placeholder="质量问题名称" [(ngModel)]="name" style="width: 16%;margin: 20px 1%;">
+    <span>供应商:</span>
+    <nz-select style="width: 10%; margin: 20px 1%;" [(ngModel)]="supplierID" nzPlaceHolder="供应商">
+      <nz-option nzValue="" nzLabel="全部"></nz-option>
+      <nz-option *ngFor="let item of supplier" [nzValue]="item.id" [nzLabel]="item.name"></nz-option>
+    </nz-select>
+    <span>级别:</span>
+    <nz-select style="width: 10%; margin: 20px 1%;" [(ngModel)]="eventLevel" nzPlaceHolder="事件级别">
+      <nz-option nzValue="" nzLabel="全部"></nz-option>
+      <nz-option nzValue="1" nzLabel="质量问题"></nz-option>
+      <nz-option nzValue="2" nzLabel="质量事件"></nz-option>
+      <nz-option nzValue="3" nzLabel="质量事故"></nz-option>
+    </nz-select>
+    <nz-range-picker [(ngModel)]="occurrenceTime" nzShowTime nzFormat="yyyy-MM-dd"></nz-range-picker>
+
+    <div class="queryButton" (click)="getList()">查询</div>
+  </div>
   <div class="lastContent">
-    <div class="line" *ngFor="let item of data" (click)="jump('quality/see',item.id)">
+    <div class="line" *ngFor="let item of data" (click)="jump('quality/event/see',item.id)">
       <div class="circular"></div>
       <div class="lineData">
         {{item.title}}
       </div>
       <div class="date">
-        {{item.updateTime}}
       </div>
     </div>
   </div>

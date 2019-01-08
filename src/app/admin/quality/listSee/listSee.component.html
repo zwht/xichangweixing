@@ -5,18 +5,43 @@
                     质量专栏
                 </div>
                 <div class="crumbs">
-                    <span style="cursor: pointer;" (click)="jump('quality','')">通知公告</span>>
+                    <span>通知公告</span>>
                     <span>公告详情</span>
                 </div>
             </div>
-            <div class="dataTitle">{{data.title}}</div>
-            <div class="divid">
-                <div class="dividWord" style="float: left;">{{data.createUser}}</div>
-                <div class="dividWord" style="float: right;margin: 0 10px;">阅读量：{{data.readCount}}</div>
-                <div class="dividWord" style="float: right;margin: 0 10px;">发布时间：{{data.createTime}}</div>
+        </div>
+        <div class="head">
+            <div class="name">处理进度</div>
+        </div>
+        <div class="dividing"></div>
+        <div class="middle">
+            <div nz-row>
+                <div nz-col nzSpan="3" class="emmm">供应商:</div>
+                <div nz-col nzSpan="21" class="ennn">{{data.supplierName}}</div>
+                <div nz-col nzSpan="3" class="emmm">涉及物料:</div>
+                <div nz-col nzSpan="21" class="ennn">{{data.materials}}</div>
+                <div nz-col nzSpan="3" class="emmm">开始处理时间:</div>
+                <div nz-col nzSpan="21" class="ennn">{{data.dealStartTime}}</div>
+                <div nz-col nzSpan="3" class="emmm">结束处理时间:</div>
+                <div nz-col nzSpan="21" class="ennn">{{data.dealEndTime}}</div>
             </div>
-            <div [innerHTML]='content' class="content"></div>
-            <div style="width: 100%;border-bottom: 1px solid #CACACA;margin-top: 40px;"></div>
+        </div>
+        <div class="dividing"></div>
+        <div class="remarks">
+            <div class="zhuyao">
+                事件描述
+            </div>
+            <div class="jutizhuyao">
+                <div class="jutidejuti">
+                    {{data.remark}}
+                </div>
+            </div>
+        </div>
+        <div class="dividing"></div>
+        <div class="remarks">
+            <div class="zhuyao">
+                附件下载
+            </div>
         </div>
     </div>
     

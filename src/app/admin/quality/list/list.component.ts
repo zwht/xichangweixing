@@ -3,11 +3,11 @@ import { Router } from '@angular/router';
 import { FrontService } from '../../../share/restServices/front.service';
 
 @Component({
-    selector: 'app-index',
-    templateUrl: './index.component.html',
-    styleUrls: ['./index.component.less']
+    selector: 'app-list',
+    templateUrl: './list.component.html',
+    styleUrls: ['./list.component.less']
 })
-export class IndexComponent implements OnInit {
+export class ListComponent implements OnInit {
 
     pageIndex = 1; // 当前页数
     total = 1; // 数据总数
@@ -25,7 +25,7 @@ export class IndexComponent implements OnInit {
     }
 
     getList() {
-        this.frontService.getQualityNotice({
+        this.frontService.getQualityDealByQuery({
             params: {
                 pageSize: this.pageSize,
                 pageNumber: this.pageIndex,

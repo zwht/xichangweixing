@@ -2,25 +2,26 @@
   <div class="quality_block">
     <div class="quality_title">
       <div class="quality_titleRed">
-        市场信息
+        资料下载
       </div>
-      <div class="quality_titleOption" [ngStyle]="itleOption[0]" (click)="itleOptionOK(0)">工业</div>
-      <div class="quality_titleOption" [ngStyle]="itleOption[1]" (click)="itleOptionOK(1)">航空航天</div>
-      <div class="quality_titleOption" [ngStyle]="itleOption[2]" (click)="itleOptionOK(2)">医药</div>
-      <div class="quality_titleOption" [ngStyle]="itleOption[3]" (click)="itleOptionOK(3)">基础科学</div>
-      <div class="quality_titleOption" [ngStyle]="itleOption[4]" (click)="itleOptionOK(4)">工程控制</div>
-      <div class="quality_titleOption" [ngStyle]="itleOption[5]" (click)="itleOptionOK(5)">农业</div>
-      <div class="quality_titleOption" [ngStyle]="itleOption[6]" (click)="itleOptionOK(6)">自然物理</div>
-      <div class="quality_titleOption" [ngStyle]="itleOption[7]" (click)="itleOptionOK(7)">经济财政</div>
+      <div class="quality_titleOption" [ngStyle]="itleOption[0]" (click)="itleOptionOK(0)">全部</div>
+      <div class="quality_titleOption" [ngStyle]="itleOption[1]" (click)="itleOptionOK(1)">工业</div>
+      <div class="quality_titleOption" [ngStyle]="itleOption[2]" (click)="itleOptionOK(2)">航空航天</div>
+      <div class="quality_titleOption" [ngStyle]="itleOption[3]" (click)="itleOptionOK(3)">医药</div>
+      <div class="quality_titleOption" [ngStyle]="itleOption[4]" (click)="itleOptionOK(4)">基础科学</div>
+      <div class="quality_titleOption" [ngStyle]="itleOption[5]" (click)="itleOptionOK(5)">工程控制</div>
+      <div class="quality_titleOption" [ngStyle]="itleOption[6]" (click)="itleOptionOK(6)">农业</div>
+      <div class="quality_titleOption" [ngStyle]="itleOption[7]" (click)="itleOptionOK(7)">自然物理</div>
+      <div class="quality_titleOption" [ngStyle]="itleOption[8]" (click)="itleOptionOK(8)">经济财政</div>
     </div>
     <div class="lastContent">
-      <div class="line" *ngFor="let item of data1">
+      <div class="line" *ngFor="let item of data">
         <div class="circular"></div>
         <div class="lineData">
-          {{item}}
+          {{item.reportName}}
         </div>
         <div class="date">
-          [2018-11-11]
+          {{item.updateTime}}
         </div>
       </div>
     </div>
@@ -29,7 +30,7 @@
 
 <div class="other">
   <div style="width: 100%;text-align: center;background-color: white;padding-bottom: 40px;">
-    <nz-pagination [nzPageIndex]="3" [nzTotal]="500" nzShowSizeChanger [nzPageSize]="10"></nz-pagination>
+    <nz-pagination nzShowSizeChanger [nzTotal]="total"  [(nzPageSize)]="pageSize" [(nzPageIndex)]="pageIndex"  (nzPageSizeChange)="getList()" (nzPageIndexChange) = "getList()"></nz-pagination>
   </div>
   <div class="other_data">
     <div class="friendLink">

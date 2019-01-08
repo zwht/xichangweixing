@@ -1,25 +1,26 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FrontService } from '../../../share/restServices/front.service';
-import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
-  selector: 'app-see',
-  templateUrl: './see.component.html',
-  styleUrls: ['./see.component.less']
+  selector: 'app-listsee',
+  templateUrl: './listSee.component.html',
+  styleUrls: ['./listSee.component.less']
 })
-export class SeeComponent implements OnInit {
+export class ListSeeComponent implements OnInit {
   id = 0;
   data = {
-    title: '',
-    readCount: '',
-    createTime: '',
+    name: '',
+    departName: '',
+    occurrenceTime: '',
+    eventLevelName: '',
+    supplierName: '',
+    materials: '',
+    remark: '',
   };
-  content;
   constructor(
     public route: ActivatedRoute,
     private frontService: FrontService,
-    private sanitizer: DomSanitizer,
     private router: Router,
   ) { }
 
@@ -29,7 +30,7 @@ export class SeeComponent implements OnInit {
   }
 
   getByID() {
-    this.frontService.getQualityNoticeById({
+    this.frontService.getQualityDealById({
       params: {
         params2: this.id,
       },
@@ -39,7 +40,6 @@ export class SeeComponent implements OnInit {
         if (response.errorCode === 0) {
           // this.total = response.data.totalCount;
           this.data = response.data;
-          this.content = this.sanitizer.bypassSecurityTrustHtml(response.data.content);
         }
       });
   }

@@ -10,7 +10,7 @@ export const routes: Routes = [
         path: '',
         component: IndexComponent,
         data: {
-            name: '市场信息',
+            name: '资料下载',
         }
     },
 ];

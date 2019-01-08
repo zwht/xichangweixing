@@ -110,7 +110,7 @@ export class FrontService {
     return data.observable;
   }
 
-  // 根据条件查询质量问题处理
+  // 根据条件查询资料下载
   @HttpConfig({
     method: 'get',
     params: {
@@ -229,4 +229,41 @@ export class FrontService {
   getOrgationById(data: HttpData): Observable<any> {
     return data.observable;
   }
+
+  // 根据id查询质量通告
+  @HttpConfig({
+    method: 'get',
+    params: {
+      params1: 'getQualityNoticeById'
+    },
+    roles: []
+  })
+  getQualityNoticeById(data: HttpData): Observable<any> {
+    return data.observable;
+  }
+
+  // 根据id查询质量事件
+  @HttpConfig({
+    method: 'get',
+    params: {
+      params1: 'getQualityEventById'
+    },
+    roles: []
+  })
+  getQualityEventById(data: HttpData): Observable<any> {
+    return data.observable;
+  }
+
+    // 根据id查询质量问题处理
+    @HttpConfig({
+      method: 'get',
+      params: {
+        params1: 'getQualityDealById'
+      },
+      roles: []
+    })
+    getQualityDealById(data: HttpData): Observable<any> {
+      return data.observable;
+    }
+
 }
