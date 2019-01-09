@@ -12,7 +12,13 @@ export class ListComponent implements OnInit {
     pageIndex = 1; // 当前页数
     total = 1; // 数据总数
     pageSize = 10; // 每页条数
-
+    supplierID = '';
+    materials = '';
+    supplier = [{
+        id: '',
+        name: ''
+    }];
+    status = '';
     data;
 
     constructor(
@@ -22,6 +28,7 @@ export class ListComponent implements OnInit {
 
     ngOnInit() {
         this.getList();
+        this.getAllByQuery();
     }
 
     getList() {
@@ -29,6 +36,9 @@ export class ListComponent implements OnInit {
             params: {
                 pageSize: this.pageSize,
                 pageNumber: this.pageIndex,
+                materials: this.materials,
+                supplierId: this.supplierID,
+                status: this.status
             },
             data: {}
         })
@@ -36,6 +46,21 @@ export class ListComponent implements OnInit {
                 if (response.errorCode === 0) {
                     this.total = response.data.totalCount;
                     this.data = response.data.pageData;
+                }
+            });
+    }
+
+    getAllByQuery() {
+        this.frontService.getAllByQuery({
+            params: {
+                pageSize: 999,
+                pageNumber: 1
+            },
+            data: {}
+        })
+            .subscribe(response => {
+                if (response.errorCode === 0) {
+                    this.supplier = response.data.pageData;
                 }
             });
     }

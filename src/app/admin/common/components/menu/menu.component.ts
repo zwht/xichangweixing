@@ -4,6 +4,7 @@ import { Router, NavigationEnd } from '@angular/router';
 import { SessionService } from '../../../../share/services/session.service';
 import { RxjsMessageService } from 'src/app/share/services/rxjsMessage.service';
 import { debug } from 'util';
+import { FrontService } from '../../../../share/restServices/front.service';
 
 @Component({
     selector: 'app-menu',
@@ -12,6 +13,7 @@ import { debug } from 'util';
     providers: []
 })
 export class MenuComponent implements OnInit, OnDestroy {
+    friendLink: Array<{ name: string; link: string }> = [];
     heightClass = {};
     menuLocation = true;
     childrenShowKey = true;
@@ -41,11 +43,13 @@ export class MenuComponent implements OnInit, OnDestroy {
     constructor(
         private router: Router,
         private sessionService: SessionService,
+        private frontService: FrontService,
         private rxjsMessageService: RxjsMessageService) {
     }
 
     ngOnInit() {
         this.gaodu();
+        this.getLinked();
         let userType = [1001];
         // 如果没有用户类型，说明没有登录，直接跳转登录页面
         if (!this.sessionService.getItem('roles')) {
@@ -219,5 +223,33 @@ export class MenuComponent implements OnInit, OnDestroy {
             const clientHeight = (document.body.clientHeight - 460) + 'px';
             this.heightClass = { 'min-height': clientHeight };
         }, 500);
+    }
+
+    getLinked() {
+        this.frontService.getLinked({
+            params: {
+                pageNumber: 1,
+                pageSize: 4
+            },
+            data: {}
+        })
+            .subscribe(response => {
+                if (response.errorCode === 0) {
+                    const data = response.data.pageData;
+                    for (let index = 0; index < data.length; index++) {
+                        this.friendLink.push({ name: data[index].name, link: data[index].link });
+                    }
+                }
+            });
+    }
+    gun(a) {
+        if (a.substring(0, 4) === 'http') {
+            window.open(a);
+        } else {
+            window.open('http://' + a);
+        }
+    }
+    gengduogun() {
+        this.router.navigate(['link']);
     }
 }

@@ -153,6 +153,17 @@ export const routes: Routes = [
         },
         canActivate: [PermissionGuardService]
       },
+      {
+        path: 'link',
+        loadChildren: './link/link.module#LinkModule',
+        data: {
+          name: '管理规定',
+          // hideChild: true,
+          roles: [1001],
+          menu: false
+        },
+        canActivate: [PermissionGuardService]
+      },
     ]
   }
 ];

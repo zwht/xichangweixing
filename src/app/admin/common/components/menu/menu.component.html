@@ -5,11 +5,11 @@
         <img style="height:35px;margin-top: -10px;" src="../../../../assets/images/logo/logo.png" alt="">
         <span class="logoTel">西昌卫星发射中心</span>
         <span class="logoTel" style="margin-left: 0px;font-size: 20px;">物资供应查询平台</span>
-        <div class="searchK">
+        <!-- <div class="searchK">
           <img style="height:20px;margin-top: -3px;margin-left: 10px;" src="../../../../assets/images/logo/search.png"
             alt="">
           <input type="text" class="inputgaga" placeholder="搜索关键字，联系人或帮助">
-        </div>
+        </div> -->
       </div>
     </div>
     <div class="right">
@@ -61,19 +61,14 @@
       <div class="friendLink">
         <span style="color: #CF2323;float: left;margin-right: 60px;">友情连接</span>
         <div style="float: left;width: 80%;">
-          <div class="friendLinkBox">西昌卫星发射中心官方网站</div>
-          <div class="friendLinkBox">中国探月工程设计研究院</div>
-          <div class="friendLinkBox">中华人民共和国工业和信息化部</div>
-          <div class="friendLinkBox">中国探月工程设计研究院</div>
+          <div class="friendLinkBox" *ngFor="let item of friendLink" (click)="gun(item.link)">{{item.name}}</div>
         </div>
-        <span style="float: right;">更多 ></span>
+        <span style="float: right;" (click)="gengduogun()">更多 ></span>
       </div>
       <div class="friendLink">
         <span style="color: #CF2323;float: left;margin-right: 90px;">关于</span>
         <div style="float: left;width: 80%;">
           <div class="friendLinkBox">联系我们</div>
-          <div class="friendLinkBox">网址导航</div>
-          <div class="friendLinkBox">网址导航</div>
         </div>
       </div>
       <div class="friendLink">

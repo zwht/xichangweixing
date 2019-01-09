@@ -52,7 +52,7 @@ export class IndexComponent implements OnInit {
         livingTime: this.livingTime,
         leavingDate: this.leavingDate,
         allotment: this.allotment,
-        // phone: this.phone,
+        phone: this.phone,
         rooms: rooms.join(','),
         roomsType: roomsType.join(',')
       }

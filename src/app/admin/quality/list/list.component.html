@@ -18,7 +18,7 @@
   <div style="margin-bottom: 10px;">
     <input nz-input placeholder="涉及物料" [(ngModel)]="materials" style="width: 16%;margin: 20px 1%;">
     <span>供应商:</span>
-    <nz-select style="width: 10%; margin: 20px 1%;" [(ngModel)]="supplierId" nzPlaceHolder="供应商">
+    <nz-select style="width: 10%; margin: 20px 1%;" [(ngModel)]="supplierID" nzPlaceHolder="供应商">
       <nz-option nzValue="" nzLabel="全部"></nz-option>
       <nz-option *ngFor="let item of supplier" [nzValue]="item.id" [nzLabel]="item.name"></nz-option>
     </nz-select>
@@ -43,7 +43,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let data of basicTable.data">
+        <tr *ngFor="let data of basicTable.data" (click)="jump('quality/list/see',data.id)">
           <td>{{data.supplierName}}</td>
           <td>{{data.materials}}</td>
           <td>{{data.dealStartTime}}</td>
@@ -51,11 +51,6 @@
           <td *ngIf="data.status == 1">未处理</td>
           <td *ngIf="data.status == 2">处理中</td>
           <td *ngIf="data.status == 3">已处理</td>
-          <td>
-            <a>Action 一 {{data.name}}</a>
-            <nz-divider nzType="vertical"></nz-divider>
-            <a>Delete</a>
-          </td>
         </tr>
       </tbody>
     </nz-table>

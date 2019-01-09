@@ -301,4 +301,28 @@ export class FrontService {
   getManagementById(data: HttpData): Observable<any> {
     return data.observable;
   }
+
+  // 根据id查询市场信息
+  @HttpConfig({
+    method: 'get',
+    params: {
+      params1: 'getMarketInformationById'
+    },
+    roles: []
+  })
+  getMarketInformationById(data: HttpData): Observable<any> {
+    return data.observable;
+  }
+
+  // 根据条件查询链接
+  @HttpConfig({
+    method: 'get',
+    params: {
+      params1: 'getLinked'
+    },
+    roles: []
+  })
+  getLinked(data: HttpData): Observable<any> {
+    return data.observable;
+  }
 }
