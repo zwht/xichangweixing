@@ -94,6 +94,8 @@ export class IndexComponent implements OnInit, OnDestroy {
     this.marketList();
     this.qualityNoticeList();
     this.newsList();
+    this.noticeList();
+    this.managementList();
   }
   ngOnDestroy() {
     this.subscription.unsubscribe();
@@ -113,15 +115,15 @@ export class IndexComponent implements OnInit, OnDestroy {
     );
   }
 
-  noticeList() { // 通知要闻
+  noticeList() { // 通知公告
     this.frontService.getAllNoticeByQuery({
       params: {
-        params2: 5,
-        params3: 1,
+        pageSize: 5,
+        pageNumber: 1,
       }
     }).subscribe(
       data => {
-        this.newsData = data.data.pageData;
+        this.noticeData = data.data.pageData;
       }, err => {
       }
     );
@@ -135,7 +137,7 @@ export class IndexComponent implements OnInit, OnDestroy {
       }
     }).subscribe(
       data => {
-        this.noticeData = data.data.pageData;
+        this.managementData = data.data.pageData;
       }, err => {
       }
     );

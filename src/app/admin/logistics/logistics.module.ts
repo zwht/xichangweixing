@@ -28,7 +28,7 @@ export const routes: Routes = [
         path: 'order',
         component: OrderComponent,
         data: {
-            name: '客房预订',
+            name: '网上订餐',
             menu: true
         }
     },

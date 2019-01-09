@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { WorkDynamicsService } from 'src/app/share/restServices/workDynamics.service';
 import { Router } from '@angular/router';
 import { DomSanitizer } from '@angular/platform-browser';
-
+import { FrontService } from '../../../share/restServices/front.service';
 
 @Component({
   selector: 'app-see',
@@ -22,8 +21,8 @@ export class SeeComponent implements OnInit {
 
   constructor(
     public route: ActivatedRoute,
-    private workDynamicsService: WorkDynamicsService,
     private router: Router,
+    private frontService: FrontService,
     private sanitizer: DomSanitizer,
   ) { }
 
@@ -33,7 +32,7 @@ export class SeeComponent implements OnInit {
   }
 
   getById() { // 工作动态
-    this.workDynamicsService.getById({
+    this.frontService.getWorkDynamicsById({
       params: {
         params2: this.id
       }
@@ -46,7 +45,6 @@ export class SeeComponent implements OnInit {
           this.readCount = data.data.readCount;
         }
         this.content = this.sanitizer.bypassSecurityTrustHtml(data.data.content);
-
       }, err => {
       }
     );

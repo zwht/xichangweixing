@@ -5,8 +5,6 @@
                 后勤管理
             </div>
             <div class="crumbs">
-                <span>后勤管理</span>>
-                <span>客房预订</span>
             </div>
         </div>
         <div class="dataTitle">
@@ -14,67 +12,89 @@
         </div>
         <div class="dataData">
             <div style="width: 100%;margin: 10px 0;overflow: auto;">
-                <div class="ennn"><span style="line-height: 32px;">姓名</span></div>
+                <div class="ennn"><span style="line-height: 32px;">姓名:</span></div>
                 <div class="emmm">
                     <input style="width: 70%;" nz-input placeholder="请输入姓名" [(ngModel)]="name">
                 </div>
             </div>
             <div style="width: 100%;margin: 10px 0;overflow: auto;">
-                <div class="ennn"><span style="line-height: 32px;">工作单位</span></div>
+                <div class="ennn"><span style="line-height: 32px;">工作单位:</span></div>
                 <div class="emmm">
-                    <input style="width: 70%;" nz-input placeholder="请输入工作单位" [(ngModel)]="value">
+                    <input style="width: 70%;" nz-input placeholder="请输入工作单位" [(ngModel)]="workers">
                 </div>
             </div>
-        </div>
-    </div>
-</div>
-
-
-<div class="other">
-    <div class="other_data">
-        <div class="friendLink">
-            <span style="color: #CF2323;float: left;margin-right: 60px;">友情连接</span>
-            <div style="float: left;width: 80%;">
-                <div class="friendLinkBox">西昌卫星发射中心官方网站</div>
-                <div class="friendLinkBox">中国探月工程设计研究院</div>
-                <div class="friendLinkBox">中华人民共和国工业和信息化部</div>
-                <div class="friendLinkBox">中国探月工程设计研究院</div>
+            <div style="width: 100%;margin: 10px 0;overflow: auto;">
+                <div class="ennn"><span style="line-height: 32px;">是否为军人:</span></div>
+                <div class="emmm">
+                    <nz-radio-group [(ngModel)]="arm">
+                        <label nz-radio [nzValue]="0">不是</label>
+                        <label nz-radio [nzValue]="1">是</label>
+                    </nz-radio-group>
+                </div>
             </div>
-            <span style="float: right;">更多 ></span>
-        </div>
-        <div class="friendLink">
-            <span style="color: #CF2323;float: left;margin-right: 90px;">关于</span>
-            <div style="float: left;width: 80%;">
-                <div class="friendLinkBox">联系我们</div>
-                <div class="friendLinkBox">网址导航</div>
-                <div class="friendLinkBox">网址导航</div>
+            <div style="width: 100%;margin: 10px 0;overflow: auto;" *ngIf="arm == 1">
+                <div class="ennn"><span style="line-height: 32px;">军官证号:</span></div>
+                <div class="emmm">
+                    <input style="width: 70%;" nz-input placeholder="请输入军官证号" [(ngModel)]="armNum">
+                </div>
             </div>
-        </div>
-        <div class="friendLink">
-            <span style="color: #CF2323;float: left;margin-right: 90px;">商务</span>
-            <div style="float: left;width: 80%;">
-                <div class="friendLinkBox" style="font-weight: 600">服务热线：0834-82738879</div>
-                <div class="friendLinkBox" style="font-weight: 600">商务合作：0834-23976688</div>
-                <div class="friendLinkBox" style="font-weight: 600">官方邮件地址：xcwsfszx@163.com</div>
+            <div style="width: 100%;margin: 10px 0;overflow: auto;" *ngIf="arm == 1">
+                <div class="ennn"><span style="line-height: 32px;">与军人关系:</span></div>
+                <div class="emmm">
+                    <input style="width: 70%;" nz-input placeholder="请输入与军人关系" [(ngModel)]="withArm">
+                </div>
             </div>
-        </div>
-        <div class="heng"></div>
-        <div class="logo">
-            <img src="../../../../assets/images/logo.png">
-            <span style="font-size:20px;margin: 0 5px;">西昌卫星发射中心</span>
-            <span style="font-size:16px;margin: 0 5px;">物资供应查询平台</span>
-            <div class="small-font">XICHANG SATELLITE LAUNCH CENTER MATERIAL SUPPLY INQUIRY PLATFORM</div>
-        </div>
-
-        <div class="you">
-            <div>
-                Copyright©2018版权所有 中国西昌卫星发射中心 备案序号:川ICP备 10029358号 公网安备1104010029358号
+            <div style="width: 100%;margin: 10px 0;overflow: auto;">
+                <div class="ennn"><span style="line-height: 32px;">身份证号:</span></div>
+                <div class="emmm">
+                    <input style="width: 70%;" nz-input placeholder="请输入身份证号" [(ngModel)]="idnum">
+                </div>
             </div>
-            <div>
-                网站运维：四川成都清数科技有限公司 访问统计：
+            <div style="width: 100%;margin: 10px 0;overflow: auto;">
+                <div class="ennn"><span style="line-height: 32px;">入住日期:</span></div>
+                <div class="emmm">
+                    <nz-date-picker [(ngModel)]="livingTime"></nz-date-picker>
+                </div>
             </div>
-            <div>
-                地址：凉山彝族自治州冕宁县泽远乡封家湾　邮编：735400
+            <div style="width: 100%;margin: 10px 0;overflow: auto;">
+                <div class="ennn"><span style="line-height: 32px;">离店日期:</span></div>
+                <div class="emmm">
+                    <nz-date-picker [(ngModel)]="leavingDate"></nz-date-picker>
+                </div>
+            </div>
+            <div style="width: 100%;margin: 10px 0;overflow: hidden;">
+                <div class="ennn"><span style="line-height: 32px;">订房:</span></div>
+                <div class="emmm">
+                    <div *ngFor="let item of rooms; let i=index">
+                        <nz-radio-group [(ngModel)]="item.roomsType">
+                            <label nz-radio [nzValue]="1">单间</label>
+                            <label nz-radio [nzValue]="2">标间</label>
+                            <label nz-radio [nzValue]="3">小套间</label>
+                            <label nz-radio [nzValue]="4">大套房</label>
+                        </nz-radio-group>
+                        <span style="line-height: 32px;margin-right: 10px">间数:</span>
+                        <nz-input-number style="margin-right: 10px" [nzPrecision] = "0" [nzMin]="1" [(ngModel)]="item.rooms" [nzStep]="1"></nz-input-number>
+                        <button nz-button nzType="default" (click)="addDelRoom(i)">删除</button>
+                    </div>
+                    <button nz-button nzType="default" (click)="addDelRoom('')">添加</button>
+                </div>
+            </div>
+            <div style="width: 100%;margin: 10px 0;overflow: auto;">
+                <div class="ennn"><span style="line-height: 32px;">留房时间:</span></div>
+                <div class="emmm">
+                    <nz-input-group style="width: 30%;" nzAddOnAfter="点前">
+                        <input nz-input placeholder="请输入留房时间" [(ngModel)]="allotment">
+                    </nz-input-group>
+                </div>
+            </div>
+            <div style="width: 100%;margin: 10px 0;overflow: auto;">
+                <div class="ennn"><span style="line-height: 32px;">联系电话:</span></div>
+                <div class="emmm">
+                    <input style="width: 70%;" nz-input placeholder="请输入联系电话" [(ngModel)]="phone">
+                </div>
+            </div>
+            <div style="width: 100%;margin: 10px 0;overflow: hidden;text-align: center">
+                <button nz-button nzType="primary" (click)="save()">确定</button>
             </div>
         </div>
     </div>

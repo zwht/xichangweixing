@@ -254,16 +254,51 @@ export class FrontService {
     return data.observable;
   }
 
-    // 根据id查询质量问题处理
-    @HttpConfig({
-      method: 'get',
-      params: {
-        params1: 'getQualityDealById'
-      },
-      roles: []
-    })
-    getQualityDealById(data: HttpData): Observable<any> {
-      return data.observable;
-    }
+  // 根据id查询质量问题处理
+  @HttpConfig({
+    method: 'get',
+    params: {
+      params1: 'getQualityDealById'
+    },
+    roles: []
+  })
+  getQualityDealById(data: HttpData): Observable<any> {
+    return data.observable;
+  }
 
+  // 根据id查询工作动态
+  @HttpConfig({
+    method: 'get',
+    params: {
+      params1: 'getWorkDynamicsById'
+    },
+    roles: []
+  })
+  getWorkDynamicsById(data: HttpData): Observable<any> {
+    return data.observable;
+  }
+
+  // 根据id查询通知公告查询
+  @HttpConfig({
+    method: 'get',
+    params: {
+      params1: 'getNoticeById'
+    },
+    roles: []
+  })
+  getNoticeById(data: HttpData): Observable<any> {
+    return data.observable;
+  }
+
+  // 根据id查询管理规定列表
+  @HttpConfig({
+    method: 'get',
+    params: {
+      params1: 'getManagementById'
+    },
+    roles: []
+  })
+  getManagementById(data: HttpData): Observable<any> {
+    return data.observable;
+  }
 }

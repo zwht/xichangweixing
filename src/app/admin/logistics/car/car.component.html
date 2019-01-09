@@ -5,104 +5,58 @@
                 后勤管理
             </div>
             <div class="crumbs">
-                <span>后勤管理</span>>
-                <span>车辆接送</span>
             </div>
         </div>
         <div class="dataTitle">
             车辆接送
         </div>
         <div class="dataData">
-          <div nz-row>
-            <div nz-col nzSpan="8" class="emmm">乘客姓名:</div>
-            <div nz-col nzSpan="12" class="ennn">
-              <input nz-input placeholder="请输入姓名" [(ngModel)]="value">
-            </div>
-            <div nz-col nzSpan="8" class="emmm">身份证号:</div>
-            <div nz-col nzSpan="12" class="ennn">
-              <input nz-input placeholder="请输入身份证号" [(ngModel)]="value">
-            </div>
-            <div nz-col nzSpan="8" class="emmm">联系电话:</div>
-            <div nz-col nzSpan="12" class="ennn">
-              <input nz-input placeholder="请输入联系电话" [(ngModel)]="value">
-            </div>
-            <div nz-col nzSpan="8" class="emmm">工作单位:</div>
-            <div nz-col nzSpan="12" class="ennn">
-              <input nz-input placeholder="请输入工作单位" [(ngModel)]="value">
-            </div>
-            <div nz-col nzSpan="8" class="emmm">乘客总人数:</div>
-            <div nz-col nzSpan="12" class="ennn">
-              <input nz-input placeholder="请输入乘客总人数" [(ngModel)]="value">
-            </div>
-            <div nz-col nzSpan="8" class="emmm">出发地:</div>
-            <div nz-col nzSpan="12" class="ennn">
-              <input nz-input placeholder="请输入出发地" [(ngModel)]="value">
-            </div>
-            <div nz-col nzSpan="8" class="emmm">目的地:</div>
-            <div nz-col nzSpan="12" class="ennn">
-              <input nz-input placeholder="请输入目的地" [(ngModel)]="value">
-            </div>
-            <div nz-col nzSpan="8" class="emmm">接送时间:</div>
-            <div nz-col nzSpan="12" class="ennn">
-              <nz-date-picker [(ngModel)]="date" (ngModelChange)="onChange($event)"></nz-date-picker>
-              <nz-time-picker [(ngModel)]="time" nzFormat="HH:mm"></nz-time-picker>
-            </div>
-            <div nz-col nzSpan="8" class="emmm">备注:</div>
-            <div nz-col nzSpan="12" class="ennn">
-                <textarea class="publishText publishText-1" placeholder="请输入备注"></textarea>
-            </div>
-          </div>
-        </div>
-    </div>
-  </div>
-  
-  
-  <div class="other">
-    <div class="other_data">
-        <div class="friendLink">
-            <span style="color: #CF2323;float: left;margin-right: 60px;">友情连接</span>
-            <div style="float: left;width: 80%;">
-                <div class="friendLinkBox">西昌卫星发射中心官方网站</div>
-                <div class="friendLinkBox">中国探月工程设计研究院</div>
-                <div class="friendLinkBox">中华人民共和国工业和信息化部</div>
-                <div class="friendLinkBox">中国探月工程设计研究院</div>
-            </div>
-            <span style="float: right;">更多 ></span>
-        </div>
-        <div class="friendLink">
-            <span style="color: #CF2323;float: left;margin-right: 90px;">关于</span>
-            <div style="float: left;width: 80%;">
-                <div class="friendLinkBox">联系我们</div>
-                <div class="friendLinkBox">网址导航</div>
-                <div class="friendLinkBox">网址导航</div>
-            </div>
-        </div>
-        <div class="friendLink">
-            <span style="color: #CF2323;float: left;margin-right: 90px;">商务</span>
-            <div style="float: left;width: 80%;">
-                <div class="friendLinkBox" style="font-weight: 600">服务热线：0834-82738879</div>
-                <div class="friendLinkBox" style="font-weight: 600">商务合作：0834-23976688</div>
-                <div class="friendLinkBox" style="font-weight: 600">官方邮件地址：xcwsfszx@163.com</div>
-            </div>
-        </div>
-        <div class="heng"></div>
-        <div class="logo">
-            <img src="../../../../assets/images/logo.png">
-            <span style="font-size:20px;margin: 0 5px;">西昌卫星发射中心</span>
-            <span style="font-size:16px;margin: 0 5px;">物资供应查询平台</span>
-            <div class="small-font">XICHANG SATELLITE LAUNCH CENTER MATERIAL SUPPLY INQUIRY PLATFORM</div>
-        </div>
-  
-        <div class="you">
-            <div>
-                Copyright©2018版权所有 中国西昌卫星发射中心 备案序号:川ICP备 10029358号 公网安备1104010029358号
-            </div>
-            <div>
-                网站运维：四川成都清数科技有限公司 访问统计：
-            </div>
-            <div>
-                地址：凉山彝族自治州冕宁县泽远乡封家湾　邮编：735400
+            <div nz-row>
+                <div nz-col nzSpan="8" class="emmm">用车单位/人员姓名:</div>
+                <div nz-col nzSpan="12" class="ennn">
+                    <input nz-input placeholder="请输入姓名" [(ngModel)]="name">
+                </div>
+                <div nz-col nzSpan="8" class="emmm">用车时间:</div>
+                <div nz-col nzSpan="12" class="ennn">
+                    <nz-date-picker nzShowTime nzFormat="yyyy-MM-dd HH:mm:ss" nzPlaceHolder="请选择时间" nzAllowClear="false"
+                        [(ngModel)]="date" (ngModelChange)="dateChange($event)"></nz-date-picker>
+                </div>
+                <div nz-col nzSpan="8" class="emmm">接送站地点:</div>
+                <div nz-col nzSpan="12" class="ennn">
+                    <input nz-input placeholder="请输入接送站地点" [(ngModel)]="address">
+                </div>
+                <div nz-col nzSpan="8" class="emmm">航班号:</div>
+                <div nz-col nzSpan="12" class="ennn">
+                    <input nz-input placeholder="请输入航班号" [(ngModel)]="flight">
+                </div>
+                <div nz-col nzSpan="8" class="emmm">车次:</div>
+                <div nz-col nzSpan="12" class="ennn">
+                    <input nz-input placeholder="请输入车次" [(ngModel)]="trainNumber">
+                </div>
+                <div nz-col nzSpan="8" class="emmm">用车人数:</div>
+                <div nz-col nzSpan="12" class="ennn">
+                    <input nz-input placeholder="请输入用车人数" [(ngModel)]="trainPersons">
+                </div>
+                <div nz-col nzSpan="8" class="emmm">申请车型:</div>
+                <div nz-col nzSpan="12" class="ennn">
+                    <input nz-input placeholder="请输入申请车型" [(ngModel)]="vehicleType">
+                </div>
+                <div nz-col nzSpan="8" class="emmm">行驶区域:</div>
+                <div nz-col nzSpan="12" class="ennn">
+                    <input nz-input placeholder="请输入行驶区域" [(ngModel)]="vehicleArea">
+                </div>
+                <div nz-col nzSpan="8" class="emmm">联系电话:</div>
+                <div nz-col nzSpan="12" class="ennn">
+                    <input nz-input placeholder="请输入联系电话" [(ngModel)]="phone">
+                </div>
+                <div nz-col nzSpan="8" class="emmm">申请事由:</div>
+                <div nz-col nzSpan="12" class="ennn">
+                    <textarea class="publishText publishText-1" placeholder="请输入申请事由" [(ngModel)]="applicationReason"></textarea>
+                </div>
+                <div style="width: 100%;margin: 20px 0;overflow: hidden;text-align: center">
+                    <button nz-button nzType="primary" (click)="save()">确定</button>
+                </div>
             </div>
         </div>
     </div>
-  </div>
+</div>

@@ -12,6 +12,7 @@ import { debug } from 'util';
     providers: []
 })
 export class MenuComponent implements OnInit, OnDestroy {
+    heightClass = {};
     menuLocation = true;
     childrenShowKey = true;
     menu = [];
@@ -44,6 +45,7 @@ export class MenuComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
+        this.gaodu();
         let userType = [1001];
         // 如果没有用户类型，说明没有登录，直接跳转登录页面
         if (!this.sessionService.getItem('roles')) {
@@ -210,5 +212,12 @@ export class MenuComponent implements OnInit, OnDestroy {
         setTimeout(() => {
             this.childrenShowKey = true;
         }, 100);
+    }
+
+    gaodu() {
+        window.setInterval(() => {
+            const clientHeight = (document.body.clientHeight - 460) + 'px';
+            this.heightClass = { 'min-height': clientHeight };
+        }, 500);
     }
 }

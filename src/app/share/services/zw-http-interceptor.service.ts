@@ -6,13 +6,16 @@ import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HttpResponse } fr
 import { Observable, of, throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { SessionService } from './session.service';
+import { NzModalRef, NzModalService } from 'ng-zorro-antd';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ZwHttpInterceptorService implements HttpInterceptor {
+  confirmModal: NzModalRef;
   constructor(
-    private sessionService: SessionService
+    private sessionService: SessionService,
+    private modal: NzModalService,
   ) { }
   status = {
     'status.400': '错误的请求。由于语法错误，该请求无法完成。',
@@ -60,9 +63,9 @@ export class ZwHttpInterceptorService implements HttpInterceptor {
               statusText: err.statusText,
               url: err.url
             });
-            if (err.status === 401) {
-              window.location.href = '/#/';
-            }
+            // if (err.status === 401) {
+            //   window.location.href = '/#/';
+            // }
             return of(res);
             // return Observable.empty();
           } else {
@@ -80,8 +83,13 @@ export class ZwHttpInterceptorService implements HttpInterceptor {
       );
   }
   responseSet(data) {
-    if (data.body.code === 401) {
-      window.location.href = '/#/';
+    if (data.status === 401) {
+      this.confirmModal = this.modal.confirm({
+        nzTitle: '您未登录',
+        nzContent: '您要登录吗',
+        nzOnOk: () => window.location.href = '/#/'
+      });
+
     }
   }
 }
