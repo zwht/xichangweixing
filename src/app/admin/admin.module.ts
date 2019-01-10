@@ -157,7 +157,18 @@ export const routes: Routes = [
         path: 'link',
         loadChildren: './link/link.module#LinkModule',
         data: {
-          name: '管理规定',
+          name: '友情链接',
+          // hideChild: true,
+          roles: [1001],
+          menu: false
+        },
+        canActivate: [PermissionGuardService]
+      },
+      {
+        path: 'report',
+        loadChildren: './report/report.module#ReportModule',
+        data: {
+          name: '投诉举报',
           // hideChild: true,
           roles: [1001],
           menu: false

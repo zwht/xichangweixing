@@ -45,7 +45,7 @@ export class IndexComponent implements OnInit {
       data: {
         name: this.name,
         workers: this.workers,
-        arm: this.arm,
+        isArm: this.arm,
         armNum: this.armNum,
         withArm: this.withArm,
         idnum: this.idnum,

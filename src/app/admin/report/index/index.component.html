@@ -1,0 +1,50 @@
+<div class="data">
+    <div class="quality_block">
+        <div class="quality_title">
+            <div class="quality_titleRed">
+                投诉举报
+            </div>
+            <div class="crumbs">
+            </div>
+        </div>
+        <div class="dataTitle">
+            投诉举报
+        </div>
+        <div class="dataData">
+            <div style="width: 100%;margin: 10px 0;overflow: auto;">
+                <div class="ennn"><span style="line-height: 32px;">姓名:</span></div>
+                <div class="emmm">
+                    <input style="width: 70%;" nz-input placeholder="请输入姓名" [(ngModel)]="name">
+                </div>
+            </div>
+            <div style="width: 100%;margin: 10px 0;overflow: auto;">
+                <div class="ennn"><span style="line-height: 32px;">工作单位:</span></div>
+                <div class="emmm">
+                    <input style="width: 70%;" nz-input placeholder="请输入工作单位" [(ngModel)]="workers">
+                </div>
+            </div>
+            <div style="width: 100%;margin: 10px 0;overflow: auto;">
+                <div class="ennn"><span style="line-height: 32px;">联系电话:</span></div>
+                <div class="emmm">
+                    <input style="width: 70%;" nz-input placeholder="请输入联系电话" [(ngModel)]="phone">
+                </div>
+            </div>
+            <div style="width: 100%;margin: 10px 0;overflow: auto;">
+                <div class="ennn"><span style="line-height: 32px;">标题:</span></div>
+                <div class="emmm">
+                    <input style="width: 70%;" nz-input placeholder="请输入举报标题" [(ngModel)]="title">
+                </div>
+            </div>
+            <div style="width: 100%;margin: 10px 0;overflow: auto;">
+                <div class="ennn"><span style="line-height: 32px;">内容:</span></div>
+                <div class="emmm">
+                    <textarea class="publishText publishText-1" placeholder="请输入投诉举报内容" [(ngModel)]="content"></textarea>
+                </div>
+            </div>
+
+            <div style="width: 100%;margin: 10px 0;overflow: hidden;text-align: center">
+                <button nz-button nzType="primary" (click)="save()">确定</button>
+            </div>
+        </div>
+    </div>
+</div>
