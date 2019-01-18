@@ -17,6 +17,8 @@ export class ListSeeComponent implements OnInit {
     supplierName: '',
     materials: '',
     remark: '',
+    dealStartTime: '',
+    dealEndTime: '',
   };
   constructor(
     public route: ActivatedRoute,

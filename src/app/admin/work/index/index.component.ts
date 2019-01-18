@@ -19,9 +19,9 @@ export class IndexComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-        this.getWorkDynamicsList();
+        this.getList();
     }
-    getWorkDynamicsList() { // 工作动态
+    getList() { // 工作动态
         this.frontService.getWorkDynamics({
             params: {
                 params2: this.pageSize,
