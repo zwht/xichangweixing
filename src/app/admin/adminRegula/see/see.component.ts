@@ -11,6 +11,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 export class SeeComponent implements OnInit {
   id = 0;
   data = {
+    createUser: '',
     title: '',
     readCount: '',
     createTime: '',

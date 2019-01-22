@@ -38,25 +38,9 @@ export class ImgListComponent implements OnInit {
     // this.cropperInit();
   }
 
-  // getList(num?) {
-  //   this.pageNum = num ? num : 1;
-  //   this.fileService.list({
-  //     params: {
-  //       params2: this.pageNum,
-  //       params3: this.pageSize
-  //     },
-  //     data: {
-  //       name: this.search.name,
-  //       id: this.search.id
-  //     }
-  //   })
-  //     .subscribe(response => {
-  //       if (response.code === 200) {
-  //         this.list = response.data.pageData;
-  //         this.totalCount = response.data.totalCount;
-  //       }
-  //     });
-  // }
+  getList() {
+    return;
+  }
 
   // del(id) {
   //   this.fileService.del({

@@ -23,6 +23,7 @@ export class BidsSeeComponent implements OnInit {
     phone: '',
     remark: '', // 备注
     region: '',
+    grade: '',
   };
   iiiiimg = '';
 

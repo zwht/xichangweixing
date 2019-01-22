@@ -59,7 +59,7 @@ export class IndexComponent implements OnInit, OnDestroy {
   checked = false;
   loginName;
   password;
-  userInfoVo = '';
+  userInfoVo;
   subscription;
   constructor(
     private router: Router,

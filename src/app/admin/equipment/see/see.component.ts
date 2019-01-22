@@ -22,6 +22,8 @@ export class SeeComponent implements OnInit {
     packageFormat: '',
     validity: '',
     remark: '',
+    model: '',
+    leadingPerson: '',
   };
   iiiiimg = '';
 
