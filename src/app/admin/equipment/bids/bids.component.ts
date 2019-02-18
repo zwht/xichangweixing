@@ -82,7 +82,7 @@ export class BidsComponent implements OnInit {
                     const a = '/v1/file/downloadHead?fileUrl=';
                     for (let index = 0; index < this.data.length; index++) {
                         if (this.data[index].logo === '') {
-                            this.iiiiimg.push('../../../../assets/images/moren.jpg');
+                            this.iiiiimg.push('./assets/images/moren.jpg');
                         } else {
                             this.iiiiimg.push(a + this.data[index].logo.replace(/\//, '%2f'));
                         }

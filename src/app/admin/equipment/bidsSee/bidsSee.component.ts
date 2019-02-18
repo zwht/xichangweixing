@@ -49,7 +49,7 @@ export class BidsSeeComponent implements OnInit {
           this.data = response.data;
           const a = '/v1/file/downloadHead?fileUrl=';
           if (response.data.logo === '') {
-            this.iiiiimg = '../../../../assets/images/moren.jpg';
+            this.iiiiimg = './assets/images/moren.jpg';
           } else {
             this.iiiiimg = a + response.data.logo.replace(/\//, '%2f');
           }

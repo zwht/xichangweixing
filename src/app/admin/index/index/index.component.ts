@@ -53,7 +53,7 @@ export class IndexComponent implements OnInit, OnDestroy {
   city: Array<{ cityCode: string, cityName: string }> = []; // 城市信息
 
   workDynamicsData = [{ face: '', title: '' }]; // 工作动态数据
-  workDynamicsImg = { now: 0, img: '../../../../assets/images/moren.jpg', tit: '' }; // 工作动态图片
+  workDynamicsImg = { now: 0, img: './assets/images/moren.jpg', tit: '' }; // 工作动态图片
   value = '';
   level = null;
   checked = false;
@@ -166,7 +166,7 @@ export class IndexComponent implements OnInit, OnDestroy {
     const a = '/v1/file/downloadHead?fileUrl=';
     setInterval(function () {
       if (that.workDynamicsData[that.workDynamicsImg.now].face === 'null') {
-        that.workDynamicsImg.img = '../../../../assets/images/moren.jpg';
+        that.workDynamicsImg.img = './assets/images/moren.jpg';
       } else {
         that.workDynamicsImg.img = a + that.workDynamicsData[that.workDynamicsImg.now].face.replace(/\//, '%2f');
       }

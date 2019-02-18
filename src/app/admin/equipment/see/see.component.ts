@@ -49,7 +49,7 @@ export class SeeComponent implements OnInit {
           this.data = response.data;
           const a = '/v1/file/downloadHead?fileUrl=';
           if (response.data.images === '') {
-            this.iiiiimg = '../../../../assets/images/moren.jpg';
+            this.iiiiimg = './assets/images/moren.jpg';
           } else {
             this.iiiiimg = a + response.data.images.replace(/\//, '%2f');
           }
