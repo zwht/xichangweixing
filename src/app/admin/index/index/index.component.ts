@@ -176,21 +176,13 @@ export class IndexComponent implements OnInit, OnDestroy {
     if (this.workDynamicsData.length === 0) {
       return;
     }
-    const that = this;
-    const a = '/v1/file/downloadHead?fileUrl=';
-    setInterval(function () {
-      if (that.workDynamicsData[that.workDynamicsImg.now].face === 'null') {
-        that.workDynamicsImg.img = './assets/images/moren.jpg';
-      } else {
-        that.workDynamicsImg.img = a + that.workDynamicsData[that.workDynamicsImg.now].face.replace(/\//, '%2f');
+    this.workDynamicsData.forEach(item => {
+      if (item.face) {
+        this.workDynamicsImg.img = '/v1/file/downloadHead?fileUrl=' + item.face.replace(/\//, '%2f');
+        this.workDynamicsImg.tit = item['name'];
+        this.workDynamicsImg.now = 999;
       }
-      that.workDynamicsImg.tit = that.workDynamicsData[that.workDynamicsImg.now].title;
-      if (that.workDynamicsImg.now < that.workDynamicsData.length - 1) {
-        that.workDynamicsImg.now++;
-      } else {
-        that.workDynamicsImg.now = 0;
-      }
-    }, 5000);
+    });
   }
 
   supplierList() { // 供应商查询
