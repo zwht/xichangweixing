@@ -7,6 +7,7 @@ import { LoginSubject } from 'src/app/share/services/loginSubject.service';
 import { RxjsMessageService } from 'src/app/share/services/rxjsMessage.service';
 import { AdminDivisionService } from 'src/app/share/restServices/admin-division.service';
 import { FrontService } from '../../../share/restServices/front.service';
+import { NzModalService } from 'ng-zorro-antd';
 
 @Component({
   selector: 'app-index',
@@ -61,6 +62,8 @@ export class IndexComponent implements OnInit, OnDestroy {
   password;
   userInfoVo;
   subscription;
+  token;
+
   constructor(
     private router: Router,
     private authService: AuthService,
@@ -68,21 +71,26 @@ export class IndexComponent implements OnInit, OnDestroy {
     private rxjsMessageService: RxjsMessageService,
     private adminDivisionService: AdminDivisionService,
     private frontService: FrontService,
+    private nzModalService: NzModalService,
 
   ) { }
 
   ngOnInit() {
     const userInfo = this.session.getItem('userInfoVo');
     this.userInfoVo = userInfo ? JSON.parse(userInfo) : '';
+    this.token = this.session.getItem('token');
     if (this.session.getItem('checked')) {
-      this.loginName = this.session.getItem('userName');
+      this.loginName = this.session.getItem('loginName');
       this.password = this.session.getItem('password');
       this.checked = true;
     }
     this.subscription = this.rxjsMessageService.getMessage()
       .subscribe(message => {
         if (message.type === 'exit') {
-          this.userInfoVo = '';
+          if (!this.checked) {
+            this.loginName = this.password = '';
+          }
+          this.token = '';
         }
       });
 
@@ -100,7 +108,13 @@ export class IndexComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }
-
+  keydown(e) {
+    if (e.keyCode === 13) {
+      if (this.loginName && this.password) {
+        this.login();
+      }
+    }
+  }
   newsList() { // 党建要闻
     this.frontService.getAllPart({
       params: {
@@ -339,6 +353,8 @@ export class IndexComponent implements OnInit, OnDestroy {
       data => {
         if (data.errorCode === 0) {
           this.userInfoVo = data.data.userInfoVO;
+          this.token = data.data.token;
+          this.session.setItem('loginName', this.loginName);
           this.session.setItem('token', data.data.token);
           this.session.setItem('userName', data.data.userInfoVO.userName);
           this.session.setItem('userId', data.data.userInfoVO.id);
@@ -353,6 +369,11 @@ export class IndexComponent implements OnInit, OnDestroy {
           this.rxjsMessageService.sendMessage({
             type: 'login',
             data: data.data
+          });
+        } else {
+          this.nzModalService.error({
+            nzTitle: '错误',
+            nzContent: '用户名或密码错误！',
           });
         }
       },

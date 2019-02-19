@@ -17,7 +17,6 @@ export const routes: Routes = [
         data: {
           name: 'Angular动态加载组件',
           // hideChild: true,
-          roles: [1001],
           // menu: true
         },
         canActivate: [PermissionGuardService]
@@ -28,7 +27,6 @@ export const routes: Routes = [
         data: {
           name: '首页',
           // hideChild: true,
-          roles: [1001],
           menu: true
         },
         canActivate: [PermissionGuardService]
@@ -39,7 +37,6 @@ export const routes: Routes = [
         data: {
           name: '党建要闻',
           // hideChild: true,
-          roles: [1001],
           menu: true
         },
         canActivate: [PermissionGuardService]
@@ -50,7 +47,6 @@ export const routes: Routes = [
         data: {
           name: '强军模块',
           // hideChild: true,
-          roles: [1001],
           menu: true
         },
         canActivate: [PermissionGuardService]
@@ -61,7 +57,6 @@ export const routes: Routes = [
         data: {
           name: '信息查询',
           // hideChild: true,
-          roles: [1001],
           menu: true
         },
         canActivate: [PermissionGuardService]
@@ -72,7 +67,6 @@ export const routes: Routes = [
         data: {
           name: '工作动态',
           // hideChild: true,
-          roles: [1001],
           menu: true
         },
         canActivate: [PermissionGuardService]
@@ -83,7 +77,6 @@ export const routes: Routes = [
         data: {
           name: '管理规定',
           // hideChild: true,
-          roles: [1001],
           menu: false
         },
         canActivate: [PermissionGuardService]
@@ -94,7 +87,6 @@ export const routes: Routes = [
         data: {
           name: '通知公告',
           // hideChild: true,
-          roles: [1001],
           menu: false
         },
         canActivate: [PermissionGuardService]
@@ -105,7 +97,6 @@ export const routes: Routes = [
         data: {
           name: '质量专栏',
           // hideChild: true,
-          roles: [1001],
           menu: true
         },
         canActivate: [PermissionGuardService]
@@ -137,7 +128,6 @@ export const routes: Routes = [
         data: {
           name: '市场信息',
           // hideChild: true,
-          roles: [1001],
           menu: false
         },
         canActivate: [PermissionGuardService]
@@ -148,7 +138,6 @@ export const routes: Routes = [
         data: {
           name: '个人中心',
           // hideChild: true,
-          roles: [1001],
           menu: false
         },
         canActivate: [PermissionGuardService]
@@ -159,7 +148,6 @@ export const routes: Routes = [
         data: {
           name: '友情链接',
           // hideChild: true,
-          roles: [1001],
           menu: false
         },
         canActivate: [PermissionGuardService]
@@ -170,7 +158,6 @@ export const routes: Routes = [
         data: {
           name: '投诉举报',
           // hideChild: true,
-          roles: [1001],
           menu: false
         },
         canActivate: [PermissionGuardService]

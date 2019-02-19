@@ -85,9 +85,9 @@ export class ZwHttpInterceptorService implements HttpInterceptor {
   responseSet(data) {
     if (data.status === 401) {
       this.confirmModal = this.modal.confirm({
-        nzTitle: '您未登录',
-        nzContent: '您要登录吗',
-        nzOnOk: () => window.location.href = '/#/'
+        nzTitle: '您未登录或登录失效',
+        nzContent: '您要重新登录吗',
+        nzOnOk: () => window.location.href = '/'
       });
 
     }

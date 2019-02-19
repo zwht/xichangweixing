@@ -12,7 +12,6 @@ export const routes: Routes = [
         component: IndexComponent,
         data: {
             name: '首页',
-            roles: [1001],
             // menu: true
         },
         canActivate: [PermissionGuardService]

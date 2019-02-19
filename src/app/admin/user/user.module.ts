@@ -14,7 +14,6 @@ export const routes: Routes = [
         component: IndexComponent,
         data: {
             name: '用户',
-            roles: [1001],
             // menu: true
         },
         canActivate: [PermissionGuardService]
@@ -24,7 +23,6 @@ export const routes: Routes = [
         component: AddComponent,
         data: {
             name: '添加用户',
-            roles: [1001]
         },
         canActivate: [PermissionGuardService]
     },
@@ -33,7 +31,6 @@ export const routes: Routes = [
         component: UpdateComponent,
         data: {
             name: '编辑用户',
-            roles: [1001]
         },
         canActivate: [PermissionGuardService]
     },

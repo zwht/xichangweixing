@@ -209,21 +209,26 @@
   <div class="right">
     <div class="login">
       <div class="loginLogo">物 资 供 应 系 统</div>
-      <div *ngIf="!userInfoVo||!userInfoVo.userName">
+      <div *ngIf="!token">
         <div class="loginUser">
-          <input [(ngModel)]="loginName" class="user" type="text" placeholder="请输入用户名" />
+          <input (keydown)="keydown($event)" [(ngModel)]="loginName" class="user" type="text" placeholder="请输入用户名" />
         </div>
         <div class="loginUser">
-          <input [(ngModel)]="password" class="user" type="password" placeholder="请输入密码" />
+          <input (keydown)="keydown($event)" [(ngModel)]="password" class="user" type="password" placeholder="请输入密码" />
         </div>
-        <div style="width: 80%;margin: 40px auto 0 auto;">
+        <div style="width: 80%;margin: 30px auto 0 auto;">
           <label nz-checkbox [(ngModel)]="checked">记住密码</label>
           <a style="float: right;">忘记密码</a>
         </div>
-        <div class="loginBut" (click)="login()">登录</div>
+        <div class="loginBut" (click)="login()">
+          登&nbsp;&nbsp;&nbsp;&nbsp;录
+        </div>
       </div>
-      <div class="userInfo" *ngIf="userInfoVo&&userInfoVo.userName">
-        <div>你好：{{userInfoVo.userName}}</div>
+      <div class="userInfo" *ngIf="token">
+        <div class="igm">
+          <img src="./assets/images/user.png" alt="">
+          <p>{{userInfoVo.userName}}</p>
+        </div>
       </div>
     </div>
     <div class="box">

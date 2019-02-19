@@ -105,20 +105,20 @@
         background-color:#F8F8F8;
         float: right;
         .login{
-            height: 400px;
+            height: 360px;
             background: url(../../../../assets/images/bg.png)no-repeat center center;
             margin-bottom: 10px;
             .loginLogo{
                 font-size:26px;
                 font-weight:bold;
-                line-height:21px;
                 color:rgba(86,86,86,1);
                 text-align: center;
-                margin-top: 40px;
+                margin-top: 20px;
+                margin-bottom: 40px;
             }
             .loginUser{
                 width:80%;
-                margin: 50px auto 0 auto;
+                margin: 30px auto 0 auto;
                 border-bottom: 2px solid rgba(233,233,240,1);
                 text-align: center;
                 .user{
@@ -133,20 +133,26 @@
             }
             .loginBut{
                 width: 80%;
-                margin: 60px auto 0 auto;
+                margin: 60px auto 20px;
                 background-color:#CF2323;
-                height:50px;
+                height:40px;
                 text-align: center;
                 color:rgba(255,255,255,1);
-                line-height:50px;
-                font-size:18px;
-                font-weight:400;
+                line-height:40px;
+                font-size:16px;
                 cursor: pointer;
                 &:hover{
                     background-color: rgb(245, 41, 41)
                 }
             }
-            .userInfo{ text-align: center; font-size: 16px; margin-top: 50px;}
+            .userInfo{ text-align: center; margin-top: 100px;
+                .igm{ margin-bottom: 15px; width: 120px;
+                    background: #fff; border-radius: 60px; height: 120px;
+                    text-align: center; margin: auto; padding-top: 15px;
+                    img{ width: 40px; opacity: 0.5; margin-bottom: 13px;}
+                    p{ font-size: 18px; font-weight: bold;}
+                }
+            }
         }
     }
 }

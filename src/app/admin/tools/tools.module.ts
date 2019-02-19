@@ -17,7 +17,6 @@ export const routes: Routes = [
         component: ImgListComponent,
         data: {
             name: '图片管理',
-            roles: [1001],
             menu: true
         },
         canActivate: [PermissionGuardService]
@@ -43,7 +42,6 @@ export const routes: Routes = [
         component: GroupListComponent,
         data: {
             name: '公司管理',
-            roles: [1001],
             menu: true
         },
         canActivate: [PermissionGuardService]
@@ -53,7 +51,6 @@ export const routes: Routes = [
         component: GroupAddComponent,
         data: {
             name: '编辑公司',
-            roles: [1001]
         },
         canActivate: [PermissionGuardService]
     }

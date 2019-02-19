@@ -21,6 +21,7 @@ export class MenuComponent implements OnInit, OnDestroy {
     collectKey = false;
     hardImg = '';
     userName = this.sessionService.getItem('userName');
+    token = this.sessionService.getItem('token');
     subscription;
     // 有子菜单的需要引入
     routesMenu = [
@@ -120,6 +121,7 @@ export class MenuComponent implements OnInit, OnDestroy {
             .subscribe(message => {
                 if (message.type === 'login') {
                     this.userName = message.data.userInfoVO.userName;
+                    this.token = '344';
                 }
 
             });
@@ -144,11 +146,12 @@ export class MenuComponent implements OnInit, OnDestroy {
             }
             case 'exit': {
                 this.userName = '';
+                this.token = '';
                 this.sessionService.removeItem('token');
-                this.sessionService.removeItem('userName');
-                this.sessionService.removeItem('userInfoVo');
-                this.sessionService.removeItem('id');
-                this.sessionService.removeItem('password');
+                // this.sessionService.removeItem('userName');
+                // this.sessionService.removeItem('userInfoVo');
+                // this.sessionService.removeItem('id');
+                // this.sessionService.removeItem('password');
                 this.router.navigate(['/']);
                 this.rxjsMessageService.sendMessage({
                     type: 'exit',
