@@ -34,14 +34,30 @@
     <div class="queryButton" (click)="getList()">查询</div>
   </div>
   <div class="lastContent">
-    <div class="line" *ngFor="let item of data" (click)="jump('quality/event/see',item.id)">
-      <div class="circular"></div>
-      <div class="lineData">
-        {{item.title}}
-      </div>
-      <div class="date">
-      </div>
-    </div>
+    <nz-table #basicTable [nzShowPagination]="false" [nzData]="data">
+      <thead>
+        <tr>
+          <th>名称</th>
+          <th>供应商</th>
+          <th>涉及物料</th>
+          <th>发生时间</th>
+          <th>状态</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of data" (click)="jump('quality/event/see',item.id)">
+          <td>{{item.name}}</td>
+          <td>{{item.supplierName}}</td>
+          <td>{{item.materials}}</td>
+          <td>{{item.occurrenceTime}}</td>
+          <td>
+            <span *ngIf="item.status == 1">未处理</span>
+            <span *ngIf="item.status == 2">处理中</span>
+            <span *ngIf="item.status == 3">已处理</span>
+          </td>
+        </tr>
+      </tbody>
+    </nz-table>
   </div>
 </div>
 <div style="width: 100%;text-align: center;background-color: white;padding-bottom: 40px;">

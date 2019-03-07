@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "../id-material-platform/vs-controller/src/main/webapp/anonymous",
+            "outputPath": "../id-material-platform/vs-controller/src/main/resources/webapp/anonymous",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",

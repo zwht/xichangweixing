@@ -1,46 +1,47 @@
 <div class="data">
-        <div class="quality_block">
-            <div class="quality_title">
-                <div class="quality_titleRed">
-                    质量专栏
-                </div>
-                <div class="crumbs">
-                    <span>通知公告</span>>
-                    <span>公告详情</span>
-                </div>
+    <div class="quality_block">
+        <div class="quality_title">
+            <div class="quality_titleRed">
+                质量专栏
             </div>
-        </div>
-        <div class="head">
-            <div class="name">处理进度</div>
-        </div>
-        <div class="dividing"></div>
-        <div class="middle">
-            <div nz-row>
-                <div nz-col nzSpan="3" class="emmm">供应商:</div>
-                <div nz-col nzSpan="21" class="ennn">{{data.supplierName}}</div>
-                <div nz-col nzSpan="3" class="emmm">涉及物料:</div>
-                <div nz-col nzSpan="21" class="ennn">{{data.materials}}</div>
-                <div nz-col nzSpan="3" class="emmm">开始处理时间:</div>
-                <div nz-col nzSpan="21" class="ennn">{{data.dealStartTime}}</div>
-                <div nz-col nzSpan="3" class="emmm">结束处理时间:</div>
-                <div nz-col nzSpan="21" class="ennn">{{data.dealEndTime}}</div>
-            </div>
-        </div>
-        <div class="dividing"></div>
-        <div class="remarks">
-            <div class="zhuyao">
-                事件描述
-            </div>
-            <div class="jutizhuyao">
-                <div class="jutidejuti">
-                    {{data.remark}}
-                </div>
-            </div>
-        </div>
-        <div class="dividing"></div>
-        <div class="remarks">
-            <div class="zhuyao">
-                附件下载
+            <div class="crumbs">
+                <a href="/#/quality/list">处理列表</a>
+                >
+                <span>处理详情</span>
             </div>
         </div>
     </div>
+    <div class="head">
+        <div class="name">处理进度</div>
+    </div>
+    <div class="dividing"></div>
+    <div class="middle">
+        <div nz-row>
+            <div nz-col nzSpan="3" class="emmm">供应商:</div>
+            <div nz-col nzSpan="21" class="ennn">{{data.supplierName}}</div>
+            <div nz-col nzSpan="3" class="emmm">涉及物料:</div>
+            <div nz-col nzSpan="21" class="ennn">{{data.materials}}</div>
+            <div nz-col nzSpan="3" class="emmm">开始处理时间:</div>
+            <div nz-col nzSpan="21" class="ennn">{{data.dealStartTime}}</div>
+            <div nz-col nzSpan="3" class="emmm">结束处理时间:</div>
+            <div nz-col nzSpan="21" class="ennn">{{data.dealEndTime}}</div>
+        </div>
+    </div>
+    <div class="dividing"></div>
+    <div class="remarks">
+        <div class="zhuyao">
+            事件描述
+        </div>
+        <div class="jutizhuyao">
+            <div class="jutidejuti">
+                {{data.remark}}
+            </div>
+        </div>
+    </div>
+    <div class="dividing"></div>
+    <div class="remarks">
+        <div class="zhuyao">
+            附件下载
+        </div>
+    </div>
+</div>

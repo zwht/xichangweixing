@@ -19,6 +19,7 @@ export class IndexComponent implements OnInit, OnDestroy {
   titOption2 = [{ 'border-bottom': '2px solid #CF2323', 'margin': '0 3px' }, {}, {}]; // 质量信息标题样式
   marketOption = [{ 'font-weight': 600 }, {}, {}, {}, {}, {}, {}, {}, {}]; // 市场信息样式
 
+  loading = true;
   EquipQuery = { // 设备资产查询
     name: '', // 设备名称
     leadingPerson: '', // 状态
@@ -93,7 +94,7 @@ export class IndexComponent implements OnInit, OnDestroy {
           this.token = '';
         }
       });
-
+    this.loading = true;
     this.getWorkDynamicsList();
     this.equipmentList();
     this.getAdminDivision(1, '');
@@ -173,10 +174,12 @@ export class IndexComponent implements OnInit, OnDestroy {
   }
 
   workDynamicsTP() { // 工作动态图片
+
     if (this.workDynamicsData.length === 0) {
       return;
     }
     this.workDynamicsData.forEach(item => {
+      this.loading = false;
       if (item.face) {
         this.workDynamicsImg.img = '/v1/file/downloadHead?fileUrl=' + item.face.replace(/\//, '%2f');
         this.workDynamicsImg.tit = item['name'];

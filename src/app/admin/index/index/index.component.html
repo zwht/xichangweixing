@@ -1,298 +1,305 @@
 <div class="data">
-  <div class="left">
-    <div class="block">
-      <div class="title">
-        <div class="titleRed">工作动态</div>
-        <div class="more">
-          <div class="moreWord" (click)="jump('work','')">更多 ></div>
-        </div>
+    <div class="lodingBox" *ngIf="loading">
+        <nz-spin nzSimple></nz-spin>
       </div>
-      <div class="window">
-        <div class="aaaa">{{workDynamicsImg.tit}}</div>
-        <img [src]="workDynamicsImg.img" class="tupian">
-      </div>
-      <ul class="content">
-        <li *ngFor="let i of workDynamicsData" class="contentData" (click)="jump('work/see',i.id)">
-          <div class="circular"></div>
-          {{i.title}}
-        </li>
-        <li class="contentData" style="cursor: default;" *ngIf="workDynamicsData.length == 0">
-          <div class="circular"></div>
-          暂无数据
-        </li>
-      </ul>
-    </div>
-    <div class="block">
-      <div class="quality_title">
-        <div class="quality_titleRed">信息查询</div>
-        <div class="quality_titleOption" [ngStyle]="titOption[0]" (click)="titOptionOK(0)">设备资产</div>
-        <div class="quality_titleOption" [ngStyle]="titOption[1]" (click)="titOptionOK(1)">供应商</div>
-        <div class="quality_titleOption" [ngStyle]="titOption[2]" (click)="titOptionOK(2)">招投标机构</div>
-        <div class="quality_more">
-          <div class="quality_moreWord" (click)="jump('equipment','')"> 更多 ></div>
-        </div>
-      </div>
-      <div *ngIf="titOption[3] == 0">
-        <div class="query">
-          <input nz-input placeholder="设备名称" [(ngModel)]="EquipQuery.name" style="width: 90%;margin: 10px 0;">
-          <input nz-input placeholder="供应商" [(ngModel)]="EquipQuery.supplierName" style="width: 90%;margin: 10px 0;">
-          <input nz-input placeholder="采购负责人" [(ngModel)]="EquipQuery.leadingPerson" style="width: 90%;margin: 10px 0;">
-          <div class="queryButton" (click)="equipmentList()">查询</div>
-        </div>
-        <div class="contentTable">
-          <nz-table #basicTable [nzData]="EquipData" [nzShowPagination]='false'>
-            <thead>
-              <tr>
-                <th>设备名称</th>
-                <th>设备型号</th>
-                <th>供应商</th>
-                <th>采购负责人</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let data of basicTable.data" (click)="jump('equipment/see/',data.id)">
-                <td>{{data.name}}</td>
-                <td>{{data.code}}</td>
-                <td>{{data.supplierName}}</td>
-                <td>{{data.name}}</td>
-              </tr>
-            </tbody>
-          </nz-table>
-        </div>
-      </div>
-      <div *ngIf="titOption[3] == 1">
-        <div class="query">
-          <input nz-input placeholder="供应商名称" [(ngModel)]="supplierQuery.name" style="width: 90%;margin: 10px 0;">
-          <nz-select style="width:90%; margin:10px 0;" [(ngModel)]="supplierQuery.status" nzAllowClear nzPlaceHolder="供应商类型">
-            <nz-option nzValue="" nzLabel="全部"></nz-option>
-            <nz-option nzValue="0" nzLabel="停用"></nz-option>
-            <nz-option nzValue="1" nzLabel="正常"></nz-option>
-          </nz-select>
-          <div nz-row>
-            <div nz-col nzSpan="12">
-              <nz-select style="width:80%; margin:10px 0;" [(ngModel)]="provinceNum" nzAllowClear nzPlaceHolder="选择省"
-                (ngModelChange)="getAdminDivision(2,provinceNum)">
-                <nz-option *ngFor="let item of province" [nzValue]="item.provinceCode" [nzLabel]="item.provinceName"></nz-option>
-              </nz-select>
+      <div *ngIf="!loading">
+          <div class="left">
+              <div class="block">
+                <div class="title">
+                  <div class="titleRed">工作动态</div>
+                  <div class="more">
+                    <div class="moreWord" (click)="jump('work','')">更多 ></div>
+                  </div>
+                </div>
+                <div class="window">
+                  <div class="aaaa">{{workDynamicsImg.tit}}</div>
+                  <img [src]="workDynamicsImg.img" class="tupian">
+                </div>
+                <ul class="content">
+                  <li *ngFor="let i of workDynamicsData" class="contentData" (click)="jump('work/see',i.id)">
+                    <div class="circular"></div>
+                    {{i.title}}
+                  </li>
+                  <li class="contentData" style="cursor: default;" *ngIf="workDynamicsData.length == 0">
+                    <div class="circular"></div>
+                    暂无数据
+                  </li>
+                </ul>
+              </div>
+              <div class="block">
+                <div class="quality_title">
+                  <div class="quality_titleRed">信息查询</div>
+                  <div class="quality_titleOption" [ngStyle]="titOption[0]" (click)="titOptionOK(0)">设备资产</div>
+                  <div class="quality_titleOption" [ngStyle]="titOption[1]" (click)="titOptionOK(1)">供应商</div>
+                  <div class="quality_titleOption" [ngStyle]="titOption[2]" (click)="titOptionOK(2)">招投标机构</div>
+                  <div class="quality_more">
+                    <div class="quality_moreWord" (click)="jump('equipment','')"> 更多 ></div>
+                  </div>
+                </div>
+                <div *ngIf="titOption[3] == 0">
+                  <div class="query">
+                    <input nz-input placeholder="设备名称" [(ngModel)]="EquipQuery.name" style="width: 90%;margin: 10px 0;">
+                    <input nz-input placeholder="供应商" [(ngModel)]="EquipQuery.supplierName" style="width: 90%;margin: 10px 0;">
+                    <input nz-input placeholder="采购负责人" [(ngModel)]="EquipQuery.leadingPerson" style="width: 90%;margin: 10px 0;">
+                    <div class="queryButton" (click)="equipmentList()">查询</div>
+                  </div>
+                  <div class="contentTable">
+                    <nz-table #basicTable [nzData]="EquipData" [nzShowPagination]='false'>
+                      <thead>
+                        <tr>
+                          <th>设备名称</th>
+                          <th>设备型号</th>
+                          <th>供应商</th>
+                          <th>采购负责人</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let data of basicTable.data" (click)="jump('equipment/see/',data.id)">
+                          <td>{{data.name}}</td>
+                          <td>{{data.code}}</td>
+                          <td>{{data.supplierName}}</td>
+                          <td>{{data.name}}</td>
+                        </tr>
+                      </tbody>
+                    </nz-table>
+                  </div>
+                </div>
+                <div *ngIf="titOption[3] == 1">
+                  <div class="query">
+                    <input nz-input placeholder="供应商名称" [(ngModel)]="supplierQuery.name" style="width: 90%;margin: 10px 0;">
+                    <nz-select style="width:90%; margin:10px 0;" [(ngModel)]="supplierQuery.status" nzAllowClear nzPlaceHolder="供应商类型">
+                      <nz-option nzValue="" nzLabel="全部"></nz-option>
+                      <nz-option nzValue="0" nzLabel="停用"></nz-option>
+                      <nz-option nzValue="1" nzLabel="正常"></nz-option>
+                    </nz-select>
+                    <div nz-row>
+                      <div nz-col nzSpan="12">
+                        <nz-select style="width:80%; margin:10px 0;" [(ngModel)]="provinceNum" nzAllowClear nzPlaceHolder="选择省"
+                          (ngModelChange)="getAdminDivision(2,provinceNum)">
+                          <nz-option *ngFor="let item of province" [nzValue]="item.provinceCode" [nzLabel]="item.provinceName"></nz-option>
+                        </nz-select>
+                      </div>
+                      <div nz-col nzSpan="12">
+                        <nz-select style="width:80%; margin:10px 0;" [(ngModel)]="cityNum" nzAllowClear nzPlaceHolder="选择市">
+                          <nz-option *ngFor="let item of city" [nzValue]="item.cityCode" [nzLabel]="item.cityName"></nz-option>
+                        </nz-select>
+                      </div>
+                    </div>
+                    <div class="queryButton" (click)="supplierList()">查询</div>
+                  </div>
+                  <div class="contentTable">
+                    <nz-table #basicTable [nzData]="supplierData" [nzShowPagination]='false'>
+                      <thead>
+                        <tr>
+                          <th>供应商名称</th>
+                          <th>类型</th>
+                          <th>所在地区</th>
+                          <th>联系人</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let data of basicTable.data" (click)="jump('equipment/supplier/see',data.id)">
+                          <td>{{data.name}}</td>
+                          <td>{{data.typeName}}</td>
+                          <td>{{data.region.split(',')[1]}}</td>
+                          <td>{{data.contactsUserName}}</td>
+                        </tr>
+                      </tbody>
+                    </nz-table>
+                  </div>
+                </div>
+                <div *ngIf="titOption[3] == 2">
+                  <div class="query">
+                    <input nz-input placeholder="招投标机构名称" [(ngModel)]="bidsQuery.name" style="width: 90%;margin: 10px 0;">
+                    <nz-select style="width: 90%; margin: 10px 0;" [(ngModel)]="bidsQuery.grade" nzAllowClear nzPlaceHolder="级别">
+                      <nz-option nzValue="" nzLabel="全部"></nz-option>
+                      <nz-option nzValue="1" nzLabel="一级"></nz-option>
+                      <nz-option nzValue="2" nzLabel="二级"></nz-option>
+                      <nz-option nzValue="3" nzLabel="三级"></nz-option>
+                      <nz-option nzValue="4" nzLabel="四级"></nz-option>
+                      <nz-option nzValue="5" nzLabel="五级"></nz-option>
+                    </nz-select>
+                    <div nz-row>
+                      <div nz-col nzSpan="12">
+                        <nz-select style="width:80%; margin:10px 0;" [(ngModel)]="provinceNum" nzAllowClear nzPlaceHolder="选择省"
+                          (ngModelChange)="getAdminDivision(2,provinceNum)">
+                          <nz-option *ngFor="let item of province" [nzValue]="item.provinceCode" [nzLabel]="item.provinceName"></nz-option>
+                        </nz-select>
+                      </div>
+                      <div nz-col nzSpan="12">
+                        <nz-select style="width:80%; margin:10px 0;" [(ngModel)]="cityNum" nzAllowClear nzPlaceHolder="选择市">
+                          <nz-option *ngFor="let item of city" [nzValue]="item.cityCode" [nzLabel]="item.cityName"></nz-option>
+                        </nz-select>
+                      </div>
+                    </div>
+                    <div class="queryButton" (click)="bidsList()">查询</div>
+                  </div>
+                  <div class="contentTable">
+                    <nz-table #basicTable [nzData]="bidsData" [nzShowPagination]='false'>
+                      <thead>
+                        <tr>
+                          <th>招投标机构</th>
+                          <th>级别</th>
+                          <th>所在地区</th>
+                          <th>联系人</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let data of basicTable.data" (click)="jump('equipment/bids/see',data.id)">
+                          <td>{{data.name}}</td>
+                          <td>{{data.grade}}</td>
+                          <td>{{data.region.split(',')[1]}}</td>
+                          <td>{{data.contactsUserName}}</td>
+                        </tr>
+                      </tbody>
+                    </nz-table>
+                  </div>
+                </div>
+              </div>
+              <div class="block">
+                <div class="title">
+                  <div class="titleRed">市场信息</div>
+                  <div class="more">
+                    <div class="moreWord" (click)="jump('market','')">更多 ></div>
+                  </div>
+                </div>
+                <div class="marketQuota">
+                  <div class="marketTable">全部市场行业</div>
+                  <div class="marketData" [ngStyle]="marketOption[0]" (click)="marketOptionOK(0)">金属</div>
+                  <div class="marketData" [ngStyle]="marketOption[1]" (click)="marketOptionOK(1)">生产耗材</div>
+                  <div class="marketData" [ngStyle]="marketOption[2]" (click)="marketOptionOK(2)">轻工类</div>
+                  <div class="marketData" [ngStyle]="marketOption[3]" (click)="marketOptionOK(3)">载具</div>
+                  <div class="marketData" [ngStyle]="marketOption[4]" (click)="marketOptionOK(4)">化工</div>
+                  <div class="marketData" [ngStyle]="marketOption[5]" (click)="marketOptionOK(5)">能源</div>
+                  <div class="marketData" [ngStyle]="marketOption[6]" (click)="marketOptionOK(6)">农产品</div>
+                  <div class="marketData" [ngStyle]="marketOption[7]" (click)="marketOptionOK(7)">医疗保障</div>
+                  <div class="marketData" [ngStyle]="marketOption[8]" (click)="marketOptionOK(8)">危险品</div>
+                </div>
+                <ul class="marketContent">
+                  <li *ngFor="let i of marketData" class="marketContentData" (click)="jump('market/see',i.id)">
+                    <div class="circular"></div>
+                    {{i.title}}
+                  </li>
+                  <li class="marketContentData" *ngIf="marketData.length == 0">
+                    <div class="circular"></div>
+                    暂无数据
+                  </li>
+                </ul>
+              </div>
+              <div class="quality_block">
+                <div class="quality_title">
+                  <div class="quality_titleRed">质量专栏</div>
+                  <div class="quality_titleOption" [ngStyle]="titOption2[0]" (click)="titOption2OK(0)">质量公告</div>
+                  <div class="quality_titleOption" [ngStyle]="titOption2[1]" (click)="titOption2OK(1)">质量事件</div>
+                  <div class="quality_titleOption" [ngStyle]="titOption2[2]" (click)="titOption2OK(2)">质量处理</div>
+                  <div class="quality_more">
+                    <div class="quality_moreWord" (click)="jump('quality','')">更多 ></div>
+                  </div>
+                </div>
+                <ul class="lastContent">
+                  <li *ngFor="let i of qualityData" class="lastContentData">
+                    <div class="circular" style="margin:20px 10px"></div>
+                    <div style="width: 75%;display: inline-block;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;">
+                      {{i.title}}
+                    </div>
+                    <div class="date">[{{i.createTime}}]</div>
+                  </li>
+                  <li class="lastContentData" *ngIf="marketData.length == 0">
+                    <div style="width: 75%;display: inline-block;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;">暂无数据</div>
+                  </li>
+                </ul>
+              </div>
             </div>
-            <div nz-col nzSpan="12">
-              <nz-select style="width:80%; margin:10px 0;" [(ngModel)]="cityNum" nzAllowClear nzPlaceHolder="选择市">
-                <nz-option *ngFor="let item of city" [nzValue]="item.cityCode" [nzLabel]="item.cityName"></nz-option>
-              </nz-select>
+            <div class="right">
+              <div class="login">
+                <div class="loginLogo">物 资 供 应 系 统</div>
+                <div *ngIf="!token">
+                  <div class="loginUser">
+                    <input (keydown)="keydown($event)" [(ngModel)]="loginName" class="user" type="text" placeholder="请输入用户名" />
+                  </div>
+                  <div class="loginUser">
+                    <input (keydown)="keydown($event)" [(ngModel)]="password" class="user" type="password" placeholder="请输入密码" />
+                  </div>
+                  <div style="width: 80%;margin: 30px auto 0 auto;">
+                    <label nz-checkbox [(ngModel)]="checked">记住密码</label>
+                    <a style="float: right;">忘记密码</a>
+                  </div>
+                  <div class="loginBut" (click)="login()">
+                    登&nbsp;&nbsp;&nbsp;&nbsp;录
+                  </div>
+                </div>
+                <div class="userInfo" *ngIf="token">
+                  <div class="igm">
+                    <img src="./assets/images/user.png" alt="">
+                    <p>{{userInfoVo.userName}}</p>
+                  </div>
+                </div>
+              </div>
+              <div class="box">
+                <div class="boxTitle">
+                  <div class="boxRed">党建要闻</div>
+                  <div class="more">
+                    <div class="moreWord" (click)="jump('partyNews','')">更多 ></div>
+                  </div>
+                </div>
+                <ul class="rightContent">
+                  <li *ngFor="let i of newsData" class="rightContentData" (click)="jump('partyNews/see',i.id)">
+                    <div class="circular"></div>
+                    {{i.title}}
+                  </li>
+                  <li class="rightContentData" *ngIf="newsData.length == 0">暂无数据</li>
+                </ul>
+              </div>
+              <div class="box">
+                <div class="boxTitle">
+                  <div class="boxRed">通知公告</div>
+                  <div class="more">
+                    <div class="moreWord" (click)="jump('notice','')">更多 ></div>
+                  </div>
+                </div>
+                <ul class="rightContent">
+                  <li *ngFor="let i of noticeData" class="rightContentData" (click)="jump('notice/see',i.id)">
+                    <div class="circular"></div>
+                    {{i.title}}
+                  </li>
+                  <li class="rightContentData" *ngIf="noticeData.length == 0">暂无数据</li>
+                </ul>
+              </div>
+              <div class="box">
+                <div class="boxTitle">
+                  <div class="boxRed">管理规定</div>
+                  <div class="more">
+                    <div class="moreWord" (click)="jump('adminRegula','')">更多 ></div>
+                  </div>
+                </div>
+                <ul class="rightContent">
+                  <li *ngFor="let i of managementData" class="rightContentData" (click)="jump('adminRegula/see',i.id)">
+                    <div class="circular"></div>
+                    {{i.title}}
+                  </li>
+                  <li class="rightContentData" *ngIf="managementData.length == 0">暂无数据</li>
+                </ul>
+              </div>
             </div>
-          </div>
-          <div class="queryButton" (click)="supplierList()">查询</div>
-        </div>
-        <div class="contentTable">
-          <nz-table #basicTable [nzData]="supplierData" [nzShowPagination]='false'>
-            <thead>
-              <tr>
-                <th>供应商名称</th>
-                <th>类型</th>
-                <th>所在地区</th>
-                <th>联系人</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let data of basicTable.data" (click)="jump('equipment/supplier/see',data.id)">
-                <td>{{data.name}}</td>
-                <td>{{data.typeName}}</td>
-                <td>{{data.region.split(',')[1]}}</td>
-                <td>{{data.contactsUserName}}</td>
-              </tr>
-            </tbody>
-          </nz-table>
-        </div>
-      </div>
-      <div *ngIf="titOption[3] == 2">
-        <div class="query">
-          <input nz-input placeholder="招投标机构名称" [(ngModel)]="bidsQuery.name" style="width: 90%;margin: 10px 0;">
-          <nz-select style="width: 90%; margin: 10px 0;" [(ngModel)]="bidsQuery.grade" nzAllowClear nzPlaceHolder="级别">
-            <nz-option nzValue="" nzLabel="全部"></nz-option>
-            <nz-option nzValue="1" nzLabel="一级"></nz-option>
-            <nz-option nzValue="2" nzLabel="二级"></nz-option>
-            <nz-option nzValue="3" nzLabel="三级"></nz-option>
-            <nz-option nzValue="4" nzLabel="四级"></nz-option>
-            <nz-option nzValue="5" nzLabel="五级"></nz-option>
-          </nz-select>
-          <div nz-row>
-            <div nz-col nzSpan="12">
-              <nz-select style="width:80%; margin:10px 0;" [(ngModel)]="provinceNum" nzAllowClear nzPlaceHolder="选择省"
-                (ngModelChange)="getAdminDivision(2,provinceNum)">
-                <nz-option *ngFor="let item of province" [nzValue]="item.provinceCode" [nzLabel]="item.provinceName"></nz-option>
-              </nz-select>
+            <div class="quality_block">
+              <div class="quality_title">
+                <div class="quality_titleRed">资料下载</div>
+                <div class="quality_more">
+                  <div class="quality_moreWord" style="line-height: 40px" (click)="jump('download','')">更多 ></div>
+                </div>
+              </div>
+              <ul class="lastContent" style="margin-top:35px;">
+                <li *ngFor="let i of DataDownloadData" class="lastContentData">
+                  <div class="circular"></div>
+                  {{i.reportName}}
+                  <div class="date">[{{i.createTime}}]</div>
+                </li>
+                <li class="lastContentData" *ngIf="DataDownloadData.length == 0">
+                  暂无数据
+                </li>
+              </ul>
             </div>
-            <div nz-col nzSpan="12">
-              <nz-select style="width:80%; margin:10px 0;" [(ngModel)]="cityNum" nzAllowClear nzPlaceHolder="选择市">
-                <nz-option *ngFor="let item of city" [nzValue]="item.cityCode" [nzLabel]="item.cityName"></nz-option>
-              </nz-select>
-            </div>
-          </div>
-          <div class="queryButton" (click)="bidsList()">查询</div>
-        </div>
-        <div class="contentTable">
-          <nz-table #basicTable [nzData]="bidsData" [nzShowPagination]='false'>
-            <thead>
-              <tr>
-                <th>招投标机构</th>
-                <th>级别</th>
-                <th>所在地区</th>
-                <th>联系人</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let data of basicTable.data" (click)="jump('equipment/bids/see',data.id)">
-                <td>{{data.name}}</td>
-                <td>{{data.grade}}</td>
-                <td>{{data.region.split(',')[1]}}</td>
-                <td>{{data.contactsUserName}}</td>
-              </tr>
-            </tbody>
-          </nz-table>
-        </div>
       </div>
-    </div>
-    <div class="block">
-      <div class="title">
-        <div class="titleRed">市场信息</div>
-        <div class="more">
-          <div class="moreWord" (click)="jump('market','')">更多 ></div>
-        </div>
-      </div>
-      <div class="marketQuota">
-        <div class="marketTable">全部市场行业</div>
-        <div class="marketData" [ngStyle]="marketOption[0]" (click)="marketOptionOK(0)">金属</div>
-        <div class="marketData" [ngStyle]="marketOption[1]" (click)="marketOptionOK(1)">生产耗材</div>
-        <div class="marketData" [ngStyle]="marketOption[2]" (click)="marketOptionOK(2)">轻工类</div>
-        <div class="marketData" [ngStyle]="marketOption[3]" (click)="marketOptionOK(3)">载具</div>
-        <div class="marketData" [ngStyle]="marketOption[4]" (click)="marketOptionOK(4)">化工</div>
-        <div class="marketData" [ngStyle]="marketOption[5]" (click)="marketOptionOK(5)">能源</div>
-        <div class="marketData" [ngStyle]="marketOption[6]" (click)="marketOptionOK(6)">农产品</div>
-        <div class="marketData" [ngStyle]="marketOption[7]" (click)="marketOptionOK(7)">医疗保障</div>
-        <div class="marketData" [ngStyle]="marketOption[8]" (click)="marketOptionOK(8)">危险品</div>
-      </div>
-      <ul class="marketContent">
-        <li *ngFor="let i of marketData" class="marketContentData" (click)="jump('market/see',i.id)">
-          <div class="circular"></div>
-          {{i.title}}
-        </li>
-        <li class="marketContentData" *ngIf="marketData.length == 0">
-          <div class="circular"></div>
-          暂无数据
-        </li>
-      </ul>
-    </div>
-    <div class="quality_block">
-      <div class="quality_title">
-        <div class="quality_titleRed">质量专栏</div>
-        <div class="quality_titleOption" [ngStyle]="titOption2[0]" (click)="titOption2OK(0)">质量公告</div>
-        <div class="quality_titleOption" [ngStyle]="titOption2[1]" (click)="titOption2OK(1)">质量事件</div>
-        <div class="quality_titleOption" [ngStyle]="titOption2[2]" (click)="titOption2OK(2)">质量处理</div>
-        <div class="quality_more">
-          <div class="quality_moreWord" (click)="jump('quality','')">更多 ></div>
-        </div>
-      </div>
-      <ul class="lastContent">
-        <li *ngFor="let i of qualityData" class="lastContentData">
-          <div class="circular" style="margin:20px 10px"></div>
-          <div style="width: 75%;display: inline-block;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;">
-            {{i.title}}
-          </div>
-          <div class="date">[{{i.createTime}}]</div>
-        </li>
-        <li class="lastContentData" *ngIf="marketData.length == 0">
-          <div style="width: 75%;display: inline-block;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;">暂无数据</div>
-        </li>
-      </ul>
-    </div>
-  </div>
-  <div class="right">
-    <div class="login">
-      <div class="loginLogo">物 资 供 应 系 统</div>
-      <div *ngIf="!token">
-        <div class="loginUser">
-          <input (keydown)="keydown($event)" [(ngModel)]="loginName" class="user" type="text" placeholder="请输入用户名" />
-        </div>
-        <div class="loginUser">
-          <input (keydown)="keydown($event)" [(ngModel)]="password" class="user" type="password" placeholder="请输入密码" />
-        </div>
-        <div style="width: 80%;margin: 30px auto 0 auto;">
-          <label nz-checkbox [(ngModel)]="checked">记住密码</label>
-          <a style="float: right;">忘记密码</a>
-        </div>
-        <div class="loginBut" (click)="login()">
-          登&nbsp;&nbsp;&nbsp;&nbsp;录
-        </div>
-      </div>
-      <div class="userInfo" *ngIf="token">
-        <div class="igm">
-          <img src="./assets/images/user.png" alt="">
-          <p>{{userInfoVo.userName}}</p>
-        </div>
-      </div>
-    </div>
-    <div class="box">
-      <div class="boxTitle">
-        <div class="boxRed">党建要闻</div>
-        <div class="more">
-          <div class="moreWord" (click)="jump('partyNews','')">更多 ></div>
-        </div>
-      </div>
-      <ul class="rightContent">
-        <li *ngFor="let i of newsData" class="rightContentData" (click)="jump('partyNews/see',i.id)">
-          <div class="circular"></div>
-          {{i.title}}
-        </li>
-        <li class="rightContentData" *ngIf="newsData.length == 0">暂无数据</li>
-      </ul>
-    </div>
-    <div class="box">
-      <div class="boxTitle">
-        <div class="boxRed">通知公告</div>
-        <div class="more">
-          <div class="moreWord" (click)="jump('notice','')">更多 ></div>
-        </div>
-      </div>
-      <ul class="rightContent">
-        <li *ngFor="let i of noticeData" class="rightContentData" (click)="jump('notice/see',i.id)">
-          <div class="circular"></div>
-          {{i.title}}
-        </li>
-        <li class="rightContentData" *ngIf="noticeData.length == 0">暂无数据</li>
-      </ul>
-    </div>
-    <div class="box">
-      <div class="boxTitle">
-        <div class="boxRed">管理规定</div>
-        <div class="more">
-          <div class="moreWord" (click)="jump('adminRegula','')">更多 ></div>
-        </div>
-      </div>
-      <ul class="rightContent">
-        <li *ngFor="let i of managementData" class="rightContentData" (click)="jump('adminRegula/see',i.id)">
-          <div class="circular"></div>
-          {{i.title}}
-        </li>
-        <li class="rightContentData" *ngIf="managementData.length == 0">暂无数据</li>
-      </ul>
-    </div>
-  </div>
-  <div class="quality_block">
-    <div class="quality_title">
-      <div class="quality_titleRed">资料下载</div>
-      <div class="quality_more">
-        <div class="quality_moreWord" style="line-height: 40px" (click)="jump('download','')">更多 ></div>
-      </div>
-    </div>
-    <ul class="lastContent" style="margin-top:35px;">
-      <li *ngFor="let i of DataDownloadData" class="lastContentData">
-        <div class="circular"></div>
-        {{i.reportName}}
-        <div class="date">[{{i.createTime}}]</div>
-      </li>
-      <li class="lastContentData" *ngIf="DataDownloadData.length == 0">
-        暂无数据
-      </li>
-    </ul>
-  </div>
+
 </div>
+
