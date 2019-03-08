@@ -13,6 +13,8 @@ import { CodeDataService } from '../../../share/services/code-data.service';
 import { forEach } from '@angular/router/src/utils/collection';
 import { Router } from '@angular/router';
 import { SessionService } from '../../../share/services/session.service';
+import { FrontAuthService } from 'src/app/share/restServices/frontAuth.service';
+import { FrontService } from 'src/app/share/restServices/front.service';
 @Component({
   selector: 'app-index',
   templateUrl: './index.component.html',
@@ -36,30 +38,29 @@ export class IndexComponent implements OnInit {
     private codeDataService: CodeDataService,
     private userService: UserService,
     public route: ActivatedRoute,
-    private sessionService: SessionService
+    private sessionService: SessionService,
+    private frontService: FrontService,
 
   ) { }
 
   ngOnInit(): void {
     this.codeObj = this.codeDataService.codeObj;
-    this.id = this.sessionService.getItem('id');
+    this.id = this.sessionService.getItem('userId');
     this.getById(this.id);
   }
 
   getById(id) {
-    this.userService.getById({
+    this.frontService.getUserById({
       params: {
         params2: id
       },
       data: {}
     })
       .subscribe(response => {
-        if (response.code === 200) {
-          this.email = response.data.email;
+        if (response.errorCode === 0) {
           this.loginName = response.data.loginName;
           this.name = response.data.name;
           this.phone = response.data.phone;
-          this.state = response.data.state;
           if (response.data.roles !== '') {
             this.roles = response.data.roles.split(',');
           }

@@ -43,12 +43,12 @@ export class IndexComponent implements OnInit {
                 if (response.errorCode === 0) {
                     this.total = response.data.totalCount;
                     this.data = response.data.pageData;
-                    const a = '/v1/file/downloadHead?fileUrl=';
+                    const a = '/v1/front/downloadHead?fileUrl=';
                     for (let index = 0; index < this.data.length; index++) {
-                        if (this.data[index].images === '') {
-                            this.iiiiimg.push('./assets/images/moren.jpg');
+                        if (!this.data[index].images || this.data[index].images === 'null') {
+                            this.data[index]['imgUrl'] = './assets/images/moren.jpg';
                         } else {
-                            this.iiiiimg.push(a + this.data[index].images.replace(/\//, '%2f'));
+                            this.data[index]['imgUrl'] = a + this.data[index].images.replace(/\//, '%2f');
                         }
                     }
                 }

@@ -8,6 +8,7 @@ import { RxjsMessageService } from 'src/app/share/services/rxjsMessage.service';
 import { AdminDivisionService } from 'src/app/share/restServices/admin-division.service';
 import { FrontService } from '../../../share/restServices/front.service';
 import { NzModalService } from 'ng-zorro-antd';
+import { OtherService } from 'src/app/share/restServices/other.service';
 
 @Component({
   selector: 'app-index',
@@ -40,7 +41,7 @@ export class IndexComponent implements OnInit, OnDestroy {
   bidsData = []; // 投标机构数据
 
   marketData = []; // 市场信息数据
-  industry = 1; // 市场信息行业
+  industry = ''; // 市场信息行业
 
   qualityData = []; // 质量专栏数据
   DataDownloadData = []; // 资料下载数据
@@ -64,6 +65,7 @@ export class IndexComponent implements OnInit, OnDestroy {
   userInfoVo;
   subscription;
   token;
+  industryList = [];
 
   constructor(
     private router: Router,
@@ -73,6 +75,7 @@ export class IndexComponent implements OnInit, OnDestroy {
     private adminDivisionService: AdminDivisionService,
     private frontService: FrontService,
     private nzModalService: NzModalService,
+    private otherService: OtherService,
 
   ) { }
 
@@ -105,6 +108,11 @@ export class IndexComponent implements OnInit, OnDestroy {
     this.newsList();
     this.noticeList();
     this.managementList();
+    this.dataDownloadList();
+    this.otherService.industry({
+    }).subscribe(res => {
+      this.industryList = res.data;
+    });
   }
   ngOnDestroy() {
     this.subscription.unsubscribe();
@@ -240,7 +248,7 @@ export class IndexComponent implements OnInit, OnDestroy {
   marketList() { // 市场信息行业查询
     this.frontService.getMarketInformation({
       params: {
-        params2: 3,
+        params2: 6,
         params3: 1,
         industry: this.industry
       }
@@ -305,11 +313,10 @@ export class IndexComponent implements OnInit, OnDestroy {
         params2: 5,
         params3: 1,
       }
-    }).subscribe(
-      data => {
-        this.DataDownloadData = data.data.pageData;
-      }, err => {
-      }
+    }).subscribe(data => {
+      this.DataDownloadData = data.data.pageData;
+    }, err => {
+    }
     );
   }
 
@@ -395,11 +402,12 @@ export class IndexComponent implements OnInit, OnDestroy {
       this.qualityDealList();
     }
   }
-  marketOptionOK(i) {
-    // 市场信息样式点击样式修改
-    this.marketOption = [{}, {}, {}, {}, {}, {}, {}, {}, {}];
-    this.marketOption[i] = { 'font-weight': 600 };
-    this.industry = i + 1;
+  marketOptionOK(item) {
+    this.industryList.forEach(ee => {
+      ee.active = false;
+    });
+    item.active = true;
+    this.industry = item.id;
     this.marketList();
   }
   jump(i, id) { // 跳转

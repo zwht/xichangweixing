@@ -165,15 +165,7 @@
                 </div>
                 <div class="marketQuota">
                   <div class="marketTable">全部市场行业</div>
-                  <div class="marketData" [ngStyle]="marketOption[0]" (click)="marketOptionOK(0)">金属</div>
-                  <div class="marketData" [ngStyle]="marketOption[1]" (click)="marketOptionOK(1)">生产耗材</div>
-                  <div class="marketData" [ngStyle]="marketOption[2]" (click)="marketOptionOK(2)">轻工类</div>
-                  <div class="marketData" [ngStyle]="marketOption[3]" (click)="marketOptionOK(3)">载具</div>
-                  <div class="marketData" [ngStyle]="marketOption[4]" (click)="marketOptionOK(4)">化工</div>
-                  <div class="marketData" [ngStyle]="marketOption[5]" (click)="marketOptionOK(5)">能源</div>
-                  <div class="marketData" [ngStyle]="marketOption[6]" (click)="marketOptionOK(6)">农产品</div>
-                  <div class="marketData" [ngStyle]="marketOption[7]" (click)="marketOptionOK(7)">医疗保障</div>
-                  <div class="marketData" [ngStyle]="marketOption[8]" (click)="marketOptionOK(8)">危险品</div>
+                  <div *ngFor="let item of industryList" [ngClass]="{'active1': item.active}" class="marketData" (click)="marketOptionOK(item)">{{item.name}}</div>
                 </div>
                 <ul class="marketContent">
                   <li *ngFor="let i of marketData" class="marketContentData" (click)="jump('market/see',i.id)">
@@ -200,11 +192,11 @@
                   <li *ngFor="let i of qualityData" class="lastContentData">
                     <div class="circular" style="margin:20px 10px"></div>
                     <div style="width: 75%;display: inline-block;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;">
-                      {{i.title}}
+                      {{i.title||i.name||i.supplierName+'-'+i.materials}}
                     </div>
                     <div class="date">[{{i.createTime}}]</div>
                   </li>
-                  <li class="lastContentData" *ngIf="marketData.length == 0">
+                  <li class="lastContentData" *ngIf="!qualityData.length">
                     <div style="width: 75%;display: inline-block;overflow: hidden;white-space: nowrap;text-overflow: ellipsis;">暂无数据</div>
                   </li>
                 </ul>
@@ -292,7 +284,10 @@
                 <li *ngFor="let i of DataDownloadData" class="lastContentData">
                   <div class="circular"></div>
                   {{i.reportName}}
-                  <div class="date">[{{i.createTime}}]</div>
+                  <div class="date">
+                    [{{i.updateTime}}]
+                    <a href="" style="margin-left:20px;">下载</a>
+                  </div>
                 </li>
                 <li class="lastContentData" *ngIf="DataDownloadData.length == 0">
                   暂无数据

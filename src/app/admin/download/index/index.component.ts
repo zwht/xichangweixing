@@ -14,7 +14,7 @@ export class IndexComponent implements OnInit {
     pageIndex = 1; // 当前页数
     total = 50; // 数据总数
     pageSize = 10; // 每页条数
-    subjectId;
+    subjectId = '';
 
     data = [];
     constructor(

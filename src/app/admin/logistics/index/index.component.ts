@@ -20,6 +20,7 @@ export class IndexComponent implements OnInit {
   leavingDate = '';
   allotment = '';
   phone = '';
+  persons;
   rooms = [{ roomsType: 1, rooms: 1 }];
 
   constructor(
@@ -53,6 +54,7 @@ export class IndexComponent implements OnInit {
         leavingDate: this.leavingDate,
         allotment: this.allotment,
         phone: this.phone,
+        persons: this.persons,
         rooms: rooms.join(','),
         roomsType: roomsType.join(',')
       }
@@ -107,6 +109,10 @@ export class IndexComponent implements OnInit {
     }
     if (this.phone === '') {
       this.message.create('error', '请输入联系电话');
+      return 0;
+    }
+    if (!this.persons) {
+      this.message.create('error', '请输入入住人数');
       return 0;
     }
     return 1;

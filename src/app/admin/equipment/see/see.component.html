@@ -64,7 +64,7 @@
             </div>
         </div>
         <div class="line"></div>
-        <textarea class="publishText publishText-1" placeholder="产品信息变更反馈：（200字符内）" maxlength="200"></textarea>
-        <div class="fabu">提交</div>
+        <textarea [(ngModel)]="textareaText" class="publishText publishText-1" placeholder="产品信息变更反馈：（200字符内）" maxlength="200"></textarea>
+        <div (click)="save()" class="fabu">提交</div>
     </div>
 </div>

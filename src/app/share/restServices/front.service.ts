@@ -14,6 +14,18 @@ export class FrontService {
   ) { }
   private url = '/v1/front/:params1/:params2/:params3/:params4/:params5';
 
+
+  @HttpConfig({
+    method: 'get',
+    params: {
+      params1: 'getUserById'
+    },
+    roles: []
+  })
+  getUserById(data: HttpData): Observable<any> {
+    return data.observable;
+  }
+
   // 根据条件查询工作动态
   @HttpConfig({
     method: 'get',

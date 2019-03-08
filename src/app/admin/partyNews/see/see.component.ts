@@ -15,6 +15,7 @@ export class SeeComponent implements OnInit {
     readCount: '',
     createTime: '',
     createUser: '',
+    updateTime: '',
   };
   content;
   constructor(

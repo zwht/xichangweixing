@@ -26,7 +26,7 @@ export class SeeComponent implements OnInit {
     leadingPerson: '',
   };
   iiiiimg = '';
-
+  textareaText;
   constructor(
     public route: ActivatedRoute,
     public router: Router,
@@ -55,6 +55,9 @@ export class SeeComponent implements OnInit {
           }
         }
       });
+  }
+  save() {
+
   }
 
   jump(i, id) { // 跳转

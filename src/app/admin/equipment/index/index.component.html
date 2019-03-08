@@ -20,13 +20,13 @@
     <input nz-input placeholder="供应商" [(ngModel)]="supplierName" style="width: 16%;margin: 20px 2%;">
     <input nz-input placeholder="采购负责人" [(ngModel)]="leadingPerson" style="width: 16%;margin: 20px 2%;">
 
-    <div class="queryButton">下载</div>
+    <!-- <div class="queryButton">下载</div> -->
     <div class="queryButton" (click)="getList()">查询</div>
   </div>
 
   <div class="equipmentData">
     <div class="division" style="cursor: pointer;" *ngFor="let item of data; let i = index" (click)="jump('equipment/see',item.id)">
-      <img [src]="iiiiimg[i]" class="icon">
+      <img [src]="item.imgUrl" class="icon">
       <div class="name">{{item.name}}</div>
       <div class="number">{{item.code}}</div>
       <div class="company">{{item.supplierName}}</div>

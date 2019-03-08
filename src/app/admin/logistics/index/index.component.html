@@ -57,6 +57,15 @@
                 </div>
             </div>
             <div style="width: 100%;margin: 10px 0;overflow: auto;">
+                <div class="ennn"><span style="line-height: 32px;">入住人数:</span></div>
+                <div class="emmm">
+                    <nz-input-group style="width: 180px;" nzAddOnAfter="人">
+                        <input type="number" nz-input 
+                        placeholder="入住人数" [(ngModel)]="persons">
+                    </nz-input-group>
+                </div>
+            </div>
+            <div style="width: 100%;margin: 10px 0;overflow: auto;">
                 <div class="ennn"><span style="line-height: 32px;">离店日期:</span></div>
                 <div class="emmm">
                     <nz-date-picker [(ngModel)]="leavingDate"></nz-date-picker>
@@ -73,7 +82,8 @@
                             <label nz-radio [nzValue]="4">大套房</label>
                         </nz-radio-group>
                         <span style="line-height: 32px;margin-right: 10px">间数:</span>
-                        <nz-input-number style="margin-right: 10px" [nzPrecision] = "0" [nzMin]="1" [(ngModel)]="item.rooms" [nzStep]="1"></nz-input-number>
+                        <nz-input-number style="margin-right: 10px" [nzPrecision]="0" [nzMin]="1"
+                            [(ngModel)]="item.rooms" [nzStep]="1"></nz-input-number>
                         <button nz-button nzType="default" (click)="addDelRoom(i)">删除</button>
                     </div>
                     <button nz-button nzType="default" (click)="addDelRoom('')">添加</button>

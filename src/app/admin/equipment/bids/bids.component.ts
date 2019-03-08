@@ -65,11 +65,18 @@ export class BidsComponent implements OnInit {
     }
 
     getList() {
+        let region = '';
+        if (this.cityNum) {
+            const cityName = this.city.filter(x => x.cityCode === this.cityNum)[0].cityName;
+            const provinceName = this.province.filter(x => x.provinceCode === this.provinceNum)[0].provinceName;
+            region = this.cityNum + ',' + provinceName + cityName;
+        }
         this.frontService.getOrgatioByQuery({
             params: {
                 pageSize: this.pageSize,
                 pageNumber: this.pageIndex,
                 name: this.name,
+                region,
                 grade: this.grade,
                 status: this.status
             },
