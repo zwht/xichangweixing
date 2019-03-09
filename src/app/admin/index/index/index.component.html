@@ -13,7 +13,7 @@
                 </div>
                 <div class="window">
                   <div class="aaaa">{{workDynamicsImg.tit}}</div>
-                  <img [src]="workDynamicsImg.img" class="tupian">
+                  <img  (click)="jump('work/see',workDynamicsImg.id)" [src]="workDynamicsImg.img" class="tupian">
                 </div>
                 <ul class="content">
                   <li *ngFor="let i of workDynamicsData" class="contentData" (click)="jump('work/see',i.id)">

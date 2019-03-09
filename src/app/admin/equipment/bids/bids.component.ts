@@ -35,7 +35,15 @@ export class BidsComponent implements OnInit {
         this.getList();
         this.getAdminDivision(1, '');
     }
-
+    dow() {
+        const ids = this.data.reduce((pr, item) => {
+            pr.push(item['id']);
+            return pr;
+        }, []);
+        if (ids.length) {
+            window.open('/v1/front/exportOrgationByIds?str1=' + ids.concat(','))
+        }
+    }
     getAdminDivision(level, id) { // 位置信息查询
         if (id == null) {
             this.city = [];

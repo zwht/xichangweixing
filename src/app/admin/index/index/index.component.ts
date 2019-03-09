@@ -56,7 +56,12 @@ export class IndexComponent implements OnInit, OnDestroy {
   city: Array<{ cityCode: string, cityName: string }> = []; // 城市信息
 
   workDynamicsData = [{ face: '', title: '' }]; // 工作动态数据
-  workDynamicsImg = { now: 0, img: './assets/images/moren.jpg', tit: '' }; // 工作动态图片
+  workDynamicsImg = {
+    active: true,
+    img: './assets/images/moren.jpg',
+    tit: '',
+    id: null
+  }; // 工作动态图片
   value = '';
   level = null;
   checked = false;
@@ -66,6 +71,8 @@ export class IndexComponent implements OnInit, OnDestroy {
   subscription;
   token;
   industryList = [];
+  imgList = [];
+  time;
 
   constructor(
     private router: Router,
@@ -78,6 +85,12 @@ export class IndexComponent implements OnInit, OnDestroy {
     private otherService: OtherService,
 
   ) { }
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+    if (this.time) {
+      clearTimeout(this.time);
+    }
+  }
 
   ngOnInit() {
     const userInfo = this.session.getItem('userInfoVo');
@@ -114,9 +127,7 @@ export class IndexComponent implements OnInit, OnDestroy {
       this.industryList = res.data;
     });
   }
-  ngOnDestroy() {
-    this.subscription.unsubscribe();
-  }
+
   keydown(e) {
     if (e.keyCode === 13) {
       if (this.loginName && this.password) {
@@ -186,14 +197,44 @@ export class IndexComponent implements OnInit, OnDestroy {
     if (this.workDynamicsData.length === 0) {
       return;
     }
-    this.workDynamicsData.forEach(item => {
-      this.loading = false;
-      if (item.face) {
-        this.workDynamicsImg.img = '/v1/file/downloadHead?fileUrl=' + item.face.replace(/\//, '%2f');
-        this.workDynamicsImg.tit = item['name'];
-        this.workDynamicsImg.now = 999;
+    this.loading = false;
+    for (let i = 0; i < this.workDynamicsData.length; i++) {
+      const item = this.workDynamicsData[i];
+      if (item.face && item.face !== 'null' && item.face !== 'undefined') {
+        this.imgList.push({
+          img: '/v1/file/downloadHead?fileUrl=' + item.face.replace(/\//, '%2f'),
+          tit: item['title'],
+          id: item['id']
+        });
       }
-    });
+    }
+    if (this.imgList.length) {
+      this.workDynamicsImg = this.imgList[0];
+      this.workDynamicsImg.active = true;
+    }
+    if (this.imgList.length > 1) {
+      this.setTimeImg();
+    }
+  }
+
+  setTimeImg() {
+    this.time = setTimeout(() => {
+      let key = 0;
+      this.imgList.forEach((item, i) => {
+        if (item.active) {
+          item.active = false;
+          key = i;
+        }
+      });
+      if (key < this.imgList.length - 1) {
+        this.imgList[key + 1].active = true;
+        this.workDynamicsImg = this.imgList[key + 1];
+      } else {
+        this.imgList[0].active = true;
+        this.workDynamicsImg = this.imgList[0];
+      }
+      this.setTimeImg();
+    }, 6000);
   }
 
   supplierList() { // 供应商查询
@@ -250,7 +291,8 @@ export class IndexComponent implements OnInit, OnDestroy {
       params: {
         params2: 6,
         params3: 1,
-        industry: this.industry
+        industry: this.industry,
+        status: 1
       }
     }).subscribe(
       data => {
@@ -411,6 +453,8 @@ export class IndexComponent implements OnInit, OnDestroy {
     this.marketList();
   }
   jump(i, id) { // 跳转
-    this.router.navigate(['/' + i + '/' + id]);
+    if (id) {
+      this.router.navigate(['/' + i + '/' + id]);
+    }
   }
 }

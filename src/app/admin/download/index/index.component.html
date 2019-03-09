@@ -22,8 +22,8 @@
         </div>
         <div class="date">
           {{item.updateTime}}
-          <a style="margin-left:30px; height: 28px;" target="_blank" 
-          href="/v1/front/download?fileUrl={{item.images}}" nz-button>下载</a>
+          <a *ngIf="item.fileUrl" style="margin-left:30px; height: 28px;" target="_blank" 
+          href="/v1/front/download?fileUrl={{item.fileUrl}}" nz-button>下载</a>
         </div>
       </div>
     </div>

@@ -28,6 +28,16 @@ export class IndexComponent implements OnInit {
         this.getList();
     }
 
+    dow() {
+        const ids = this.data.reduce((pr, item) => {
+            pr.push(item['id']);
+            return pr;
+        }, []);
+        if (ids.length) {
+            window.open('/v1/front/exportEquipmentById?str1=' + ids.concat(','))
+        }
+    }
+
     getList() {
         this.frontService.getAllEquipemt({
             params: {

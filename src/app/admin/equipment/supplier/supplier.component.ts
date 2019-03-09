@@ -36,6 +36,15 @@ export class SupplierComponent implements OnInit {
         this.getAdminDivision(1, '');
     }
 
+    dow() {
+        const ids = this.data.reduce((pr, item) => {
+            pr.push(item['id']);
+            return pr;
+        }, []);
+        if (ids.length) {
+            window.open('/v1/front/exportSupplierByIds?str1=' + ids.concat(','))
+        }
+    }
     getList() {
         let region = '';
         if (this.cityNum) {

@@ -40,6 +40,18 @@ export class FrontService {
 
   // 根据条件设备查询
   @HttpConfig({
+    method: 'post',
+    params: {
+    },
+    roles: []
+  })
+  exportSb(data: HttpData): Observable<any> {
+    return data.observable;
+  }
+
+
+  // 根据条件设备查询
+  @HttpConfig({
     method: 'get',
     params: {
       params1: 'getAllEquipemt'
@@ -49,6 +61,8 @@ export class FrontService {
   getAllEquipemt(data: HttpData): Observable<any> {
     return data.observable;
   }
+
+
 
   // 根据条件供应商查询
   @HttpConfig({

@@ -246,10 +246,10 @@ export class MenuComponent implements OnInit, OnDestroy {
             });
     }
     gun(a) {
-        if (a.substring(0, 4) === 'http') {
+        if (a.index('http') !== -1) {
             window.open(a);
         } else {
-            window.open('http://' + a);
+            // window.open('http://' + a);
         }
     }
     gengduogun() {
