@@ -43,5 +43,11 @@
         <div class="zhuyao">
             附件下载
         </div>
+        <ul class="dowl">
+                <li *ngFor="let item of fileList">
+                    <span>{{item.name}}</span>
+                    <a target="_blank" href="/v1/file/download?fileUrl={{item.url}}">下载</a>
+                </li>
+            </ul>
     </div>
 </div>

@@ -238,10 +238,17 @@ export class IndexComponent implements OnInit, OnDestroy {
   }
 
   supplierList() { // 供应商查询
+    let region = '';
+    if (this.cityNum) {
+      const cityName = this.city.filter(x => x.cityCode === this.cityNum)[0].cityName;
+      const provinceName = this.province.filter(x => x.provinceCode === this.provinceNum)[0].provinceName;
+      region = this.cityNum + ',' + provinceName + cityName;
+    }
     this.frontService['getAllByQuery']({
       params: {
         pageNumber: 1,
         pageSize: 3,
+        region,
         name: this.supplierQuery.name,
         status: this.supplierQuery.status,
       }
@@ -271,10 +278,17 @@ export class IndexComponent implements OnInit, OnDestroy {
   }
 
   bidsList() { // 投标商查询
+    let region = '';
+    if (this.cityNum) {
+      const cityName = this.city.filter(x => x.cityCode === this.cityNum)[0].cityName;
+      const provinceName = this.province.filter(x => x.provinceCode === this.provinceNum)[0].provinceName;
+      region = this.cityNum + ',' + provinceName + cityName;
+    }
     this.frontService.getOrgatioByQuery({
       params: {
         pageNumber: 1,
         pageSize: 3,
+        region,
         name: this.bidsQuery.name,
         grade: this.bidsQuery.grade,
       }
@@ -455,6 +469,8 @@ export class IndexComponent implements OnInit, OnDestroy {
   jump(i, id) { // 跳转
     if (id) {
       this.router.navigate(['/' + i + '/' + id]);
+    } else {
+      this.router.navigate(['/' + i]);
     }
   }
 }

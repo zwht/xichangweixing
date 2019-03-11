@@ -18,6 +18,7 @@ export class EventSeeComponent implements OnInit {
     materials: '',
     remark: '',
   };
+  fileList = [];
   constructor(
     public route: ActivatedRoute,
     private frontService: FrontService,
@@ -40,6 +41,21 @@ export class EventSeeComponent implements OnInit {
         if (response.errorCode === 0) {
           // this.total = response.data.totalCount;
           this.data = response.data;
+          if (this.data['fileUrl']) {
+            const fl = [];
+            this.data['fileUrl'].split('&*&*&').forEach(item => {
+              if (item) {
+                const bb = item.split('%#%$%');
+                fl.push({
+                  uid: bb[0],
+                  name: bb[1],
+                  url: bb[0],
+                  status: 'done',
+                });
+              }
+            });
+            this.fileList = fl;
+          }
         }
       });
   }
