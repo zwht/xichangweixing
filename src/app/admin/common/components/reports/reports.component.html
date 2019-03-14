@@ -1,0 +1,37 @@
+<form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="content" nzRequired>举报内容</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24">
+      <textarea [nzAutosize]="{ minRows: 2, maxRows: 6 }" appTrim nz-input id="content" formControlName="content" placeholder="举报内容"></textarea>
+      <nz-form-explain *ngIf="validateForm.get('content').dirty && validateForm.get('content').errors">请输入举报内容!
+      </nz-form-explain>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="reportName" nzRequired>您的姓名</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24">
+      <input appTrim nz-input id="reportName" formControlName="reportName" placeholder="您的姓名">
+      <nz-form-explain *ngIf="validateForm.get('reportName').dirty && validateForm.get('reportName').errors">请输入您的姓名!
+      </nz-form-explain>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="phone" nzRequired>您的联系方式</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24">
+      <input appTrim nz-input id="phone" formControlName="phone" placeholder="您的联系方式">
+      <nz-form-explain *ngIf="validateForm.get('phone').dirty && validateForm.get('phone').errors">请输入您的联系方式!
+      </nz-form-explain>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="works">您的工作单位</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24">
+      <input appTrim nz-input id="works" formControlName="works" placeholder="您的工作单位">
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item nz-row style="margin-bottom:8px;">
+    <nz-form-control [nzSpan]="14" [nzOffset]="6">
+      <button nz-button nzType="primary">保存</button>
+    </nz-form-control>
+  </nz-form-item>
+</form>

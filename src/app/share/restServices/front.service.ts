@@ -42,6 +42,19 @@ export class FrontService {
   @HttpConfig({
     method: 'post',
     params: {
+      params1: 'reports',
+      params2: 'addAndUpdate'
+    },
+    roles: []
+  })
+  reportsAdd(data: HttpData): Observable<any> {
+    return data.observable;
+  }
+
+  // 根据条件设备查询
+  @HttpConfig({
+    method: 'post',
+    params: {
     },
     roles: []
   })

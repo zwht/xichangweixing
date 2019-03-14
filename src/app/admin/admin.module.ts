@@ -5,6 +5,7 @@ import { ShareModule } from '../share/share.module';
 
 import { MenuComponent } from './common/components/menu/menu.component';
 import { PermissionGuardService } from '../share/services/permission-guard.service';
+import { ReportsComponent } from './common/components/reports/reports.component';
 
 export const routes: Routes = [
   {
@@ -173,6 +174,10 @@ export const routes: Routes = [
   ],
   declarations: [
     MenuComponent,
+    ReportsComponent,
+  ],
+  entryComponents: [
+    ReportsComponent
   ]
 })
 export class AdminModule { }

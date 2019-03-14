@@ -5,6 +5,8 @@ import { SessionService } from '../../../../share/services/session.service';
 import { RxjsMessageService } from 'src/app/share/services/rxjsMessage.service';
 import { debug } from 'util';
 import { FrontService } from '../../../../share/restServices/front.service';
+import { NzModalService } from 'ng-zorro-antd';
+import { ReportsComponent } from '../reports/reports.component';
 
 @Component({
     selector: 'app-menu',
@@ -45,6 +47,7 @@ export class MenuComponent implements OnInit, OnDestroy {
         private router: Router,
         private sessionService: SessionService,
         private frontService: FrontService,
+        private modalService: NzModalService,
         private rxjsMessageService: RxjsMessageService) {
     }
 
@@ -254,5 +257,15 @@ export class MenuComponent implements OnInit, OnDestroy {
     }
     gengduogun() {
         this.router.navigate(['link']);
+    }
+    reports(): void {
+        const tplModal = this.modalService.create({
+            nzTitle: '投诉举报',
+            nzContent: ReportsComponent,
+            nzFooter: null,
+            nzMaskClosable: false,
+            nzClosable: false,
+            nzOnOk: () => console.log('Click ok')
+        });
     }
 }
